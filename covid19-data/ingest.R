@@ -1,6 +1,8 @@
 # tuodaan 01-01-2021.csv - 31-12-2022.csv ja yhdistetään
 
+library(dplyr)
 library(tidyverse)
+library(stringr)
 library(fs)
 library(RPostgreSQL)
 library(odbc)
@@ -19,6 +21,7 @@ for (i in seq_along(filePaths)) {
         fileData[[i]] <- read_csv(
                 file = filePaths[[i]]
         )
+        fileData[[i]]$phenomenon_time <- str_sub(filePaths[1],-14,-5)
 }
 
 fileData <- set_names(fileData, filePaths)
@@ -30,3 +33,5 @@ sample <- fileData[[1]]
 # ohjeet: https://www.sqlshack.com/configure-odbc-drivers-for-postgresql/
 
 con <- DBI::dbConnect(odbc::odbc(), "dap-pgdb01")
+
+dbListTables(con, schema = "landing")
