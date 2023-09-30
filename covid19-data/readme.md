@@ -1,5 +1,9 @@
 Lataus lukee paikallisessa kansiossa olevat csv -muotoiset maatilastot joita on yhteensä 1143 kappaletta.
 
+### Conventions
+
+MM-DD-YYYY.csv in UTC (GMT 00).
+
 ### Field description
 - FIPS: US only. Federal Information Processing Standards code that uniquely identifies counties within the USA.
 - Admin2: County name. US only.
