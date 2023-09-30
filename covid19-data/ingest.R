@@ -35,3 +35,5 @@ sample <- fileData[[1]]
 con <- DBI::dbConnect(odbc::odbc(), "dap-pgdb01")
 
 dbListTables(con, schema = "landing")
+
+sqlSave
