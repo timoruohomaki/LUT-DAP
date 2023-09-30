@@ -1,6 +1,6 @@
 # LUT Data-analytiikka Päätöksenteossa
 
-## Materiaaleja seuraaville kursseille:
+## Materiaaleja ja harjoitustöitä seuraaville kursseille:
 
 **CS31A0751** Data-analytiikka ja visualisointi
 
