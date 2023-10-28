@@ -1,4 +1,4 @@
-Lataus lukee paikallisessa kansiossa olevat csv -muotoiset maatilastot joita on yhteensä 1143 kappaletta.
+Lataus lukee paikallisessa kansiossa olevat csv -muotoiset päivätason maatilastot joita on yhteensä 1143 kappaletta.
 
 ### Conventions
 
