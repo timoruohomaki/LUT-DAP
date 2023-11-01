@@ -47,3 +47,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+dap-visu-etl/import/bof-korot/talletusten_ja_lainojen_korot_fi.csv
+dap-visu-etl/import/happiness/DataForFigure2.1WHR2023.xls
+dap-visu-etl/import/happiness/DataForTable2.1WHR2023.xls
