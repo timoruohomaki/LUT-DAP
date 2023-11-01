@@ -8,7 +8,7 @@ library(lubridate)
 
 # tuodaan csvt paikallisesta datakansiosta ja yhdistetään yhteen dataframeen
 # huom korjaa polku jos käytät tätä eri koneella
-# aineisto: https://github.com/CSSEGISandData/COVID-19 
+# aineisto: https://github.com/CSSEGISandData/COVID-19 (JHU datasetti)
 
 if(!file.exists("./data")){dir.create("./data")}
 
