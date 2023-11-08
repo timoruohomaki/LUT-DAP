@@ -13,7 +13,7 @@ s1 = ("SET application_name = 'RStudio - 2023.06.1';")
 
 dbExecute(con, schema = "dw", statement = s1)
 
-datedim.df <- as.data.frame(seq(as.Date("2020-1-1"), as.Date("2024-12-31"), by = "day"))
+datedim.df <- as.data.frame(seq(as.Date("1995-1-1"), as.Date("2024-12-31"), by = "day"))
 
 colnames(datedim.df) <- c("ReadableDate")
 
