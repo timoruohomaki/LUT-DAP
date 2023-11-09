@@ -1,29 +1,13 @@
-library(httr)
-library(jsonlite)
-library(stringr)
-library(utils)
+install.packages("ecb")
+library(ecb)
 
 # luetaan aikasarjat Euroopan Keskuspankin tilastorajapinnasta
 # Info: https://data.ecb.europa.eu/help/api/overview
-# SDMX info: https://sdmx.org/
+# https://cran.r-project.org/web/packages/ecb/ecb.pdf
 
-# esimerkki https://data-api.ecb.europa.eu/service/data/EXR/M.USD.EUR.SP00.A
+ecbKey <- ("ICP.M.U2.N.000000.4.ANR")
+ecbFilter <- list(startPeriod = "1995-W01")
 
-ecbUrlPart1 <- str_trim("https://data-api.ecb.europa.eu/service/data/")
-ecbUrlPart2 <- str_trim("EXR/")
-ecbUrlPart3 <- str_trim("M.USD.EUR.SP00.A")
-ecbUrlParams <- str_trim("?startPeriod=1995-01-01T00%3A00%3A00%2B00%3A00")
+hicp<-get_data(ecbKey, ecbFilter)
 
-ecbUrl <- paste0(ecbUrlPart1,ecbUrlPart2,ecbUrlPart3,ecbUrlParams)
-
-# tämä toimii vain Windowsissa
-writeClipboard(ecbUrl, format = 13)
-
-ecbData <- GET(ecbUrl)
-
-# authenticate("api-key-goes-here",""))
-
-print(paste("CALLING: ", ecbUrl))
-print(paste("HTTP STATUS:", http_status(ecbData)))
-
-
+head(hicp)
