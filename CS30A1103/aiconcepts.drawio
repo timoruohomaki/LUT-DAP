@@ -1,16 +1,16 @@
-<mxfile host="app.diagrams.net" modified="2023-11-10T13:31:09.678Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="cyW757xUvpueX-7JUIUM" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-10T13:36:14.996Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="-fTq4K6Uv2VKTv0VZojF" version="22.1.0" type="github">
   <diagram name="Page-1" id="xQf-Jup4_ZrBehkU_sye">
     <mxGraphModel dx="777" dy="1118" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="wgo70v75RIq1Ek0BcvPC-3" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Moraali" style="ellipse;whiteSpace=wrap;html=1;align=center;labelPosition=center;verticalLabelPosition=middle;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="425" y="375" width="255" height="175" as="geometry" />
+          <mxGeometry x="425" y="380" width="255" height="175" as="geometry" />
         </mxCell>
         <mxCell id="wgo70v75RIq1Ek0BcvPC-1" value="Päätöksenteko" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="260" y="200" width="120" height="60" as="geometry" />
+          <mxGeometry x="10" y="200" width="620" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="wgo70v75RIq1Ek0BcvPC-2" value="Rationaalinen&lt;br&gt;toiminta" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-2" value="Rationaalisuus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="440" y="450" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="wgo70v75RIq1Ek0BcvPC-4" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
@@ -25,10 +25,56 @@
             <mxPoint x="430" y="550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="wgo70v75RIq1Ek0BcvPC-6" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" target="wgo70v75RIq1Ek0BcvPC-3">
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-6" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="560" y="320" as="sourcePoint" />
-            <mxPoint x="430" y="550" as="targetPoint" />
+            <mxPoint x="560" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-7" value="" style="ellipse;whiteSpace=wrap;html=1;align=center;labelPosition=center;verticalLabelPosition=middle;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry y="380" width="255" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-8" value="Muodollisuus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="450" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-9" value="" style="endArrow=none;html=1;rounded=0;exitX=0.471;exitY=-0.023;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="wgo70v75RIq1Ek0BcvPC-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="700" as="sourcePoint" />
+            <mxPoint x="120" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-10" value="RATIONAALISUUS" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-11" value="TOIMIJUUS" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-12" value="Valitun vaihtoehdon toteutus" style="text;strokeColor=none;align=right;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="290" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-13" value="Vaihtoehdon valinta" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="290" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-14" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="400" as="sourcePoint" />
+            <mxPoint x="420" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-15" value="Rationaalinen toiminta" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="wgo70v75RIq1Ek0BcvPC-14">
+          <mxGeometry x="-0.025" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-16" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="520" as="sourcePoint" />
+            <mxPoint x="260" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wgo70v75RIq1Ek0BcvPC-17" value="Kyvykkyys ja vaikutusten&lt;br&gt;arviointi" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="wgo70v75RIq1Ek0BcvPC-16">
+          <mxGeometry x="-0.075" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
