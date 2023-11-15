@@ -24,12 +24,17 @@ write_xlsx(toc, "eurostat.xlsx")
 # rakentaminen kuukausidata ei_bsbu_m_r2
 # palvelut kuukausidata ei_bsse_m_r2
 # vähittäiskauppa kuukausidata ei_bsrt_m_r2
+# henkilöautot per 1000 ihmistä road_eqs_carhab
+# relaatio eri julkisten liikenteen kulkuneuvojen välillä (ilma, meri, maa) tran_hv_ms_psmod
 
 bsco.df <- get_eurostat("ei_bsco_m")
 bsin.df <- get_eurostat("ei_bsin_m_r2")
 bsse.df <- get_eurostat("ei_bsse_m_r2")
 bsbu.df <- get_eurostat("ei_bsbu_m_r2")
 bsrt.df <- get_eurostat("ei_bsrt_m_r2")
+bsrt.df <- get_eurostat("ei_bsrt_m_r2")
+carhab.df <- get_eurostat("road_eqs_carhab")
+psmod.df <- get_eurostat("tran_hv_psmod")
 
 # huom. eurostat sijoittaa kuukausiarvot kuun ensimmäiselle päivälle
 
@@ -76,6 +81,30 @@ eurostat.all <- rbind(eurostat.all, eurostat.append)
 # ====== BSIN ======
 
 eurostat.append <- merge(eurostat.df, bsin.df[,c("indic","unit","geo","time","values")], 
+                         by.x = c("ReadableDate"), by.y = c("time"), all.x = TRUE, all.y = TRUE)
+
+colnames(eurostat.append)[3] = "indicator"
+colnames(eurostat.append)[6] = "value"
+
+eurostat.all <- rbind(eurostat.all, eurostat.append)
+
+eurostat <- subset(eurostat.all, ReadableDate >= "2020-01-01")
+
+# ====== carhab ======
+
+eurostat.append <- merge(eurostat.df, carhab.df[,c("indic","unit","geo","time","values")], 
+                         by.x = c("ReadableDate"), by.y = c("time"), all.x = TRUE, all.y = TRUE)
+
+colnames(eurostat.append)[3] = "indicator"
+colnames(eurostat.append)[6] = "value"
+
+eurostat.all <- rbind(eurostat.all, eurostat.append)
+
+eurostat <- subset(eurostat.all, ReadableDate >= "2020-01-01")
+
+# ====== psmod ======
+
+eurostat.append <- merge(eurostat.df, psmod.df[,c("indic","unit","geo","time","values")], 
                          by.x = c("ReadableDate"), by.y = c("time"), all.x = TRUE, all.y = TRUE)
 
 colnames(eurostat.append)[3] = "indicator"
