@@ -64,8 +64,3 @@ table_id <- Id(schema = "dw", table = "dim_country")
 dbWriteTable(con, table_id, euroCountries, overwrite = TRUE)
 
 dbDisconnect(con)
-
-
-
-
-paste("Inserted", dbGetRowsAffected(rs) ,"rows.")

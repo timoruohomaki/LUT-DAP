@@ -86,6 +86,12 @@ covidObs.clean6 <- covidObs.clean5 %>% select(-c(FIPS, Admin2, Province_State, C
 
 rm(covidObs.clean3,covidObs.clean4,covidObs.clean5)
 
+# lisätään datasetti katalogiin
+
+catalogEntry3 <- list("JHU","CSSE","fact_covid_JHU",
+                      "COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University",today())
+
+
 # ladataan taulu tietokantaan
 
 # ====== INSERT DATABASE =======
