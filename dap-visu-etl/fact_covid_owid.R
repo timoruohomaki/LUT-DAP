@@ -6,25 +6,16 @@ library(RPostgreSQL)
 library(odbc)
 library(lubridate)
 
-if(!file.exists("./data")){dir.create("./data")}
-
 covidOWID.raw <- read_csv("D:/git/COVID-19/owid/owid-covid-data.csv")
 
 # valitaan vain euromaat
 covidOWID.clean1 <- covidOWID.raw %>% dplyr::filter(iso_code %in% euroCountries$Alpha3Code)
 
-rm(covidOWID.raw)
-
-summary(covidOWID.clean1)
-
 # lisätään datasetti katalogiin
 
-catalogEntry3 <- list("OWID","OWID","fact_covid_OWID",
-                      "The complete Our World in Data COVID-19 dataset",today())
+catalogEntry3 <- list("OWID","OWID","fact_covid_OWID","The complete Our World in Data COVID-19 dataset",today())
 
 # ladataan taulu tietokantaan
-
-# ====== INSERT DATABASE =======
 
 con <- DBI::dbConnect(odbc::odbc(), "dap-pgdb01")
 s1 = ("SET application_name = 'RStudio - 2023.06.1';")
