@@ -13,7 +13,6 @@ apause <- function(x)
         proc.time() - p1
 }
 
-
 # luetaan aikasarjat Euroopan Keskuspankin tilastorajapinnasta
 # Info: https://data.ecb.europa.eu/help/api/overview
 # https://cran.r-project.org/web/packages/ecb/ecb.pdf
@@ -23,44 +22,27 @@ apause <- function(x)
 
 # kaikki hakuavaimet maittain
 
-ecbKeys <- c("IRS.M.V5.L.L40.CI.0000.Z01.N.Z","IRS.M.PL.L.L40.CI.0000.PLN.N.Z","IRS.M.RO.L.L40.CI.0000.RON.N.Z",
-             "IRS.M.SE.L.L40.CI.0000.SEK.N.Z","IRS.M.BG.L.L40.CI.0000.BGN.N.Z","IRS.M.CZ.L.L40.CI.0000.CZK.N.Z",
-             "IRS.M.DK.L.L40.CI.0000.DKK.N.Z","IRS.M.HU.L.L40.CI.0000.HUF.N.Z","IRS.M.GB.L.L40.CI.0000.GBP.N.Z")
-ecbRegion <- c("EU27","PLN","RON","SEK","BGN","CZK","DKK","HUF","HRK","BGN","EEK","GBP","CZK","")
+ecbKeys <- ("IRS.M.U2.L.L40.CI.0000.EUR.N.Z")
+ecbRegion <- c("EU27")
 ecbFilter <- list(startPeriod = "2000-W01")
-
-# testikutsu, hakee ecbKeys viimeisimmän tunnisteen:
-ecbTest <- get_data(last(ecbKeys),ecbFilter)
 
 # nouda EU27
 
-ecbData.Raw <- get_data(ecbKeys[1], ecbFilter)
+ecbData.Raw <- get_data(ecbKeys, ecbFilter)
+
 ecbData.Clean1 <- ecbData.Raw %>% mutate(date_key = as.integer(date(paste0(obstime,"-01")))) %>% 
-        mutate(datasource = "ecb", region = ecbRegion[1], dataset = ecbKeys[1])
+        mutate(datasource = "ecb", region = ecbRegion[1], dataset = ecbKeys)
+
 ecbData.Clean2 <- ecbData.Clean1 %>% select(datasource,dataset,obsvalue,date_key)
+
 ecbData <- ecbData.Clean2
 
 rm(ecbData.Raw,ecbData.Clean1,ecbData.Clean2)
 
-# nouda jäsenvaltiot ja yhdistä ecbData -frameen
 
-for(i in 2:length(ecbKeys)) {
-        
-        print(paste("Fetching",ecbRegion[i]))
-        
-        ecbData.Raw <- get_data(ecbKeys[i], ecbFilter)
-        
-        ecbData.Clean1 <- ecbData.Raw %>% mutate(date_key = as.integer(date(paste0(obstime,"-01")))) %>% 
-                mutate(datasource = "ecb", region = ecbRegion[i], dataset = ecbKeys[i])
-        ecbData.Clean2 <- ecbData.Clean1 %>% select(datasource,dataset,obsvalue,date_key)
-        
-        ecbData <- (ecbData, ecbData.Clean2)
-        
-        rm(ecbData.Raw,ecbData.Clean1,ecbData.Clean2)
-        
-        apause(1)
-        
-}
+# lisätään tiedot datakatalogiin
+catalogEntry11 <- list("ECB","IRS.M.U2.L.L40.CI.0000.EUR.N.Z","fact_ecb",
+                       "Monthly long-term interest rate for convergence purposes - 10 years maturity, denominated in Euro, Euro area",as.Date(today()))
 
 # ====== INSERT INTO DATABASE =======
 

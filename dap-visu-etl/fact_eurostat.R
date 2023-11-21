@@ -24,8 +24,6 @@ write_xlsx(toc, "eurostat.xlsx")
 # rakentaminen kuukausidata ei_bsbu_m_r2
 # palvelut kuukausidata ei_bsse_m_r2
 # vähittäiskauppa kuukausidata ei_bsrt_m_r2
-# henkilöautot per 1000 ihmistä road_eqs_carhab
-# relaatio eri julkisten liikenteen kulkuneuvojen välillä (ilma, meri, maa) tran_hv_ms_psmod
 
 bsco.df <- get_eurostat("ei_bsco_m")
 bsin.df <- get_eurostat("ei_bsin_m_r2")
@@ -33,8 +31,7 @@ bsse.df <- get_eurostat("ei_bsse_m_r2")
 bsbu.df <- get_eurostat("ei_bsbu_m_r2")
 bsrt.df <- get_eurostat("ei_bsrt_m_r2")
 bsrt.df <- get_eurostat("ei_bsrt_m_r2")
-carhab.df <- get_eurostat("road_eqs_carhab")
-psmod.df <- get_eurostat("tran_hv_psmod")
+
 
 # huom. eurostat sijoittaa kuukausiarvot kuun ensimmäiselle päivälle
 
