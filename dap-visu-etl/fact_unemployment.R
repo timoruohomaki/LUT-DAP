@@ -15,7 +15,7 @@ library(odbc)
 unempl.df <- get_eurostat("ei_lmhr_m")
 
 unempl.clean1 <- unempl.df %>% rename(readabledate = time, country = geo)
-unempl.final <- index.df %>% mutate(datekey = as.integer(readabledate))
+unempl.final <- unempl.clean1 %>% mutate(datekey = as.integer(readabledate))
 
 # lisätään tiedot datakatalogiin
 

@@ -33,6 +33,12 @@ euro <- euroCountries %>% select(CountryNameEN, Alpha2Code)
 
 happiness.clean3 <- happiness.clean2 %>% left_join(euro, c("Countryname" = "CountryNameEN"))
 
+happiness.clean4 <- happiness.clean3 %>% mutate_at(c(2:19), as.numeric)
+
+happiness.clean5 <- happiness.clean4 %>% mutate_at(c(21:29), as.numeric)
+
+happiness.clean6 <- happiness.clean5 %>% mutate_at(c(20), as.integer)
+
 # lisätään tiedot datakatalogiin
 
 catalogEntry9 <- list("UN","N/A","fact_happiness",
@@ -47,6 +53,6 @@ dbExecute(con, schema = "dw", statement = s1)
 
 table_id <- Id(schema = "dw", table = "fact_happiness")
 
-dbWriteTable(con, table_id, happiness.clean3, overwrite = TRUE)
+dbWriteTable(con, table_id, happiness.clean6, overwrite = TRUE)
 
 dbDisconnect(con)
