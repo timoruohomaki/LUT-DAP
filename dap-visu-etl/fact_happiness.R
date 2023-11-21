@@ -33,9 +33,12 @@ euro <- euroCountries %>% select(CountryNameEN, Alpha2Code)
 
 happiness.clean3 <- happiness.clean2 %>% left_join(euro, c("Countryname" = "CountryNameEN"))
 
-# ladataan taulu tietokantaan
+# lisätään tiedot datakatalogiin
 
-# ====== INSERT DATABASE =======
+catalogEntry9 <- list("UN","N/A","fact_happiness",
+                      "World Happiness Report 2023",as.Date(today()))
+
+# ladataan taulu tietokantaan
 
 con <- DBI::dbConnect(odbc::odbc(), "dap-pgdb01")
 s1 = ("SET application_name = 'RStudio - 2023.06.1';")

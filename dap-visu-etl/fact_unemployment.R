@@ -12,13 +12,14 @@ library(odbc)
 
 # faktataulussa DateKey toimii viiteavaimena kohteena vastaavan dimensiotaulun BusinessKey
 
-unempl.df <- get_eurostat("ei_lmhr_m"")
+unempl.df <- get_eurostat("ei_lmhr_m")
 
-index.df <- unempl.df %>% rename(readabledate = time, country = geo)
-index.final <- index.df %>% mutate(datekey = as.integer(readabledate))
+unempl.clean1 <- unempl.df %>% rename(readabledate = time, country = geo)
+unempl.final <- index.df %>% mutate(datekey = as.integer(readabledate))
 
 # lisätään tiedot datakatalogiin
-catalogEntry9 <- list("EUROSTAT","ei_lmhr_m","fact_unemployment","",as.Date(today()))
+
+catalogEntry10 <- list("EUROSTAT","ei_lmhr_m","fact_unemployment","Unemployment rate (%) - monthly data",as.Date(today()))
 
 # INSERT INTO DW
 

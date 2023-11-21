@@ -14,11 +14,12 @@ library(odbc)
 
 regrupc.df <- get_eurostat("sts_rb_q")
 
-index.df <- regrupc.df %>% rename(readabledate = time, country = geo)
-index.final <- index.df %>% mutate(datekey = as.integer(readabledate))
+regupc.Clean1 <- regrupc.df %>% rename(readabledate = time, country = geo)
+regupc.final <- regupc.Clean1 %>% mutate(datekey = as.integer(readabledate))
 
 # lisätään tiedot datakatalogiin
-catalogEntry8 <- list("EUROSTAT","sts_rb_q","fact_rgstrbnkrptcies","",as.Date(today()))
+catalogEntry8 <- list("EUROSTAT","sts_rb_q","fact_rgstrbnkrptcies",
+                        "Business registration and bankruptcy index by NACE Rev.2 activity - quarterly data",as.Date(today()))
 
 # INSERT INTO DW
 
