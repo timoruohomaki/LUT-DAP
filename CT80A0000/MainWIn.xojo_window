@@ -24,50 +24,6 @@ Begin DesktopWindow MainWIn
    Type            =   0
    Visible         =   True
    Width           =   908
-   Begin DesktopBevelButton pageSelectBB
-      AllowAutoDeactivate=   True
-      AllowFocus      =   True
-      AllowTabStop    =   True
-      BackgroundColor =   &c00000000
-      BevelStyle      =   0
-      Bold            =   False
-      ButtonStyle     =   0
-      Caption         =   "Patients"
-      CaptionAlignment=   3
-      CaptionDelta    =   0
-      CaptionPosition =   1
-      Enabled         =   True
-      FontName        =   "Consolas"
-      FontSize        =   0.0
-      FontUnit        =   0
-      HasBackgroundColor=   False
-      Height          =   55
-      Icon            =   0
-      IconAlignment   =   0
-      IconDeltaX      =   0
-      IconDeltaY      =   0
-      Index           =   1
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      MenuStyle       =   0
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   66
-      Transparent     =   False
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   102
-   End
    Begin DesktopPagePanel PagePanel1
       AllowAutoDeactivate=   True
       Enabled         =   True
@@ -79,7 +35,7 @@ Begin DesktopWindow MainWIn
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   5
+      PanelCount      =   6
       Panels          =   ""
       Scope           =   0
       TabIndex        =   1
@@ -88,7 +44,7 @@ Begin DesktopWindow MainWIn
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   1
+      Value           =   2
       Visible         =   True
       Width           =   792
       Begin DesktopLabel Label1
@@ -241,7 +197,7 @@ Begin DesktopWindow MainWIn
          Visible         =   True
          Width           =   160
       End
-      Begin DesktopButton Button1
+      Begin DesktopButton showPatientIDB
          AllowAutoDeactivate=   True
          Bold            =   False
          Cancel          =   False
@@ -300,7 +256,7 @@ Begin DesktopWindow MainWIn
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   348
+         Top             =   287
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -569,7 +525,7 @@ Begin DesktopWindow MainWIn
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   351
+         Top             =   290
          Transparent     =   False
          Underline       =   False
          UnicodeMode     =   1
@@ -604,7 +560,7 @@ Begin DesktopWindow MainWIn
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   142
+         Top             =   113
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -620,7 +576,7 @@ Begin DesktopWindow MainWIn
          Height          =   160
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
-         Left            =   274
+         Left            =   246
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -631,7 +587,7 @@ Begin DesktopWindow MainWIn
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   155
+         Top             =   113
          Transparent     =   True
          Visible         =   True
          Width           =   545
@@ -663,7 +619,7 @@ Begin DesktopWindow MainWIn
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   535
+         Top             =   474
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -698,7 +654,7 @@ Begin DesktopWindow MainWIn
          InitialValue    =   "Date	Code	Description"
          Italic          =   False
          Left            =   246
-         LockBottom      =   False
+         LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   True
@@ -710,7 +666,7 @@ Begin DesktopWindow MainWIn
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   535
+         Top             =   474
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -740,7 +696,7 @@ Begin DesktopWindow MainWIn
          TabPanelIndex   =   2
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   715
+         Top             =   654
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -806,7 +762,7 @@ Begin DesktopWindow MainWIn
          LockTop         =   True
          MaximumCharactersAllowed=   0
          Password        =   False
-         ReadOnly        =   False
+         ReadOnly        =   True
          Scope           =   0
          TabIndex        =   19
          TabPanelIndex   =   2
@@ -881,7 +837,7 @@ Begin DesktopWindow MainWIn
          LockTop         =   True
          MaximumCharactersAllowed=   0
          Password        =   False
-         ReadOnly        =   False
+         ReadOnly        =   True
          Scope           =   0
          TabIndex        =   21
          TabPanelIndex   =   2
@@ -897,16 +853,235 @@ Begin DesktopWindow MainWIn
          Visible         =   True
          Width           =   240
       End
+      Begin CalendarView CalendarView1
+         AdaptWeeksPerMonth=   True
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   True
+         AllowTabs       =   False
+         Animate         =   True
+         Backdrop        =   0
+         Border          =   True
+         ColorWeekend    =   False
+         DayEndHour      =   18.0
+         DayStartHour    =   8.0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         Height          =   728
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Left            =   134
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   6
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   True
+         ViewDays        =   5
+         ViewType        =   2
+         Visible         =   True
+         Width           =   752
+      End
+      Begin DesktopHTMLViewer todayViewer
+         AutoDeactivate  =   True
+         Enabled         =   True
+         Height          =   748
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Left            =   114
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Renderer        =   0
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   1
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Visible         =   True
+         Width           =   792
+      End
+      Begin DesktopLabel Label13
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   22
+         TabPanelIndex   =   2
+         TabStop         =   True
+         Text            =   "Prescriptions:"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   686
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+      End
+      Begin DesktopListBox ListBox1
+         AllowAutoDeactivate=   True
+         AllowAutoHideScrollbars=   True
+         AllowExpandableRows=   False
+         AllowFocusRing  =   True
+         AllowResizableColumns=   False
+         AllowRowDragging=   False
+         AllowRowReordering=   False
+         Bold            =   False
+         ColumnCount     =   3
+         ColumnWidths    =   "20%,30%,40%"
+         DefaultRowHeight=   -1
+         DropIndicatorVisible=   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         GridLineStyle   =   0
+         HasBorder       =   True
+         HasHeader       =   True
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
+         HeadingIndex    =   -1
+         Height          =   62
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         InitialValue    =   "Date	Medication	Related Procedure"
+         Italic          =   False
+         Left            =   246
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   False
+         RequiresSelection=   False
+         RowSelectionType=   0
+         Scope           =   0
+         TabIndex        =   23
+         TabPanelIndex   =   2
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   684
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   609
+         _ScrollWidth    =   -1
+      End
+      Begin DesktopListBox ListBox2
+         AllowAutoDeactivate=   True
+         AllowAutoHideScrollbars=   True
+         AllowExpandableRows=   False
+         AllowFocusRing  =   True
+         AllowResizableColumns=   False
+         AllowRowDragging=   False
+         AllowRowReordering=   False
+         Bold            =   False
+         ColumnCount     =   1
+         ColumnWidths    =   ""
+         DefaultRowHeight=   -1
+         DropIndicatorVisible=   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         GridLineStyle   =   0
+         HasBorder       =   True
+         HasHeader       =   True
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
+         HeadingIndex    =   -1
+         Height          =   632
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         RequiresSelection=   False
+         RowSelectionType=   0
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   82
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   752
+         _ScrollWidth    =   -1
+      End
+      Begin DesktopLabel Label14
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   1
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Text            =   "Search:"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   50
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+      End
    End
    Begin DesktopBevelButton pageSelectBB
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
       BackgroundColor =   &c00000000
-      BevelStyle      =   0
+      BevelStyle      =   1
       Bold            =   False
-      ButtonStyle     =   0
-      Caption         =   "Charts"
+      ButtonStyle     =   1
+      Caption         =   "Patients"
       CaptionAlignment=   3
       CaptionDelta    =   0
       CaptionPosition =   1
@@ -940,16 +1115,16 @@ Begin DesktopWindow MainWIn
       Underline       =   False
       Value           =   False
       Visible         =   True
-      Width           =   102
+      Width           =   110
    End
    Begin DesktopBevelButton pageSelectBB
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
       BackgroundColor =   &c00000000
-      BevelStyle      =   0
+      BevelStyle      =   1
       Bold            =   False
-      ButtonStyle     =   0
+      ButtonStyle     =   1
       Caption         =   "Messaging"
       CaptionAlignment=   3
       CaptionDelta    =   0
@@ -984,16 +1159,16 @@ Begin DesktopWindow MainWIn
       Underline       =   False
       Value           =   False
       Visible         =   True
-      Width           =   102
+      Width           =   110
    End
    Begin DesktopBevelButton pageSelectBB
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
       BackgroundColor =   &c00000000
-      BevelStyle      =   0
+      BevelStyle      =   1
       Bold            =   False
-      ButtonStyle     =   0
+      ButtonStyle     =   1
       Caption         =   "Inventory"
       CaptionAlignment=   3
       CaptionDelta    =   0
@@ -1028,16 +1203,16 @@ Begin DesktopWindow MainWIn
       Underline       =   False
       Value           =   False
       Visible         =   True
-      Width           =   102
+      Width           =   110
    End
    Begin DesktopBevelButton pageSelectBB
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
       BackgroundColor =   &c00000000
-      BevelStyle      =   0
+      BevelStyle      =   1
       Bold            =   False
-      ButtonStyle     =   0
+      ButtonStyle     =   1
       Caption         =   "Schedule"
       CaptionAlignment=   3
       CaptionDelta    =   0
@@ -1072,14 +1247,14 @@ Begin DesktopWindow MainWIn
       Underline       =   False
       Value           =   False
       Visible         =   True
-      Width           =   102
+      Width           =   110
    End
    Begin DesktopBevelButton logoutBB
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
       BackgroundColor =   &c00000000
-      BevelStyle      =   0
+      BevelStyle      =   1
       Bold            =   False
       ButtonStyle     =   0
       Caption         =   "Logout"
@@ -1116,16 +1291,16 @@ Begin DesktopWindow MainWIn
       Underline       =   False
       Value           =   False
       Visible         =   True
-      Width           =   102
+      Width           =   110
    End
    Begin DesktopBevelButton pageSelectBB
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
       BackgroundColor =   &c00000000
-      BevelStyle      =   0
+      BevelStyle      =   1
       Bold            =   False
-      ButtonStyle     =   0
+      ButtonStyle     =   1
       Caption         =   "Today"
       CaptionAlignment=   3
       CaptionDelta    =   0
@@ -1151,16 +1326,16 @@ Begin DesktopWindow MainWIn
       LockTop         =   True
       MenuStyle       =   0
       Scope           =   0
-      TabIndex        =   7
+      TabIndex        =   0
       TabPanelIndex   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      Value           =   False
+      Value           =   True
       Visible         =   True
-      Width           =   102
+      Width           =   110
    End
    Begin DesktopLabel Label11
       AllowAutoDeactivate=   True
@@ -1226,6 +1401,50 @@ Begin DesktopWindow MainWIn
       Visible         =   True
       Width           =   100
    End
+   Begin DesktopBevelButton pageSelectBB
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowTabStop    =   True
+      BackgroundColor =   &c00000000
+      BevelStyle      =   1
+      Bold            =   False
+      ButtonStyle     =   1
+      Caption         =   "Charts"
+      CaptionAlignment=   3
+      CaptionDelta    =   0
+      CaptionPosition =   1
+      Enabled         =   True
+      FontName        =   "Consolas"
+      FontSize        =   0.0
+      FontUnit        =   0
+      HasBackgroundColor=   False
+      Height          =   55
+      Icon            =   0
+      IconAlignment   =   0
+      IconDeltaX      =   0
+      IconDeltaY      =   0
+      Index           =   1
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MenuStyle       =   0
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   67
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   110
+   End
 End
 #tag EndDesktopWindow
 
@@ -1256,10 +1475,47 @@ End
 
 #tag EndWindowCode
 
+#tag Events CalendarView1
+	#tag Event
+		Sub Open()
+		  me.MyStyle.MFirstDayOfMonthBold = False
+		  
+		  me.WeekHeaderTextFormat = "" 'l d, F"
+		  
+		  me.FirstDayOfWeek = 1
+		  
+		  me.ViewType = me.TypeWeek
+		  
+		  me.HighlightLockedEvents = True
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events todayViewer
+	#tag Event
+		Sub Opening()
+		  If Me.IsAvailable Then
+		    Var agent As String
+		    agent = "DIS Dental EHR HTML Viewer"
+		    Me.UserAgent = agent
+		  End If
+		  
+		  me.LoadURL("https://www.hel.fi/en/health-and-social-services")
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events pageSelectBB
 	#tag Event
 		Sub Pressed(index as Integer)
 		  PagePanel1.SelectedPanelIndex = me.Index
+		  
+		  for i as integer = 0 to 5
+		    
+		    if i <> me.Index then 
+		      pageSelectBB(i).Value = false 
+		    end
+		    
+		  next
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1267,6 +1523,13 @@ End
 	#tag Event
 		Sub Pressed()
 		  Quit()
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Label12
+	#tag Event
+		Sub Opening()
+		  me.Bold = true
 		End Sub
 	#tag EndEvent
 #tag EndEvents

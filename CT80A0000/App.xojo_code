@@ -21,6 +21,13 @@ Inherits DesktopApplication
 	#tag EndEvent
 
 
+	#tag Note, Name = References
+		
+		CalendarView:
+		https://www.jeremieleroy.com/wiki/index.php?title=CalendarView 
+	#tag EndNote
+
+
 	#tag Property, Flags = &h0
 		smartCard As SmartCardMBS
 	#tag EndProperty
@@ -50,6 +57,9 @@ Inherits DesktopApplication
 	#tag Constant, Name = kFileQuitShortcut, Type = String, Dynamic = False, Default = \"", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"Cmd+Q"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Ctrl+Q"
+	#tag EndConstant
+
+	#tag Constant, Name = UseGDIPlus, Type = Boolean, Dynamic = False, Default = \"TRUE", Scope = Public
 	#tag EndConstant
 
 
