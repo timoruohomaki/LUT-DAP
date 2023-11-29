@@ -5,3 +5,7 @@
 **CS31A0751** Data-analytiikka ja visualisointi
 
 **CT80A0000** Data-intensive systems
+
+**CS30A1103** Päätöksenteko ja päätösanalyysi
+
+**CS30A1630** System Modeling
