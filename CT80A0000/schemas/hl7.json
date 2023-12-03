@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"$defs": {
+		"patient": {
+			"description": "Demographics and other administrative information about an individual or animal receiving care or other health-related services."
+		},
+		"appointment": {
+			"description": "A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)."
+		},
+		"encounter": {
+			"description": "An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient. Encounter is primarily used to record information about the actual activities that occurred, where Appointment is used to record planned activities."
+		},
+		"practitioner": {
+			"description": "A person who is directly or indirectly involved in the provisioning of healthcare or related services.\r\n\r\n"
+		},
+		"location": {
+			"description": "Details and position information for a place where services are provided and resources and participants may be stored, found, contained, or accommodated."
+		},
+		"inventoryItem": {
+			"description": "A functional description of an inventory item used in inventory and supply-related workflows."
+		}
+	}
+}

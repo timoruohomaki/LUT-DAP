@@ -284,12 +284,46 @@ Begin DesktopWindow loginWin
       Visible         =   True
       Width           =   232
    End
+   Begin DesktopLabel infoTextLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Untitled"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   137
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   344
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
 		Sub Opening()
+		  infoTextLabel.text = md5("080672-0750")
+		  
 		  app.smartCard = app.smartCardContext.Connect(app.smartCardDeviceName, SmartCardMBS.kShareShared, SmartCardMBS.kProtocolAny)
 		  
 		  var state as integer
