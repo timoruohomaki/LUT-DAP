@@ -7,3 +7,5 @@ library(jsonlite)
 
 if(!file.exists("./data")){dir.create("./data")}
 
+kCount <- 1000000
+
