@@ -8,4 +8,3 @@
 
 **CS30A1103** Päätöksenteko ja päätösanalyysi
 
-**CS30A1630** System Modeling
