@@ -2,6 +2,7 @@ library(dplyr)
 library(readxl)
 library(digest)
 library(stringi)
+library(stringr)
 library(RPostgreSQL)
 library(odbc)
 library(jsonlite)
@@ -31,6 +32,10 @@ addresses <- addressData %>% filter(street != "") %>% filter(postal_code >= 3310
 ptoWidth <- c(5,8,5,30,30,12,12,8,1)
 
 ptoData.df <- read.fwf("./data/PCF_20231204.dat", ptoWidth, header = FALSE, fileEncoding = "latin1")
+
+ptoData.df <- ptoData.df %>% mutate(across(where(is.character), str_trim))
+
+
 
 colnames(ptoData.df) <- c("TIETUETUNNUS","AJOPVM","POSTINRO","PTONIMI_FI","PTONIMI_SE","PTOLYH_FI", "PTOLYH_SE","VTULOPVM","TYYPPI")
 
@@ -109,8 +114,8 @@ dbDisconnect(con)
 # save as CSV
 
 #write.table(customerData.final, file = "./data/customerData.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
-write.table(customerData.safe, file = "./data/customerDataSafe.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
-write.table(customerData.private, file = "./data/customerDataPrivate.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
+write.table(customerData.safe, file = "./data/customerDataSafe.csv", sep = ";", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
+write.table(customerData.private, file = "./data/customerDataPrivate.csv", sep = ";", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
 
 # save as JSON
 
