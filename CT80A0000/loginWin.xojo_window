@@ -23,7 +23,7 @@ Begin DesktopWindow loginWin
    Title           =   "Login DIS Dental EHR"
    Type            =   1
    Visible         =   True
-   Width           =   384
+   Width           =   480
    Begin DesktopLabel Label1
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -34,7 +34,7 @@ Begin DesktopWindow loginWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   20
+      Left            =   162
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -67,7 +67,7 @@ Begin DesktopWindow loginWin
       Index           =   -2147483648
       InitialValue    =   ""
       Italic          =   False
-      Left            =   132
+      Left            =   264
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -83,7 +83,7 @@ Begin DesktopWindow loginWin
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   232
+      Width           =   180
    End
    Begin DesktopTextField TextField2
       AllowAutoDeactivate=   True
@@ -102,7 +102,7 @@ Begin DesktopWindow loginWin
       Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   132
+      Left            =   264
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -124,7 +124,7 @@ Begin DesktopWindow loginWin
       Underline       =   False
       ValidationMask  =   ""
       Visible         =   True
-      Width           =   120
+      Width           =   180
    End
    Begin DesktopButton Button1
       AllowAutoDeactivate=   True
@@ -139,7 +139,7 @@ Begin DesktopWindow loginWin
       Height          =   22
       Index           =   -2147483648
       Italic          =   False
-      Left            =   284
+      Left            =   364
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -170,7 +170,7 @@ Begin DesktopWindow loginWin
       Height          =   22
       Index           =   -2147483648
       Italic          =   False
-      Left            =   192
+      Left            =   272
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -198,7 +198,7 @@ Begin DesktopWindow loginWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   20
+      Left            =   162
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -214,7 +214,7 @@ Begin DesktopWindow loginWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   54
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -230,7 +230,7 @@ Begin DesktopWindow loginWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   20
+      Left            =   162
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -262,7 +262,7 @@ Begin DesktopWindow loginWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   132
+      Left            =   264
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -274,7 +274,7 @@ Begin DesktopWindow loginWin
       TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Insert your smart card"
+      Text            =   ""
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
@@ -282,9 +282,64 @@ Begin DesktopWindow loginWin
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   232
+      Width           =   180
    End
    Begin DesktopLabel infoTextLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   54
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   264
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   120
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   180
+   End
+   Begin DesktopImageViewer ImageViewer1
+      AllowAutoDeactivate=   True
+      AllowTabStop    =   True
+      Enabled         =   True
+      Height          =   128
+      Image           =   221734911
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Visible         =   True
+      Width           =   128
+   End
+   Begin DesktopLabel appNameLabel
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -301,20 +356,52 @@ Begin DesktopWindow loginWin
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   0
+      Scope           =   2
       Selectable      =   False
-      TabIndex        =   12
+      TabIndex        =   14
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   "DIS Dental EHR"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   137
+      Top             =   160
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   344
+      Width           =   128
+   End
+   Begin DesktopLabel appVerLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   191
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   128
    End
 End
 #tag EndDesktopWindow
@@ -322,7 +409,14 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
-		  infoTextLabel.text = md5("080672-0750")
+		  infoTextLabel.Italic = TRUE
+		  infoTextLabel.text = "Insert your smart card"
+		  
+		  appNameLabel.Bold = TRUE
+		  appNameLabel.Text = "DIS Dental EHR"
+		  
+		  appVerLabel.Italic = TRUE
+		  appVerLabel.Text = "Version: " +str(app.MajorVersion) + "." + str(app.MinorVersion) + " Build: " + str(app.NonReleaseVersion)
 		  
 		  app.smartCard = app.smartCardContext.Connect(app.smartCardDeviceName, SmartCardMBS.kShareShared, SmartCardMBS.kProtocolAny)
 		  

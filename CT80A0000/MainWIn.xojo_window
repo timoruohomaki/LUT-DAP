@@ -1568,11 +1568,6 @@ End
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h1
-		Protected codeServer As Redis_MTC
-	#tag EndProperty
-
-
 #tag EndWindowCode
 
 #tag Events CalendarView1

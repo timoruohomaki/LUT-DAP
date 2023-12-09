@@ -15,7 +15,13 @@ Inherits DesktopApplication
 		  
 		  do
 		  loop until RegisterPlugins
-		   
+		  
+		  // get site configs from REDIS
+		  
+		  
+		  
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -27,6 +33,14 @@ Inherits DesktopApplication
 		https://www.jeremieleroy.com/wiki/index.php?title=CalendarView 
 	#tag EndNote
 
+
+	#tag Property, Flags = &h0
+		mySite As SiteObject
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		siteList(-1) As SiteObject
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		smartCard As SmartCardMBS
