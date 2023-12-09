@@ -38,6 +38,7 @@ Begin DesktopWindow MainWIn
       PanelCount      =   6
       Panels          =   ""
       Scope           =   0
+      SelectedPanelIndex=   0
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   False
@@ -671,6 +672,7 @@ Begin DesktopWindow MainWIn
          Underline       =   False
          Visible         =   True
          Width           =   609
+         _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
       Begin DesktopCheckBox CheckBox1
@@ -699,6 +701,7 @@ Begin DesktopWindow MainWIn
          Top             =   654
          Transparent     =   False
          Underline       =   False
+         Value           =   False
          Visible         =   True
          VisualState     =   0
          Width           =   100
@@ -801,7 +804,7 @@ Begin DesktopWindow MainWIn
          TabIndex        =   20
          TabPanelIndex   =   2
          TabStop         =   True
-         Text            =   "Medications:"
+         Text            =   "Medical Alerts:"
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
@@ -863,30 +866,53 @@ Begin DesktopWindow MainWIn
          Backdrop        =   0
          Border          =   True
          ColorWeekend    =   False
+         CreateWithDrag  =   False
          DayEndHour      =   18.0
          DayStartHour    =   8.0
+         DisableScroll   =   False
+         DisplayWeeknumber=   False
          DoubleBuffer    =   False
+         DragEvents      =   False
          Enabled         =   True
+         FilterEvents    =   False
+         FirstDayOfWeek  =   ""
+         ForceAM_PM      =   False
+         Freeze          =   False
          Height          =   728
+         HelpTagFormat   =   ""
+         HighlightLockedEvents=   False
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   134
          LockBottom      =   True
+         LockDayEventsHeight=   False
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
+         minHGap         =   0
+         minHourHeight   =   0
+         minVGap         =   0
          Scope           =   0
+         ScrollPosition  =   0.0
+         StyleType       =   0
          TabIndex        =   0
          TabPanelIndex   =   6
          TabStop         =   True
+         TextFont        =   ""
          Tooltip         =   ""
          Top             =   20
          Transparent     =   True
+         TransparentBackground=   False
          ViewDays        =   5
          ViewType        =   2
          Visible         =   True
+         VisibleHours    =   0
+         WeekHeaderTextFormat=   ""
          Width           =   752
+         YearHeatMap     =   False
+         YearMonthsAmount=   0
+         YearMultipleEvents=   False
       End
       Begin DesktopHTMLViewer todayViewer
          AutoDeactivate  =   True
@@ -943,7 +969,7 @@ Begin DesktopWindow MainWIn
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopListBox ListBox1
+      Begin DesktopListBox prescrLB
          AllowAutoDeactivate=   True
          AllowAutoHideScrollbars=   True
          AllowExpandableRows=   False
@@ -989,18 +1015,19 @@ Begin DesktopWindow MainWIn
          Underline       =   False
          Visible         =   True
          Width           =   609
+         _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
-      Begin DesktopListBox ListBox2
+      Begin DesktopListBox patientsLB
          AllowAutoDeactivate=   True
          AllowAutoHideScrollbars=   True
          AllowExpandableRows=   False
          AllowFocusRing  =   True
-         AllowResizableColumns=   False
+         AllowResizableColumns=   True
          AllowRowDragging=   False
-         AllowRowReordering=   False
+         AllowRowReordering=   True
          Bold            =   False
-         ColumnCount     =   1
+         ColumnCount     =   4
          ColumnWidths    =   ""
          DefaultRowHeight=   -1
          DropIndicatorVisible=   False
@@ -1017,7 +1044,7 @@ Begin DesktopWindow MainWIn
          Height          =   632
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
-         InitialValue    =   ""
+         InitialValue    =   "First Name	Last Name	Phone	Next Appointment"
          Italic          =   False
          Left            =   134
          LockBottom      =   False
@@ -1037,6 +1064,7 @@ Begin DesktopWindow MainWIn
          Underline       =   False
          Visible         =   True
          Width           =   752
+         _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
       Begin DesktopLabel Label14
@@ -1072,8 +1100,39 @@ Begin DesktopWindow MainWIn
          Visible         =   True
          Width           =   100
       End
+      Begin DesktopCheckBox CheckBox2
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Show only patients with scheduled appointments"
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   310
+      End
    End
    Begin DesktopBevelButton pageSelectBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1105,6 +1164,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   True
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   2
       TabPanelIndex   =   0
@@ -1116,8 +1176,13 @@ Begin DesktopWindow MainWIn
       Value           =   False
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopBevelButton pageSelectBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1149,6 +1214,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   True
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   3
       TabPanelIndex   =   0
@@ -1160,8 +1226,13 @@ Begin DesktopWindow MainWIn
       Value           =   False
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopBevelButton pageSelectBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1193,6 +1264,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   True
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
@@ -1204,8 +1276,13 @@ Begin DesktopWindow MainWIn
       Value           =   False
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopBevelButton pageSelectBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1237,6 +1314,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   True
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   5
       TabPanelIndex   =   0
@@ -1248,8 +1326,13 @@ Begin DesktopWindow MainWIn
       Value           =   False
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopBevelButton logoutBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1281,6 +1364,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   False
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   6
       TabPanelIndex   =   0
@@ -1292,8 +1376,13 @@ Begin DesktopWindow MainWIn
       Value           =   False
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopBevelButton pageSelectBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1325,6 +1414,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   True
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
@@ -1336,6 +1426,10 @@ Begin DesktopWindow MainWIn
       Value           =   True
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopLabel Label11
       AllowAutoDeactivate=   True
@@ -1402,6 +1496,7 @@ Begin DesktopWindow MainWIn
       Width           =   100
    End
    Begin DesktopBevelButton pageSelectBB
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowTabStop    =   True
@@ -1433,6 +1528,7 @@ Begin DesktopWindow MainWIn
       LockRight       =   False
       LockTop         =   True
       MenuStyle       =   0
+      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   1
       TabPanelIndex   =   0
@@ -1444,6 +1540,10 @@ Begin DesktopWindow MainWIn
       Value           =   False
       Visible         =   True
       Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
 End
 #tag EndDesktopWindow

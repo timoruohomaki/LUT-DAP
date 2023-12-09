@@ -20,7 +20,7 @@ Begin DesktopWindow ProcedureWin
    MinimumHeight   =   64
    MinimumWidth    =   64
    Resizeable      =   True
-   Title           =   "New Procedure"
+   Title           =   "Create or Edit Prodecure"
    Type            =   1
    Visible         =   True
    Width           =   600
@@ -31,12 +31,12 @@ Begin DesktopWindow ProcedureWin
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   45
+      Height          =   66
       Horizontal      =   False
       Index           =   -2147483648
-      InitialValue    =   "Completed Procedure\r\nPlanned Procedure"
+      InitialValue    =   "Completed Procedure\r\nPlanned Procedure\r\nLong Procedure"
       Italic          =   False
-      Left            =   132
+      Left            =   173
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -48,7 +48,7 @@ Begin DesktopWindow ProcedureWin
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   4
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -170,7 +170,7 @@ Begin DesktopWindow ProcedureWin
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Description"
+      Text            =   "Procedure Notes"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
@@ -202,11 +202,11 @@ Begin DesktopWindow ProcedureWin
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Code"
+      Text            =   "Procedure Code"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   107
+      Top             =   109
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -234,7 +234,7 @@ Begin DesktopWindow ProcedureWin
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Title"
+      Text            =   "Procedure Description"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
@@ -242,7 +242,7 @@ Begin DesktopWindow ProcedureWin
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   100
+      Width           =   125
    End
    Begin DesktopTextArea descTA
       AllowAutoDeactivate=   True
@@ -264,7 +264,7 @@ Begin DesktopWindow ProcedureWin
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   132
+      Left            =   173
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   False
@@ -289,7 +289,7 @@ Begin DesktopWindow ProcedureWin
       UnicodeMode     =   1
       ValidationMask  =   ""
       Visible         =   True
-      Width           =   448
+      Width           =   407
    End
    Begin DesktopSearchControl SearchControl1
       AllowFocusRing  =   True
@@ -300,7 +300,7 @@ Begin DesktopWindow ProcedureWin
       Height          =   22
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   132
+      Left            =   173
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -318,7 +318,7 @@ Begin DesktopWindow ProcedureWin
       Tooltip         =   ""
       Top             =   77
       Visible         =   True
-      Width           =   448
+      Width           =   407
    End
    Begin DesktopLabel codeLabel
       AllowAutoDeactivate=   True
@@ -330,7 +330,7 @@ Begin DesktopWindow ProcedureWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   132
+      Left            =   173
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -346,11 +346,11 @@ Begin DesktopWindow ProcedureWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   107
+      Top             =   109
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   448
+      Width           =   123
    End
    Begin DesktopLabel titleLabel
       AllowAutoDeactivate=   True
@@ -362,7 +362,7 @@ Begin DesktopWindow ProcedureWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   132
+      Left            =   173
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -382,7 +382,223 @@ Begin DesktopWindow ProcedureWin
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   448
+      Width           =   407
+   End
+   Begin DesktopButton deleteB
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Delete"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   22
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   283
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin DesktopCheckBox donotbillCB
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Do Not Bill To Insurance"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   408
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   109
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      VisualState     =   0
+      Width           =   172
+   End
+   Begin DesktopDateControl startDC
+      AllowFocusRing  =   True
+      AutoDeactivate  =   True
+      Checked         =   False
+      DateFormat      =   0
+      Day             =   0
+      DropDownIcon    =   0
+      DropDownIconDM  =   0
+      EmptyDates      =   False
+      Enabled         =   True
+      HasBorder       =   True
+      Height          =   23
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   465
+      LinuxDropDownMode=   True
+      LinuxFontBold   =   False
+      LinuxTextFont   =   "System"
+      LinuxTextSize   =   0.0
+      LinuxTextUnit   =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacFontBold     =   False
+      MacHideBackground=   False
+      MacTextFont     =   "System"
+      MacTextSize     =   0.0
+      Month           =   0
+      OSXDropDownMode =   True
+      Scope           =   0
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   5
+      Visible         =   True
+      Width           =   115
+      WinCustomDownMode=   False
+      WinFontBold     =   False
+      WinTextFont     =   "System"
+      WinTextSize     =   0.0
+      WinTextUnit     =   0
+      Year            =   0
+   End
+   Begin DesktopDateControl completionDC
+      AllowFocusRing  =   True
+      AutoDeactivate  =   True
+      Checked         =   False
+      DateFormat      =   0
+      Day             =   0
+      DropDownIcon    =   0
+      DropDownIconDM  =   0
+      EmptyDates      =   False
+      Enabled         =   True
+      HasBorder       =   True
+      Height          =   23
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   465
+      LinuxDropDownMode=   True
+      LinuxFontBold   =   False
+      LinuxTextFont   =   "System"
+      LinuxTextSize   =   0.0
+      LinuxTextUnit   =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacFontBold     =   False
+      MacHideBackground=   False
+      MacTextFont     =   "System"
+      MacTextSize     =   0.0
+      Month           =   0
+      OSXDropDownMode =   True
+      Scope           =   0
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   40
+      Visible         =   True
+      Width           =   115
+      WinCustomDownMode=   False
+      WinFontBold     =   False
+      WinTextFont     =   "System"
+      WinTextSize     =   0.0
+      WinTextUnit     =   0
+      Year            =   0
+   End
+   Begin DesktopLabel startDateLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   368
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Start Date:"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   5
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
+   Begin DesktopLabel CompletionDateLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   368
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Completion Date:"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   40
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
    End
 End
 #tag EndDesktopWindow
@@ -390,6 +606,27 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
+#tag Events RadioGroup1
+	#tag Event
+		Sub SelectionChanged(button As DesktopRadioButton)
+		  if me.SelectedItem.Index = 2 then
+		    
+		    startDateLabel.Enabled = true
+		    startDC.Enabled = true
+		    CompletionDateLabel.Enabled = true
+		    completionDC.Enabled = true
+		    
+		  else
+		    
+		    startDateLabel.Enabled = false
+		    startDC.Enabled = false
+		    CompletionDateLabel.Enabled = false
+		    completionDC.Enabled = false
+		    
+		  end
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events applyB
 	#tag Event
 		Sub Pressed()

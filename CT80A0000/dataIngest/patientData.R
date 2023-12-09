@@ -81,6 +81,14 @@ customerData.email <- customerData.clean2 %>% rowwise() %>% mutate(personalEmail
 
 customerData.final <- customerData.email %>% select(firstName, lastName, streetAddress, postalCode = addresses.df.postal_code, postalName = addresses.df.PTONIMI_FI, primaryPhone, personalEmail, primarySite, allergies, personID, personGUID)
 
+# create alternate set with privacy option (SSID excluded, second dataset created)
+
+customerData.safe <- customerData.final %>% select(firstName,lastName,streetAddress,postalCode,postalName,
+                                                   primaryPhone,personalEmail, primarySite, personGUID)
+
+customerData.private <- customerData.final %>% select(personID,personGUID)
+
+
 # saving into Postgre
 
 con <- DBI::dbConnect(odbc::odbc(), "ehr-db01")
@@ -96,7 +104,9 @@ dbDisconnect(con)
 
 # save as CSV
 
-write.table(customerData.final, file = "./data/customerData.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
+#write.table(customerData.final, file = "./data/customerData.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
+write.table(customerData.safe, file = "./data/customerDataSafe.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
+write.table(customerData.private, file = "./data/customerDataPrivate.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
 
 # save as JSON
 

@@ -171,3 +171,5 @@ CT80A0000/dataIngest/data/Finland_addresses_2023-11-13.csv
 CT80A0000/dataIngest/data/etunimitilasto-2023-08-01-dvv.xlsx
 CT80A0000/dataIngest/data/customerData.json
 CT80A0000/dataIngest/data/customerData.csv
+CT80A0000/dataIngest/data/customerDataPrivate.csv
+CT80A0000/dataIngest/data/customerDataSafe.csv
