@@ -8,7 +8,7 @@ library(jsonlite)
 
 if(!file.exists("./data")){dir.create("./data")}
 
-kCount <- 1000000
+kCount <- 1000
 
 # create names
 
@@ -30,7 +30,7 @@ addresses <- addressData %>% filter(street != "") %>% filter(postal_code >= 3310
 
 ptoWidth <- c(5,8,5,30,30,12,12,8,1)
 
-ptoData.df <- read.fwf("./data/PCF_20231207.dat", ptoWidth, header = FALSE, fileEncoding = "latin1")
+ptoData.df <- read.fwf("./data/PCF_20231204.dat", ptoWidth, header = FALSE, fileEncoding = "latin1")
 
 colnames(ptoData.df) <- c("TIETUETUNNUS","AJOPVM","POSTINRO","PTONIMI_FI","PTONIMI_SE","PTOLYH_FI", "PTOLYH_SE","VTULOPVM","TYYPPI")
 
@@ -42,7 +42,11 @@ addresses.df <- addresses.df[sample(nrow(addresses.df), kCount, replace = TRUE),
 
 primarySite <- sample(c(100, 101, 102), size = kCount, replace = TRUE, prob = c(0.6, 0.2, 0.2))
 
-allergies <- sample(c("","latex","dental alloys","polymers","acrulates"), size = kCount, replace = TRUE, prob = c(0.9,0.07,0.01,0.01,0.01))
+allergies <- sample(c("","latex","dental alloys","polymers","acrulates"), size = kCount, replace = TRUE, 
+                    prob = c(0.9,0.07,0.01,0.01,0.01))
+
+medical <- sample(c("","diabetes","sydänsairaus","reuma"), size = kCount, replace = TRUE,
+                  prob = c(0.8,0.1,0.05,0.05))
 
 # phone numbers
 
@@ -61,7 +65,7 @@ personID <- paste0(sprintf("%02d",(sample((1:31), size = kCount,
 
 # create customer data set and check for duplicates
 
-customerData.df <- data.frame(firstName,lastName,addresses.df$street,addresses.df$house_number,addresses.df$postal_code,addresses.df$PTONIMI_FI,primaryPhone, primarySite,allergies,personID)
+customerData.df <- data.frame(firstName,lastName,addresses.df$street,addresses.df$house_number,addresses.df$postal_code,addresses.df$PTONIMI_FI,primaryPhone, primarySite,allergies,medical,personID)
 
 ncount <- data.frame(table(customerData.df$personID))
 count(ncount[ncount$Freq > 1,])
@@ -79,12 +83,12 @@ customerData.email <- customerData.clean2 %>% rowwise() %>% mutate(personalEmail
                                                                                           "@", sample(c("mock.gmail.com","mock.hotmail.com","mock.yahoo.com","mock.helsinki.fi","mock.tuni.fi","mock.lut.fi","mock.luukku.com"),
                                                                                           size = 1, replace = TRUE))) %>% mutate(personalEmail = stri_trans_general(personalEmail,"latin-ascii"))
 
-customerData.final <- customerData.email %>% select(firstName, lastName, streetAddress, postalCode = addresses.df.postal_code, postalName = addresses.df.PTONIMI_FI, primaryPhone, personalEmail, primarySite, allergies, personID, personGUID)
+customerData.final <- customerData.email %>% select(firstName, lastName, streetAddress, postalCode = addresses.df.postal_code, postalName = addresses.df.PTONIMI_FI, primaryPhone, personalEmail, primarySite, allergies, medical, personID, personGUID)
 
 # create alternate set with privacy option (SSID excluded, second dataset created)
 
 customerData.safe <- customerData.final %>% select(firstName,lastName,streetAddress,postalCode,postalName,
-                                                   primaryPhone,personalEmail, primarySite, personGUID)
+                                                   primaryPhone,personalEmail, primarySite, allergies, medical, personGUID)
 
 customerData.private <- customerData.final %>% select(personID,personGUID)
 
