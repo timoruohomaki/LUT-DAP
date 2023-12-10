@@ -73,6 +73,12 @@ Inherits DesktopApplication
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Ctrl+Q"
 	#tag EndConstant
 
+	#tag Constant, Name = kMongoDbName, Type = String, Dynamic = False, Default = \"ehr01", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kMongoDbURI, Type = String, Dynamic = False, Default = \"mongodb+srv://{userpwd}@ehr01.l64rcpf.mongodb.net/\?retryWrites\x3Dtrue&w\x3Dmajority", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = UseGDIPlus, Type = Boolean, Dynamic = False, Default = \"TRUE", Scope = Public
 	#tag EndConstant
 

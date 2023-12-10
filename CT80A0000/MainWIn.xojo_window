@@ -1,5 +1,5 @@
 #tag DesktopWindow
-Begin DesktopWindow MainWIn
+Begin DesktopWindow MainWin
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF
    Composite       =   False
@@ -35,7 +35,7 @@ Begin DesktopWindow MainWIn
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   6
+      PanelCount      =   7
       Panels          =   ""
       Scope           =   0
       SelectedPanelIndex=   0
@@ -1100,10 +1100,9 @@ Begin DesktopWindow MainWIn
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopCheckBox CheckBox2
+      Begin DesktopLabel Label15
          AllowAutoDeactivate=   True
          Bold            =   False
-         Caption         =   "Show only patients with scheduled appointments"
          Enabled         =   True
          FontName        =   "System"
          FontSize        =   0.0
@@ -1118,8 +1117,400 @@ Begin DesktopWindow MainWIn
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   0
+         TabPanelIndex   =   7
+         TabStop         =   True
+         Text            =   "PRACTITIONERS"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   107
+      End
+      Begin DesktopSearchControl practitionersSearchC
+         AllowFocusRing  =   True
+         AutoDeactivate  =   True
+         Enabled         =   True
+         HasCancelButton =   True
+         HasMenu         =   False
+         Height          =   22
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Left            =   624
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         MacBorderStyle  =   0
+         PlaceHolderText =   ""
+         Scope           =   0
+         SendSearchStringImmediately=   False
+         SendWholeSearchString=   False
+         TabIndex        =   1
+         TabPanelIndex   =   7
+         TabStop         =   True
+         Text            =   ""
+         Tooltip         =   ""
+         Top             =   20
+         Visible         =   True
+         Width           =   160
+      End
+      Begin DesktopListBox practitionerList
+         AllowAutoDeactivate=   True
+         AllowAutoHideScrollbars=   True
+         AllowExpandableRows=   False
+         AllowFocusRing  =   True
+         AllowResizableColumns=   False
+         AllowRowDragging=   False
+         AllowRowReordering=   False
+         Bold            =   False
+         ColumnCount     =   5
+         ColumnWidths    =   "20%,20%,20%,20%,20%"
+         DefaultRowHeight=   -1
+         DropIndicatorVisible=   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         GridLineStyle   =   0
+         HasBorder       =   True
+         HasHeader       =   True
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
+         HeadingIndex    =   -1
+         Height          =   471
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         InitialValue    =   "Firstname	Lastname	Qualification	Email	Phone"
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         RequiresSelection=   False
+         RowSelectionType=   0
          Scope           =   0
          TabIndex        =   2
+         TabPanelIndex   =   7
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   52
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   752
+         _ScrollWidth    =   -1
+      End
+      Begin DesktopButton practitionersSearchB
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Search"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   22
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   796
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         MacButtonStyle  =   0
+         Scope           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   7
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   80
+      End
+      Begin DesktopGroupBox GroupBox1
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Information"
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   197
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   4
+         TabPanelIndex   =   7
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   535
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   752
+         Begin DesktopImageViewer facePhotoViewer
+            AllowAutoDeactivate=   True
+            AllowTabStop    =   True
+            Enabled         =   True
+            Height          =   150
+            Image           =   0
+            Index           =   -2147483648
+            InitialParent   =   "GroupBox1"
+            Left            =   209
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   0
+            TabPanelIndex   =   7
+            Tooltip         =   ""
+            Top             =   562
+            Transparent     =   False
+            Visible         =   True
+            Width           =   150
+         End
+         Begin DesktopLabel Label16
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "GroupBox1"
+            Italic          =   False
+            Left            =   371
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   1
+            TabPanelIndex   =   7
+            TabStop         =   True
+            Text            =   "First name:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   571
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   100
+         End
+         Begin DesktopLabel Label17
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "GroupBox1"
+            Italic          =   False
+            Left            =   371
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   2
+            TabPanelIndex   =   7
+            TabStop         =   True
+            Text            =   "Last name:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   603
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   100
+         End
+         Begin DesktopLabel Label18
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "GroupBox1"
+            Italic          =   False
+            Left            =   371
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   3
+            TabPanelIndex   =   7
+            TabStop         =   True
+            Text            =   "Qualifications:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   635
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   100
+         End
+         Begin DesktopLabel Label19
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "GroupBox1"
+            Italic          =   False
+            Left            =   371
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   4
+            TabPanelIndex   =   7
+            TabStop         =   True
+            Text            =   "Phone:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   667
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   100
+         End
+         Begin DesktopLabel Label20
+            AllowAutoDeactivate=   True
+            Bold            =   False
+            Enabled         =   True
+            FontName        =   "System"
+            FontSize        =   0.0
+            FontUnit        =   0
+            Height          =   20
+            Index           =   -2147483648
+            InitialParent   =   "GroupBox1"
+            Italic          =   False
+            Left            =   371
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Multiline       =   False
+            Scope           =   0
+            Selectable      =   False
+            TabIndex        =   5
+            TabPanelIndex   =   7
+            TabStop         =   True
+            Text            =   "Email:"
+            TextAlignment   =   0
+            TextColor       =   &c000000
+            Tooltip         =   ""
+            Top             =   699
+            Transparent     =   False
+            Underline       =   False
+            Visible         =   True
+            Width           =   100
+         End
+      End
+      Begin DesktopSearchControl patientSearchC
+         AllowFocusRing  =   True
+         AutoDeactivate  =   True
+         Enabled         =   True
+         HasCancelButton =   True
+         HasMenu         =   False
+         Height          =   22
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Left            =   634
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         MacBorderStyle  =   0
+         PlaceHolderText =   ""
+         Scope           =   0
+         SendSearchStringImmediately=   False
+         SendWholeSearchString=   False
+         TabIndex        =   2
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Text            =   ""
+         Tooltip         =   ""
+         Top             =   20
+         Visible         =   True
+         Width           =   160
+      End
+      Begin DesktopButton patientSearchB
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Search"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   22
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   806
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         MacButtonStyle  =   0
+         Scope           =   0
+         TabIndex        =   3
          TabPanelIndex   =   3
          TabStop         =   True
          Tooltip         =   ""
@@ -1127,8 +1518,7 @@ Begin DesktopWindow MainWIn
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         VisualState     =   0
-         Width           =   310
+         Width           =   80
       End
    End
    Begin DesktopBevelButton pageSelectBB
@@ -1545,6 +1935,87 @@ Begin DesktopWindow MainWIn
       _mName          =   ""
       _mPanelIndex    =   0
    End
+   Begin DesktopBevelButton pageSelectBB
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowTabStop    =   True
+      BackgroundColor =   &c00000000
+      BevelStyle      =   1
+      Bold            =   False
+      ButtonStyle     =   1
+      Caption         =   "Team"
+      CaptionAlignment=   3
+      CaptionDelta    =   0
+      CaptionPosition =   1
+      Enabled         =   True
+      FontName        =   "Consolas"
+      FontSize        =   0.0
+      FontUnit        =   0
+      HasBackgroundColor=   False
+      Height          =   55
+      Icon            =   0
+      IconAlignment   =   0
+      IconDeltaX      =   0
+      IconDeltaY      =   0
+      Index           =   6
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MenuStyle       =   0
+      PanelIndex      =   0
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   346
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   110
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
+   End
+   Begin DesktopCheckBox showOnlyScheduled
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Show only patients with scheduled appointments"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   598
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   54
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      VisualState     =   0
+      Width           =   310
+   End
 End
 #tag EndDesktopWindow
 
@@ -1566,6 +2037,158 @@ End
 		  return true
 		End Function
 	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub getMongoRecords()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getPatients(key as string) As boolean
+		  var muri as New MongoURIMBS(App.kMongoDbURI.Replace("{userpwd}",mongoLogin))
+		  
+		  dbClient = New MongoClientMBS(muri)
+		  
+		  Try
+		    
+		    if dbClient <> nil then
+		      
+		      dbDatabase = dbClient.Database("ehr")
+		      
+		      if dbDatabase <> nil then
+		        
+		        dbCollections() = dbDatabase.CollectionNames
+		        
+		        dbPatientCollection = dbDatabase.Collection("patients")
+		        
+		        var Filter as new JSONItem
+		        
+		        var sortOrder as new JSONItem
+		        
+		        var options as new JSONItem
+		        
+		        options.Value("limit") = 20
+		        options.Value("sort") = sortOrder
+		        
+		        dbPatientCursor = dbPatientCollection.Find(filter.toString, options.toString)
+		        
+		        patientsLB.RemoveAllRows
+		        
+		        if dbPatientCursor <> nil then
+		          
+		          var Record as string
+		          
+		          while dbPatientCursor.NextRecord(Record)
+		            
+		            // TODO HOMMIA TÄÄLLÄ
+		            
+		            var preview as string = Record.ReplaceLineEndings(" ")
+		            
+		            preview = preview.ReplaceAll(encodings.UTF8.Chr(9), " ")
+		            preview = preview.ReplaceAll("   ", " ")
+		            preview = preview.ReplaceAll("  ", " ")
+		            preview = preview.ReplaceAll(" : ", ": ")
+		            preview = preview.Left(200)
+		            
+		            patientsLB.addrow preview
+		            
+		            patientsLB.RowTagAt(patientsLB.LastAddedRowIndex) = Record
+		            
+		          wend
+		          
+		        end
+		        
+		        dbPatientCursor = nil
+		        
+		      else
+		        
+		        MessageBox "dbDatabase is nil, shouldn't be."
+		        
+		      end
+		      
+		    end
+		    
+		  Catch err as MongoExceptionMBS
+		    
+		    MessageBox "Error while contacting database: "
+		    
+		  End Try
+		  
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getPractitioners(key as string) As boolean
+		  
+		  
+		  
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub openMongoCollection(name as string)
+		  if name.len > 0 then
+		    
+		    dbPatientCollection = dbDatabase.Collection("patients")
+		    
+		    getMongoRecords()
+		    
+		    
+		  end
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub openMongoDB(name as string)
+		  if name.Len > 0 then
+		    
+		    dbDatabase = dbClient.Database(name)
+		    
+		    if dbDatabase <> nil then
+		      
+		      dbCollections() = dbDatabase.CollectionNames
+		      
+		      openMongoCollection("patients")
+		      
+		    else
+		      
+		      MessageBox "dbDatabase is nil, shouldn't be."
+		      
+		    end
+		    
+		  else
+		    
+		    MessageBox "Database name missing."
+		    
+		  end
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		dbClient As MongoClientMBS
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dbCollections() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dbDatabase As MongoDatabaseMBS
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dbPatientCollection As MongoCollectionMBS
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		dbPatientCursor As MongoCursorMBS
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -1595,6 +2218,22 @@ End
 		  End If
 		  
 		  me.LoadURL("https://www.hel.fi/en/health-and-social-services")
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Label15
+	#tag Event
+		Sub Opening()
+		  me.Bold = TRUE
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events patientSearchB
+	#tag Event
+		Sub Pressed()
+		  do
+		    
+		  loop until getPatients("")
 		End Sub
 	#tag EndEvent
 #tag EndEvents
