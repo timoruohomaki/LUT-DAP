@@ -9,7 +9,7 @@ library(jsonlite)
 
 if(!file.exists("./data")){dir.create("./data")}
 
-kCount <- 1000
+kCount <- 1000000
 
 # create names
 
@@ -114,8 +114,8 @@ dbDisconnect(con)
 # save as CSV
 
 #write.table(customerData.final, file = "./data/customerData.csv", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
-write.table(customerData.safe, file = "./data/customerDataSafe.csv", sep = ";", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
-write.table(customerData.private, file = "./data/customerDataPrivate.csv", sep = ";", eol = "\r \n", col.names = TRUE, fileEncoding = "utf8")
+write.table(customerData.safe, file = "./data/customerDataSafe.csv", sep = ";", eol = "\r \n", row.names = FALSE, col.names = TRUE, fileEncoding = "utf8")
+write.table(customerData.private, file = "./data/customerDataPrivate.csv", sep = ";", eol = "\r \n", row.names = FALSE, col.names = TRUE, fileEncoding = "utf8")
 
 # save as JSON
 
