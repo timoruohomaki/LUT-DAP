@@ -3,6 +3,8 @@ Protected Class App
 Inherits DesktopApplication
 	#tag Event
 		Sub Opening()
+		  Using EinhugurJSONIII
+		  
 		  do
 		  loop until RegisterPlugins
 		  
@@ -18,10 +20,62 @@ Inherits DesktopApplication
 		  
 		  // get site configs from REDIS
 		  
+		  Try
+		    
+		    redis = new Redis_MTC(getRedisPwd("config"),kRedisConfigEndpoint,kRedisConfigPort)
+		    
+		    if redis <> nil then
+		      
+		      var v as variant
+		      
+		      v = redis.Execute("JSON.GET sites")
+		      
+		      // parse JSON result
+		      
+		      Try
+		        
+		        var jConfig as New JSONItem
+		        var jSite as New JSONItem
+		        var s As New SiteObject
+		        var c as Integer
+		        
+		        jConfig.Load(v) 
+		        
+		        c = jConfig.Child("sites").Child("site").Count
+		        
+		        if jConfig.Child("sites").Child("site").IsArray then
+		          
+		          for i as integer = 0 to ( c - 1)
+		            
+		            jSite = jConfig.Child("sites").Child("site").ChildAt(i)
+		            
+		            s = New SiteObject
+		            
+		            s.fromJSON(jSite)
+		            
+		            siteList.Append(s)
+		            
+		            MessageBox s.Name
+		            
+		          next
+		          
+		        end
+		        
+		      Catch e as JSONException
+		        
+		        MessageBox "JSON Parsing error: " + EndOfLine + e.Message
+		        
+		      end Try
+		      
+		    end
+		    
+		  Catch e as M_Redis.RedisException
+		    
+		    MessageBox e.Message
+		    
+		  End Try
 		  
-		  
-		  
-		  
+		  // redis-14823.c327.europe-west1-2.gce.redns.redis-cloud.com:14823
 		  
 		End Sub
 	#tag EndEvent
@@ -36,6 +90,10 @@ Inherits DesktopApplication
 
 	#tag Property, Flags = &h0
 		mySite As SiteObject
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		redis As Redis_MTC
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -77,6 +135,18 @@ Inherits DesktopApplication
 	#tag EndConstant
 
 	#tag Constant, Name = kMongoDbURI, Type = String, Dynamic = False, Default = \"mongodb+srv://{userpwd}@ehr01.l64rcpf.mongodb.net/\?retryWrites\x3Dtrue&w\x3Dmajority", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kRedisCodeserverPort, Type = Double, Dynamic = False, Default = \"12727", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kRedisConfigEndpoint, Type = String, Dynamic = False, Default = \"redis-14823.c327.europe-west1-2.gce.redns.redis-cloud.com", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kRedisConfigPort, Type = Double, Dynamic = False, Default = \"14823", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kRedisVaultPort, Type = Double, Dynamic = False, Default = \"11284", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = UseGDIPlus, Type = Boolean, Dynamic = False, Default = \"TRUE", Scope = Public

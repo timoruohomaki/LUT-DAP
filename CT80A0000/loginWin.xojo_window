@@ -56,7 +56,7 @@ Begin DesktopWindow loginWin
       Visible         =   True
       Width           =   100
    End
-   Begin DesktopPopupMenu PopupMenu1
+   Begin DesktopPopupMenu sitePM
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -85,7 +85,7 @@ Begin DesktopWindow loginWin
       Visible         =   True
       Width           =   180
    End
-   Begin DesktopTextField TextField2
+   Begin DesktopTextField scPinTF
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -317,6 +317,7 @@ Begin DesktopWindow loginWin
       Width           =   180
    End
    Begin DesktopImageViewer ImageViewer1
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowTabStop    =   True
       Enabled         =   True
@@ -330,6 +331,7 @@ Begin DesktopWindow loginWin
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   13
       TabPanelIndex   =   0
@@ -338,6 +340,10 @@ Begin DesktopWindow loginWin
       Transparent     =   False
       Visible         =   True
       Width           =   128
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin DesktopLabel appNameLabel
       AllowAutoDeactivate=   True
@@ -409,6 +415,19 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
+		  // populate site list
+		  
+		  if app.siteList() <> nil then
+		    
+		    for i as integer = 0 to app.siteList.LastIndex
+		      
+		      sitePM.AddRow(app.siteList(i).Name)
+		      
+		    next
+		    
+		  end
+		  
+		  
 		  infoTextLabel.Italic = TRUE
 		  infoTextLabel.text = "Insert your smart card"
 		  

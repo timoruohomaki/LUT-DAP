@@ -1,33 +1,13 @@
 #tag Class
 Protected Class SiteObject
 	#tag Method, Flags = &h0
-		Function fromJSON(jString as String) As Boolean
-		  // using RapidJSON implementation by Einhugur
+		Sub fromJSON(j as JSONItem)
 		  
-		  Using EinhugurJSONIII
-		  
-		  var jdoc as New JSONDocument()
-		  
-		  if jdoc.parse(jString) then
-		    
-		    if jdoc.IsObject() then
-		      
-		      // MessageBox jdoc.StringValueByKey("siteName")
-		      
-		      MessageBox "JSON Membercount = " + str(jdoc.MemberCount)
-		      
-		    end
-		    
-		  else
-		    
-		    MessageBox "Error while parsing site information."
-		    
-		  end
-		  
-		  
-		  return true
-		  
-		End Function
+		  me.ehrHost = j.Value("dbEndpoint")
+		  me.Id = j.Value("id")
+		  me.StreetAddress = j.Value("StreetAddress")
+		  me.Name = j.Value("siteName")
+		End Sub
 	#tag EndMethod
 
 
@@ -113,6 +93,22 @@ Protected Class SiteObject
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ehrHost"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="string"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StreetAddress"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
