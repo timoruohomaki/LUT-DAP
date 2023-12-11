@@ -3,6 +3,9 @@ Protected Class App
 Inherits DesktopApplication
 	#tag Event
 		Sub Opening()
+		  do
+		  loop until RegisterPlugins
+		  
 		  smartCardContext = New SmartCardContextMBS
 		  
 		  var groups() as string = smartCardContext.ReaderGroups
@@ -12,9 +15,6 @@ Inherits DesktopApplication
 		  if devices.Count > 0 then
 		    smartCardDeviceName = devices(0)
 		  end
-		  
-		  do
-		  loop until RegisterPlugins
 		  
 		  // get site configs from REDIS
 		  

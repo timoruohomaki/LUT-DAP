@@ -45,7 +45,7 @@ Begin DesktopWindow MainWin
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   2
+      Value           =   5
       Visible         =   True
       Width           =   792
       Begin DesktopLabel Label1
@@ -878,7 +878,7 @@ Begin DesktopWindow MainWin
          FirstDayOfWeek  =   ""
          ForceAM_PM      =   False
          Freeze          =   False
-         Height          =   728
+         Height          =   632
          HelpTagFormat   =   ""
          HighlightLockedEvents=   False
          Index           =   -2147483648
@@ -901,7 +901,7 @@ Begin DesktopWindow MainWin
          TabStop         =   True
          TextFont        =   ""
          Tooltip         =   ""
-         Top             =   20
+         Top             =   82
          Transparent     =   True
          TransparentBackground=   False
          ViewDays        =   5
@@ -1208,6 +1208,7 @@ Begin DesktopWindow MainWin
          Underline       =   False
          Visible         =   True
          Width           =   752
+         _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
       Begin DesktopButton practitionersSearchB
@@ -1271,6 +1272,7 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   752
          Begin DesktopImageViewer facePhotoViewer
+            Active          =   False
             AllowAutoDeactivate=   True
             AllowTabStop    =   True
             Enabled         =   True
@@ -1284,6 +1286,7 @@ Begin DesktopWindow MainWin
             LockLeft        =   True
             LockRight       =   False
             LockTop         =   True
+            PanelIndex      =   0
             Scope           =   0
             TabIndex        =   0
             TabPanelIndex   =   7
@@ -1292,6 +1295,10 @@ Begin DesktopWindow MainWin
             Transparent     =   False
             Visible         =   True
             Width           =   150
+            _mIndex         =   0
+            _mInitialParent =   ""
+            _mName          =   ""
+            _mPanelIndex    =   0
          End
          Begin DesktopLabel Label16
             AllowAutoDeactivate=   True
@@ -1519,6 +1526,166 @@ Begin DesktopWindow MainWin
          Underline       =   False
          Visible         =   True
          Width           =   80
+      End
+      Begin DesktopCheckBox showOnlyScheduled
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Show only patients with scheduled appointments"
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   596
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   4
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   50
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   310
+      End
+      Begin DesktopButton thisWeekB
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "This Week"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   52
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   684
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         MacButtonStyle  =   0
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   6
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+      End
+      Begin DesktopButton nextWeekB
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Next Week"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   52
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   796
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         MacButtonStyle  =   0
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   6
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   90
+      End
+      Begin DesktopButton prevWeekB
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Previous Week"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   52
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   582
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         MacButtonStyle  =   0
+         Scope           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   6
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   90
+      End
+      Begin DesktopLabel Label21
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "PagePanel1"
+         Italic          =   False
+         Left            =   134
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   4
+         TabPanelIndex   =   6
+         TabStop         =   True
+         Text            =   "Practitioner:"
+         TextAlignment   =   0
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   263
       End
    End
    Begin DesktopBevelButton pageSelectBB
@@ -1985,36 +2152,13 @@ Begin DesktopWindow MainWin
       _mName          =   ""
       _mPanelIndex    =   0
    End
-   Begin DesktopCheckBox showOnlyScheduled
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Caption         =   "Show only patients with scheduled appointments"
+   Begin mainToolbar mainToolbar1
       Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
       Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   598
-      LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
       Scope           =   0
-      TabIndex        =   11
       TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   54
-      Transparent     =   False
-      Underline       =   False
-      Value           =   False
       Visible         =   True
-      VisualState     =   0
-      Width           =   310
    End
 End
 #tag EndDesktopWindow
@@ -2045,7 +2189,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getPatients(key as string) As boolean
+		Function getPatientByGUID(key as string) As string
 		  var muri as New MongoURIMBS(App.kMongoDbURI.Replace("{userpwd}",mongoLogin))
 		  
 		  dbClient = New MongoClientMBS(muri)
@@ -2069,6 +2213,80 @@ End
 		        var options as new JSONItem
 		        
 		        options.Value("limit") = 20
+		        options.Value("sort") = sortOrder
+		        
+		        dbPatientCursor = dbPatientCollection.Find(filter.toString, options.toString)
+		        
+		        patientsLB.RemoveAllRows
+		        
+		        if dbPatientCursor <> nil then
+		          
+		          var Record as string
+		          
+		          while dbPatientCursor.NextRecord(Record)
+		            
+		            // TODO HOMMIA TÄÄLLÄ
+		            
+		            var preview as string = Record.ReplaceLineEndings(" ")
+		            
+		            preview = preview.ReplaceAll(encodings.UTF8.Chr(9), " ")
+		            preview = preview.ReplaceAll("   ", " ")
+		            preview = preview.ReplaceAll("  ", " ")
+		            preview = preview.ReplaceAll(" : ", ": ")
+		            preview = preview.Left(200)
+		            
+		            return preview
+		            
+		          wend
+		          
+		        end
+		        
+		        dbPatientCursor = nil
+		        
+		      else
+		        
+		        MessageBox "dbDatabase is nil, shouldn't be."
+		        
+		      end
+		      
+		    end
+		    
+		  Catch err as MongoExceptionMBS
+		    
+		    MessageBox "Error while contacting database: "
+		    
+		  End Try
+		  
+		  
+		  return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getPatients(key as string) As boolean
+		  var muri as New MongoURIMBS(App.kMongoDbURI.Replace("{userpwd}",mongoLogin))
+		  
+		  dbClient = New MongoClientMBS(muri)
+		  
+		  Try
+		    
+		    if dbClient <> nil then
+		      
+		      dbDatabase = dbClient.Database("ehr")
+		      
+		      if dbDatabase <> nil then
+		        
+		        dbCollections() = dbDatabase.CollectionNames
+		        
+		        dbPatientCollection = dbDatabase.Collection("patients")
+		        
+		        var Filter as new JSONItem
+		        
+		        var sortOrder as new JSONItem
+		        
+		        var options as new JSONItem
+		        
+		        options.Value("limit") = 50
 		        options.Value("sort") = sortOrder
 		        
 		        dbPatientCursor = dbPatientCollection.Find(filter.toString, options.toString)
@@ -2242,7 +2460,7 @@ End
 		Sub Pressed(index as Integer)
 		  PagePanel1.SelectedPanelIndex = me.Index
 		  
-		  for i as integer = 0 to 5
+		  for i as integer = 0 to 6
 		    
 		    if i <> me.Index then 
 		      pageSelectBB(i).Value = false 
@@ -2264,6 +2482,26 @@ End
 	#tag Event
 		Sub Opening()
 		  me.Bold = true
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events mainToolbar1
+	#tag Event
+		Sub Pressed(item As DesktopToolbarItem)
+		  SELECT CASE item.Name
+		    
+		  CASE "newChartTI"
+		    
+		    
+		  CASE "newAppointmentTI"
+		    
+		    newAppointmentWin.Show()
+		    
+		  CASE "logoutTI"
+		    
+		    Quit()
+		    
+		  END SELECT
 		End Sub
 	#tag EndEvent
 #tag EndEvents
