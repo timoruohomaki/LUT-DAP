@@ -45,7 +45,7 @@ Begin DesktopWindow MainWin
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   5
+      Value           =   1
       Visible         =   True
       Width           =   792
       Begin DesktopLabel Label1
@@ -2411,6 +2411,63 @@ End
 
 #tag EndWindowCode
 
+#tag Events procedureList
+	#tag Event
+		Function ConstructContextualMenu(base As DesktopMenuItem, x As Integer, y As Integer) As Boolean
+		  base.AddMenu(New MenuItem("Add Procedure"))
+		  base.AddMenu(New MenuItem("Edit Procedure"))
+		  base.AddMenu(New MenuItem(MenuItem.TextSeparator))
+		  base.AddMenu(New MenuItem("Delete Procedure"))
+		  
+		  Return True
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function ContextualMenuItemSelected(selectedItem As DesktopMenuItem) As Boolean
+		  if selectedItem <> Nil then 
+		    
+		    SELECT CASE selectedItem.Text
+		      
+		    CASE "Add Procedure"
+		      
+		      ProcedureWin.Show()
+		      
+		    CASE "Edit Procedure"
+		      
+		      
+		      if procedureList.SelectedRowIndex > -1 then
+		        if procedureList.RowTagAt(procedureList.SelectedRowIndex) <> nil then
+		          
+		          ProcedureWin.Show()
+		          ProcedureWin.OpenWith(procedureList.RowTagAt(procedureList.SelectedRowIndex))
+		          
+		        end
+		      else
+		        
+		        MessageBox "Select procedure from the list first."
+		        
+		      end
+		      
+		      
+		    CASE "Delete Procedure"
+		      
+		      if procedureList.SelectedRowIndex > -1 then
+		        
+		        procedureList.RemoveRowAt(procedureList.SelectedRowIndex)
+		        
+		      else
+		        
+		        MessageBox "Select procedure from the list first."
+		        
+		      end
+		      
+		    END SELECT
+		    
+		  end
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events CalendarView1
 	#tag Event
 		Sub Open()

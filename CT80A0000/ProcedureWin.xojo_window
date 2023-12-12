@@ -10,7 +10,7 @@ Begin DesktopWindow ProcedureWin
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   325
+   Height          =   360
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -79,7 +79,7 @@ Begin DesktopWindow ProcedureWin
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   283
+      Top             =   318
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -110,43 +110,11 @@ Begin DesktopWindow ProcedureWin
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   283
+      Top             =   318
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   80
-   End
-   Begin DesktopLabel Label1
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Search"
-      TextAlignment   =   0
-      TextColor       =   &c000000
-      Tooltip         =   ""
-      Top             =   77
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
    End
    Begin DesktopLabel Label2
       AllowAutoDeactivate=   True
@@ -174,7 +142,7 @@ Begin DesktopWindow ProcedureWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   171
+      Top             =   206
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -206,7 +174,7 @@ Begin DesktopWindow ProcedureWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   109
+      Top             =   174
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -238,7 +206,7 @@ Begin DesktopWindow ProcedureWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   139
+      Top             =   142
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -283,104 +251,11 @@ Begin DesktopWindow ProcedureWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   171
+      Top             =   206
       Transparent     =   False
       Underline       =   False
       UnicodeMode     =   1
       ValidationMask  =   ""
-      Visible         =   True
-      Width           =   407
-   End
-   Begin DesktopSearchControl SearchControl1
-      AllowFocusRing  =   True
-      AutoDeactivate  =   True
-      Enabled         =   True
-      HasCancelButton =   True
-      HasMenu         =   False
-      Height          =   22
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   173
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      MacBorderStyle  =   0
-      PlaceHolderText =   ""
-      Scope           =   0
-      SendSearchStringImmediately=   False
-      SendWholeSearchString=   False
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      Tooltip         =   ""
-      Top             =   77
-      Visible         =   True
-      Width           =   407
-   End
-   Begin DesktopLabel codeLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   173
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "0000"
-      TextAlignment   =   0
-      TextColor       =   &c000000
-      Tooltip         =   ""
-      Top             =   109
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   123
-   End
-   Begin DesktopLabel titleLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   173
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "no title"
-      TextAlignment   =   0
-      TextColor       =   &c000000
-      Tooltip         =   ""
-      Top             =   139
-      Transparent     =   False
-      Underline       =   False
       Visible         =   True
       Width           =   407
    End
@@ -409,40 +284,11 @@ Begin DesktopWindow ProcedureWin
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   283
+      Top             =   318
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   80
-   End
-   Begin DesktopCheckBox donotbillCB
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Caption         =   "Do Not Bill To Insurance"
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   408
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   109
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      VisualState     =   0
-      Width           =   172
    End
    Begin DesktopDateControl startDC
       AllowFocusRing  =   True
@@ -546,7 +392,7 @@ Begin DesktopWindow ProcedureWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   368
+      Left            =   353
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -562,7 +408,7 @@ Begin DesktopWindow ProcedureWin
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   5
+      Top             =   4
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -578,7 +424,7 @@ Begin DesktopWindow ProcedureWin
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   368
+      Left            =   353
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -600,10 +446,139 @@ Begin DesktopWindow ProcedureWin
       Visible         =   True
       Width           =   100
    End
+   Begin DesktopLabel Label5
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Procedure NCSP Class"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   110
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   125
+   End
+   Begin DesktopLabel Label1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   173
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "0"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   174
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
+   Begin DesktopPopupMenu ncspClassPM
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   22
+      Index           =   -2147483648
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   173
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      SelectedRowIndex=   0
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   110
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   407
+   End
+   Begin DesktopPopupMenu ncspDescrPM
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   False
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   22
+      Index           =   -2147483648
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   173
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      SelectedRowIndex=   0
+      TabIndex        =   20
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   142
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   407
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h0
+		Sub OpenWith(procedure as ProcedureObject)
+		  
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events RadioGroup1
@@ -630,17 +605,7 @@ End
 #tag Events applyB
 	#tag Event
 		Sub Pressed()
-		  if codeLabel.text <> "0000" then
-		    
-		    do
-		      
-		    loop until MainWin.appendProcedure(codeLabel.text, descTA.text)
-		    
-		  else
-		    
-		    MsgBox "Procedure not defined."
-		    
-		  end
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -648,6 +613,38 @@ End
 	#tag Event
 		Sub Pressed()
 		  self.close()
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Label1
+	#tag Event
+		Sub Opening()
+		  me.Bold = TRUE
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ncspClassPM
+	#tag Event
+		Sub Opening()
+		  // populate list with NCSP Classes
+		  
+		  me.AddRow("A - Hermosto")
+		  me.RowTagAt(me.LastAddedRowIndex) = "A"
+		  me.AddRow("E - Hampaat, leuka, suu ja nielu")
+		  me.RowTagAt(me.LastAddedRowIndex) = "E"
+		  me.AddRow("R - Kuntoutuspalveluluokitus")
+		  me.RowTagAt(me.LastAddedRowIndex) = "R"
+		  me.AddRow("S - Suun ja hampaiston avohoidon toimenpiteet")
+		  me.RowTagAt(me.LastAddedRowIndex) = "S"
+		  me.AddRow("W - Muut ja useisiin elinjärjestelmiin kohdistuvat toimenpiteet")
+		  me.RowTagAt(me.LastAddedRowIndex) = "W"
+		  me.AddRow("Q - Iho ja ihonalaiskudos")
+		  me.RowTagAt(me.LastAddedRowIndex) = "Q"
+		  me.AddRow("Y - Elinten ja kudosten irrottaminen siirtoa varten")
+		  me.RowTagAt(me.LastAddedRowIndex) = "Y"
+		  me.AddRow("Z - Lisäkoodit")
+		  me.RowTagAt(me.LastAddedRowIndex) = "Z"
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

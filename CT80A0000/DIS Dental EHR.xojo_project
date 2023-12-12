@@ -30,6 +30,7 @@ Class=CalendarRecurrence;CalendarView Folder/CalendarRecurrence.xojo_binary_code
 Class=CalendarYearColors;CalendarView Folder/CalendarYearColors.xojo_binary_code;&h000000000D79FFFF;&h0000000078C107FF;true
 Class=CalendarYearPicker;CalendarView Folder/CalendarYearPicker.xojo_binary_code;&h00000000217DBFFF;&h0000000078C107FF;true
 Class=SiteObject;SiteObject.xojo_code;&h00000000599AE7FF;&h0000000000000000;false
+Class=ProcedureObject;ProcedureObject.xojo_code;&h0000000038B90FFF;&h0000000000000000;false
 DesktopWindow=EncounterWin;EncounterWin.xojo_window;&h000000007EC1F7FF;&h0000000000000000;false
 DesktopToolbar=mainToolbar;mainToolbar.xojo_toolbar;&h00000000662527FF;&h0000000000000000;false
 Folder=res;res;&h0000000060FB57FF;&h0000000000000000;false
