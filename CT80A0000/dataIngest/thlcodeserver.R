@@ -1,6 +1,5 @@
 library(dplyr)
 library(readxl)
-library(redux)
 
 # lähde: https://koodistopalvelu.kanta.fi/codeserver/pages/classification-view-page.xhtml 
 
@@ -16,16 +15,4 @@ write.table(dentalCodes.import, file = "./data/dentalCodes.csv", sep = ";", eol 
 
 dentalCodes.en <- dentalCodes.raw %>% select(Id,Long_name)
 
-# setting redis connection config
 
-redis_config(host = "redis-12727.c327.europe-west1-2.gce.redns.redis-cloud.com",
-             password = "4gWf01bPnabshmC5MtHFmfYRNDdOGUg3",port = "12727",
-             db = "codeServer", timeout = 30)
-
-r <- redux::hiredis()
-
-redis <- redux::redis
-
-r$pipeline(
-    redis$PING(),
-    redis$PING())
