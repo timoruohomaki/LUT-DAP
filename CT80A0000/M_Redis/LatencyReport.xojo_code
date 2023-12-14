@@ -33,11 +33,8 @@ Protected Class LatencyReport
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="AverageMs"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Double"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -45,7 +42,6 @@ Protected Class LatencyReport
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -53,47 +49,33 @@ Protected Class LatencyReport
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MaximumMs"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Double"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MinimumMs"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Double"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="String"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Samples"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="String"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -101,15 +83,11 @@ Protected Class LatencyReport
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TotalSecs"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Double"
-			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

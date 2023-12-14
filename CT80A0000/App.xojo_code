@@ -55,8 +55,6 @@ Inherits DesktopApplication
 		            
 		            siteList.Append(s)
 		            
-		            MessageBox s.Name
-		            
 		          next
 		          
 		        end
