@@ -1,0 +1,96 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"description": "The FHIR workflow module focuses on the coordination of activities within and across systems.",
+	"type": "object",
+	"properties": {
+		"identifier": {
+			"type": "string"
+		},
+		"active": {
+			"type": "boolean"
+		},
+		"name": {
+			"type": "array",
+			"items": {
+				"$ref": "#/$defs/humanName"
+			}
+		},
+		"telecom": {
+			"type": "array"
+		},
+		"gender": {
+			"type": "array"
+		}
+	},
+	"additionalProperties": false,
+	"$defs": {
+		"patient": {
+			"description": "Demographics and other administrative information about an individual or animal receiving care or other health-related services."
+		},
+		"appointment": {
+			"description": "A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)."
+		},
+		"encounter": {
+			"description": "An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient. Encounter is primarily used to record information about the actual activities that occurred, where Appointment is used to record planned activities."
+		},
+		"practitioner": {
+			"description": "A person who is directly or indirectly involved in the provisioning of healthcare or related services.\r\n\r\n"
+		},
+		"location": {
+			"description": "Details and position information for a place where services are provided and resources and participants may be stored, found, contained, or accommodated."
+		},
+		"inventoryItem": {
+			"description": "A functional description of an inventory item used in inventory and supply-related workflows."
+		},
+		"humanName": {
+			"type": "object",
+			"properties": {
+				"use": {
+					"$ref": "#/$defs/nameUse"
+				}
+			},
+			"additionalProperties": false
+		},
+		"nameUse": {
+			"type": "array",
+			"prefixItems": [
+				{
+					"type": "array",
+					"items": false,
+					"properties": {
+						"usual": {
+							"description": "Known as/conventional/the one you normally use.",
+							"type": "string"
+						},
+						"official": {
+							"description": "The formal name as registered in an official (government) registry, but which name might not be commonly used. May be called \"legal name\".",
+							"type": "string"
+						},
+						"temp": {
+							"description": "A temporary name. Name.period can provide more detailed information. This may also be used for temporary names assigned at birth or in emergency situations.",
+							"type": "string"
+						},
+						"nickname": {
+							"description": "A name that is used to address the person in an informal manner, but is not part of their formal or usual name.",
+							"type": "string"
+						},
+						"anonymous": {
+							"description": "Anonymous assigned name, alias, or pseudonym (used to protect a person's identity for privacy reasons).",
+							"type": "string"
+						},
+						"old": {
+							"description": "This name is no longer in use (or was never correct, but retained for records).",
+							"type": "string"
+						},
+						"maiden": {
+							"description": "A name used prior to changing name because of marriage. This name use is for use by applications that collect and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and are constantly changing. This term is not gender specific. The use of this term does not imply any particular history for a person's name.",
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				}
+			],
+			"items": false
+		}
+	}
+}
