@@ -45,7 +45,7 @@ Begin DesktopWindow MainWin
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   6
+      Value           =   2
       Visible         =   True
       Width           =   792
       Begin DesktopLabel Label1
@@ -1956,7 +1956,7 @@ Begin DesktopWindow MainWin
       Visible         =   True
       Width           =   81
    End
-   Begin DesktopLabel Label12
+   Begin DesktopLabel loggedNameLabel
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -1978,11 +1978,11 @@ Begin DesktopWindow MainWin
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Richard"
+      Text            =   ""
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   662
+      Top             =   649
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -2441,6 +2441,12 @@ End
 		    siteNameLabel.text = app.mySite.Name.Uppercase
 		    
 		  end
+		  
+		  if app.myPractitioner <> nil then
+		    
+		    loggedNameLabel.Text = app.myPractitioner.firstName
+		    
+		  end
 		End Sub
 	#tag EndMethod
 
@@ -2473,8 +2479,6 @@ End
 		dbPatientCursor As MongoCursorMBS
 	#tag EndProperty
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	#tag Property, Flags = &h0
 		dbPractitionerCollection As MongoCollectionMBS
 	#tag EndProperty
@@ -2487,10 +2491,6 @@ End
 		myPatient As PatientObject
 	#tag EndProperty
 
-=======
->>>>>>> parent of 517059d (added practitioner data)
-=======
->>>>>>> parent of 517059d (added practitioner data)
 
 #tag EndWindowCode
 
@@ -2579,6 +2579,15 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events patientsLB
+	#tag Event
+		Function ConstructContextualMenu(base As DesktopMenuItem, x As Integer, y As Integer) As Boolean
+		  base.AddMenu(New MenuItem("Add Appointment"))
+		  base.AddMenu(New MenuItem("-"))
+		  base.AddMenu(New MenuItem("Mark for Verification"))
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events Label15
 	#tag Event
 		Sub Opening()
@@ -2627,10 +2636,12 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Label12
+#tag Events loggedNameLabel
 	#tag Event
 		Sub Opening()
 		  me.Bold = true
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

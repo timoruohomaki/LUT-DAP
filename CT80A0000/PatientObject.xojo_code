@@ -1,7 +1,88 @@
 #tag Class
 Protected Class PatientObject
+	#tag Method, Flags = &h0
+		Function asJSON() As string
+		  var j as JSONItem
+		  
+		  j.Value("allergies") = allergies
+		  j.Value("firstName") = firstName
+		  j.Value("lastName") = lastName
+		  j.Value("medical") = medical
+		  j.Value("personGUID") = personGUID
+		  j.Value("postalCode") = postalCode
+		  j.Value("postalName") = postalName
+		  j.Value("primaryPhone") = primaryPhone
+		  j.Value("primarySite") = primarySite
+		  j.Value("streetAddress") = streetAddress
+		  
+		  
+		  return j.ToString
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function dbInsert(site as Integer) As boolean
+		  var mongoURI as String
+		  
+		  mongoURI = ""
+		  
+		  
+		  SELECT CASE site
+		    
+		  CASE 100
+		    
+		    mongoURI = ""
+		    
+		  CASE 101
+		    
+		  CASE 102
+		    
+		  END SELECT
+		  
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		allergies As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		firstName As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		lastName As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		medical As String
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		personGUID As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		postalCode As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		postalName As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		primaryPhone As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		primarySite As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		streetAddress As String
 	#tag EndProperty
 
 

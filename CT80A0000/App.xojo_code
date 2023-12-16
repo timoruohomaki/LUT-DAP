@@ -3,14 +3,10 @@ Protected Class App
 Inherits DesktopApplication
 	#tag Event
 		Sub Opening()
-		  Using EinhugurJSONIII
-		  
 		  do
 		  loop until RegisterPlugins
 		  
 		  smartCardContext = New SmartCardContextMBS
-		  
-		  var groups() as string = smartCardContext.ReaderGroups
 		  
 		  var devices() as string = smartCardContext.Readers
 		  

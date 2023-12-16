@@ -132,7 +132,7 @@ Begin DesktopWindow loginWin
       Cancel          =   False
       Caption         =   "Login"
       Default         =   True
-      Enabled         =   True
+      Enabled         =   False
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
@@ -187,38 +187,6 @@ Begin DesktopWindow loginWin
       Underline       =   False
       Visible         =   True
       Width           =   80
-   End
-   Begin DesktopLabel Label2
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   162
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Name"
-      TextAlignment   =   0
-      TextColor       =   &c000000
-      Tooltip         =   ""
-      Top             =   52
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
    End
    Begin DesktopLabel Label3
       AllowAutoDeactivate=   True
@@ -438,6 +406,8 @@ End
 		  appVerLabel.Italic = TRUE
 		  appVerLabel.Text = "Version: " +str(app.MajorVersion) + "." + str(app.MinorVersion) + " Build: " + str(app.NonReleaseVersion)
 		  
+		  // handle smart card
+		  
 		  app.smartCard = app.smartCardContext.Connect(app.smartCardDeviceName, SmartCardMBS.kShareShared, SmartCardMBS.kProtocolAny)
 		  
 		  var state as integer
@@ -455,17 +425,131 @@ End
 		      labelSmartCardUser.Italic = TRUE
 		      labelSmartCardUser.Text = "Card ID: ..." + app.SmartCardCurrentID.Right(4)
 		      
-		    else
+		      var p as PractitionerObject
 		      
-		      labelSmartCardUser.Text = "Error reading smart card"
+		      p = New PractitionerObject
+		      
+		      p = getPractitionerBySCID(app.SmartCardCurrentID)
+		      
+		      if p<>nil then
+		        
+		        app.myPractitioner = p
+		        
+		        labelSmartCardUser.text = p.firstName + " " + p.lastName
+		        
+		        loginB.enabled = true
+		        
+		      else
+		        
+		        
+		        
+		      end
 		      
 		    end
+		    
+		  else
+		    
+		    labelSmartCardUser.text = "Unknown user, access denied."
 		    
 		  end
 		  
 		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Function getPractitionerBySCID(key as string) As PractitionerObject
+		  // getting practitioner by SmartCardID
+		  
+		  // this query is from global database
+		  
+		  if key.Length > 10 then
+		    
+		    var muri as New MongoURIMBS(App.kMongoDbURI.Replace("{userpwd}",mongoLogin(100)))
+		    
+		    var dbClient as MongoClientMBS
+		    var dbDatabase as MongoDatabaseMBS
+		    var dbCollections() as String
+		    var dbPractitionerCollection as MongoCollectionMBS
+		    var dbPractitionerCursor as MongoCursorMBS
+		    
+		    dbClient = New MongoClientMBS(muri)
+		    
+		    Try
+		      
+		      if dbClient <> nil then
+		        
+		        dbDatabase = dbClient.Database("ehr")
+		        
+		        if dbDatabase <> nil then
+		          
+		          dbCollections() = dbDatabase.CollectionNames
+		          
+		          dbPractitionerCollection = dbDatabase.Collection("practitioners")
+		          
+		          var Filter as new JSONItem
+		          
+		          var sortOrder as new JSONItem
+		          
+		          var options as new JSONItem
+		          
+		          options.Value("limit") = 50
+		          options.Value("sort") = sortOrder
+		          
+		          if key.Length > 0 then
+		            filter.Value("smartCardID") = key
+		          end
+		          
+		          dbPractitionerCursor = dbPractitionerCollection.Find(filter.toString, options.toString)
+		          
+		          if dbPractitionerCursor <> nil then
+		            
+		            var Record as string
+		            
+		            while dbPractitionerCursor.NextRecord(Record)
+		              
+		              var practitioners() as Variant
+		              
+		              practitioners = ParseJSON("[" + Record + "]")
+		              
+		              for each d As Dictionary in practitioners
+		                
+		                var p as New PractitionerObject
+		                
+		                do
+		                loop until p.fromDict(d)
+		                
+		                return p
+		                
+		              Next
+		              
+		            wend
+		            
+		          end
+		          
+		          dbPractitionerCursor = nil
+		          
+		        else
+		          
+		          MessageBox "dbDatabase is nil, shouldn't be."
+		          
+		        end
+		        
+		      end
+		      
+		    Catch err as MongoExceptionMBS
+		      
+		      MessageBox "Error while contacting database: " + EndOfLine + err.Message
+		      
+		    End Try
+		    
+		    
+		  end
+		  
+		  return nil
+		End Function
+	#tag EndMethod
 
 
 #tag EndWindowCode
@@ -488,6 +572,7 @@ End
 		  end
 		  
 		  // set app.myPractitioner
+		  
 		  
 		  
 		  MainWin.setSiteName

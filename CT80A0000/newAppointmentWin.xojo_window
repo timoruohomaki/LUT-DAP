@@ -768,7 +768,7 @@ Begin DesktopWindow newAppointmentWin
       Visible         =   True
       Width           =   80
    End
-   Begin DesktopSearchControl SearchControl1
+   Begin DesktopSearchControl patientSearchSC
       AllowFocusRing  =   True
       AutoDeactivate  =   True
       Enabled         =   True
