@@ -12,4 +12,4 @@
 
 # Development tools
 
-XOJO (https://www.xojo.com)[https://www.xojo.com]
+XOJO [https://www.xojo.com]
