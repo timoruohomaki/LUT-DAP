@@ -460,13 +460,15 @@ End
 
 	#tag Method, Flags = &h0
 		Function getPractitionerBySCID(key as string) As PractitionerObject
-		  // getting practitioner by SmartCardID
+		  // getting practitioner as PractitionerObject by SmartCardID
 		  
 		  // this query is from global database
 		  
 		  if key.Length > 10 then
 		    
 		    var muri as New MongoURIMBS(App.kMongoDbURI.Replace("{userpwd}",mongoLogin(100)))
+		    
+		    // MessageBox(App.kMongoDbURI.Replace("{userpwd}",mongoLogin(100)))
 		    
 		    var dbClient as MongoClientMBS
 		    var dbDatabase as MongoDatabaseMBS
@@ -568,6 +570,10 @@ End
 		      app.mySite = sitePM.RowTagAt(sitePM.SelectedRowIndex)
 		      
 		    end
+		    
+		  else
+		    
+		    MessageBox "Select site first."
 		    
 		  end
 		  

@@ -139,6 +139,9 @@ Inherits DesktopApplication
 	#tag Constant, Name = kMongoDbURI, Type = String, Dynamic = False, Default = \"mongodb+srv://{userpwd}@ehr01.l64rcpf.mongodb.net/\?retryWrites\x3Dtrue&w\x3Dmajority", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = kRedisCodeserverEndpoint, Type = String, Dynamic = False, Default = \"redis-12727.c327.europe-west1-2.gce.cloud.redislabs.com", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = kRedisCodeserverPort, Type = Double, Dynamic = False, Default = \"12727", Scope = Public
 	#tag EndConstant
 

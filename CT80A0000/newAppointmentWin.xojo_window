@@ -520,7 +520,7 @@ Begin DesktopWindow newAppointmentWin
          LockRight       =   False
          LockTop         =   True
          MaximumCharactersAllowed=   0
-         Password        =   False
+         Password        =   True
          ReadOnly        =   False
          Scope           =   0
          TabIndex        =   10
@@ -640,7 +640,7 @@ Begin DesktopWindow newAppointmentWin
          Enabled         =   True
          HasBorder       =   True
          Height          =   23
-         Hours           =   0
+         Hours           =   8
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Left            =   373
@@ -866,17 +866,150 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
+		Function insertDB() As boolean
+		  // get site and database connection string
+		  
+		  if app.mySite <> nil then
+		    
+		    // create JSON and insert into MongoDB
+		    
+		    var appointment As New JSONItem
+		    
+		    if thePatient <> nil then
+		      
+		      appointment.Value("personGUID") = thePatient.personGUID 
+		      
+		    end
+		    
+		    if app.myPractitioner <> nil then
+		      
+		      appointment.Value("practitionerGUID") = app.myPractitioner.personGUID
+		      
+		    end
+		    
+		    appointment.Value("appointmentNotes") = notesTA.text
+		    
+		    appointment.Value("site") = app.mySite.Id
+		    
+		    // construct date strings
+		    
+		    var startD as New DateTime(appointmentDateCC.SelectedDate.Year, appointmentDateCC.SelectedDate.Month, appointmentDateCC.SelectedDate.Day, startTimeTC.Hours, startTimeTC.Minutes, 0)
+		    
+		    var duration as New DateInterval
+		    var endD as DateTime
+		    
+		    SELECT CASE durationRG.SelectedIndex
+		      
+		    CASE 0 // 30 min
+		      
+		      duration.Minutes = 30
+		      
+		      endD = startD + duration
+		      
+		    CASE 1 // 45 min
+		      
+		      duration.Minutes = 45
+		      
+		      endD = startD + duration
+		      
+		    CASE 2 // 60 min
+		      
+		      duration.Minutes = 60
+		      
+		      endD = startD + duration
+		      
+		    END SELECT
+		    
+		    appointment.Value("startTime") = startD.SQLDateTime
+		    
+		    appointment.Value("endtime") = endD.SQLDateTime
+		    
+		    // create Mongo insert
+		    
+		    // MessageBox GenerateJSON(appointment, TRUE)
+		    
+		    // defining MongoDB connection string based on the site currently logged in
+		    
+		    var dbURI as New MongoURIMBS(app.mySite.ehrHost)
+		    
+		    var dbClient as MongoClientMBS
+		    var dbDatabase as MongoDatabaseMBS
+		    var dbCollections() as String
+		    var appointmentCollection as MongoCollectionMBS
+		    
+		    dbClient = New MongoClientMBS(dbURI)
+		    
+		    Try
+		      
+		      if dbClient <> nil then
+		        
+		        dbDatabase = dbClient.Database("ehr")
+		        
+		        dbCollections() = dbDatabase.CollectionNames
+		        
+		        appointmentCollection = dbDatabase.Collection("appointments")
+		        
+		        // MessageBox("Ready to insert, site=" + app.mySite.Id.ToString)
+		        
+		        var dbResult As String = appointmentCollection.InsertOne(appointment.toString)
+		        
+		        // MessageBox(dbResult)
+		        
+		      end
+		      
+		    Catch err as MongoExceptionMBS
+		      
+		      MessageBox(err.Message)
+		      
+		    End Try
+		    
+		  end
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub openWith(p as PatientObject)
+		  if p <> nil then
+		    
+		    thePatient = p
+		    
+		    setEnabled("Existing Patient")
+		    
+		    patientTypeRG.SelectedIndex = 1
+		    
+		    firstNameTF.Text = thePatient.firstName
+		    
+		    lastNameTF.Text = thePatient.lastName
+		    emailTF.Text = thePatient.personalEmail
+		    phoneTF.Text = thePatient.primaryPhone
+		    
+		    
+		  end
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub setEnabled(i as string)
 		  
 		  SELECT CASE i
 		    
 		  CASE "New Patient"
 		    
-		    // TODO
+		    firstNameTF.Enabled = True
+		    lastNameTF.Enabled = True
+		    emailTF.Enabled = True
+		    phoneTF.Enabled = True
+		    personIdTF.Enabled = True
 		    
 		  CASE "Existing Patient"
 		    
-		    // TODO
+		    firstNameTF.Enabled = False
+		    lastNameTF.Enabled = False
+		    emailTF.Enabled = False
+		    phoneTF.Enabled = False
+		    personIdTF.Enabled = False
 		    
 		  END SELECT
 		End Sub
@@ -911,23 +1044,13 @@ End
 #tag Events okB
 	#tag Event
 		Sub Pressed()
-		  // create JSON and insert into MongoDB
+		  // construct JSON and insert into Mongo database of selected site
 		  
-		  var appointment As Dictionary
+		  do
+		    
+		  loop until insertDB
 		  
-		  appointment = New Dictionary
-		  
-		  if thePatient <> nil then
-		    
-		    appointment.Value("personGUID") = thePatient.personGUID 
-		    
-		  end
-		  
-		  if app.myPractitioner <> nil then
-		    
-		    appointment.Value("practitionerGUID") = app.myPractitioner
-		    
-		  end
+		  self.close
 		End Sub
 	#tag EndEvent
 #tag EndEvents

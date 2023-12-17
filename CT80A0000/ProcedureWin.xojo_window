@@ -478,7 +478,7 @@ Begin DesktopWindow ProcedureWin
       Visible         =   True
       Width           =   125
    End
-   Begin DesktopLabel Label1
+   Begin DesktopLabel ncspCodeLabel
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -573,6 +573,153 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
+		Sub getCodes(c as String)
+		  // gets procedure codes and descriptions based on classification code
+		  
+		  var redis as Redis_MTC
+		  
+		  Try
+		    
+		    redis = new Redis_MTC(getRedisPwd("code"),app.kRedisCodeserverEndpoint,app.kRedisCodeserverPort)
+		    
+		    if redis <> nil then
+		      
+		      var v as variant
+		      
+		      v = redis.Execute("KEYS *")
+		      
+		      var v1() as Variant = GetVariantArrayMBS(v)
+		      
+		      // filter out keys that are not in the selected class
+		      
+		      var mget as string
+		      
+		      for each row as string in v1
+		        
+		        if row.Left(1) = c then
+		          
+		          mget = mget + row + " "
+		          
+		        end
+		        
+		      next
+		      
+		      v = redis.Execute("MGET " + mget)
+		      
+		      mget = mget.trim
+		      
+		      var rowcount as Integer
+		      rowcount = mget.CountFields(" ") - 1
+		      
+		      var v2() as Variant = GetVariantArrayMBS(v)
+		      
+		      if rowcount = v2.LastIndex then
+		        
+		        for i as integer = 1 to rowcount
+		          
+		          ncspDescrPM.AddRow("[" + mget.NthField(" ",i) + "] " + v2(i-1).StringValue)
+		          ncspDescrPM.RowTagAt(ncspDescrPM.LastAddedRowIndex) = mget.NthField(" ",i)
+		          
+		        next
+		        
+		      else
+		        
+		        MessageBox "No match" + EndOfline + str(rowcount) + ":" + str(v2.LastIndex)
+		        
+		      end
+		      
+		      ncspDescrPM.Enabled = TRUE
+		      
+		    end
+		    
+		  Catch e as M_Redis.RedisException
+		    
+		    MessageBox e.Message
+		    
+		  End Try
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function insertDB() As boolean
+		  // get site and database connection string
+		  
+		  if app.mySite <> nil then
+		    
+		    // create JSON and insert into MongoDB
+		    
+		    var procedure As New JSONItem
+		    
+		    if app.myPatient <> nil then
+		      
+		      procedure.Value("personGUID") = app.myPatient.personGUID 
+		      
+		    end
+		    
+		    if app.myPractitioner <> nil then
+		      
+		      procedure.Value("practitionerGUID") = app.myPractitioner.personGUID
+		      
+		    end
+		    
+		    procedure.Value("description") = descTA.text
+		    
+		    procedure.Value("site") = app.mySite.Id
+		    
+		    procedure.Value("ncspCode") = ncspDescrPM.RowTagAt(ncspDescrPM.SelectedRowIndex)
+		    procedure.Value("ncspDescription") = ncspDescrPM.SelectedRowValue
+		    
+		    
+		    var startD as New DateTime(startDC.DateValue)
+		    
+		    procedure.Value("startTime") = startD.SQLDateTime
+		    
+		    // create Mongo insert
+		    
+		    // MessageBox GenerateJSON(appointment, TRUE)
+		    
+		    // defining MongoDB connection string based on the site currently logged in
+		    
+		    var dbURI as New MongoURIMBS(app.mySite.ehrHost)
+		    
+		    var dbClient as MongoClientMBS
+		    var dbDatabase as MongoDatabaseMBS
+		    var dbCollections() as String
+		    var appointmentCollection as MongoCollectionMBS
+		    
+		    dbClient = New MongoClientMBS(dbURI)
+		    
+		    Try
+		      
+		      if dbClient <> nil then
+		        
+		        dbDatabase = dbClient.Database("ehr")
+		        
+		        dbCollections() = dbDatabase.CollectionNames
+		        
+		        appointmentCollection = dbDatabase.Collection("procedures")
+		        
+		        // MessageBox("Ready to insert, site=" + app.mySite.Id.ToString)
+		        
+		        var dbResult As String = appointmentCollection.InsertOne(procedure.toString)
+		        
+		        // MessageBox(dbResult)
+		        
+		      end
+		      
+		    Catch err as MongoExceptionMBS
+		      
+		      MessageBox(err.Message)
+		      
+		    End Try
+		    
+		  end
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub OpenWith(procedure as ProcedureObject)
 		  
 		End Sub
@@ -605,6 +752,14 @@ End
 #tag Events applyB
 	#tag Event
 		Sub Pressed()
+		  // create procedure JSON for addition to database
+		  
+		  do
+		    
+		  loop until insertDB
+		  
+		  self.close
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -616,7 +771,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Label1
+#tag Events ncspCodeLabel
 	#tag Event
 		Sub Opening()
 		  me.Bold = TRUE
@@ -645,6 +800,21 @@ End
 		  me.AddRow("Z - Lisäkoodit")
 		  me.RowTagAt(me.LastAddedRowIndex) = "Z"
 		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub SelectionChanged(item As DesktopMenuItem)
+		  // populate other popupmenu with the classifications of selected item
+		  
+		  getCodes(item.Tag)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ncspDescrPM
+	#tag Event
+		Sub SelectionChanged(item As DesktopMenuItem)
+		  
+		  ncspCodeLabel.Text = item.Tag
 		End Sub
 	#tag EndEvent
 #tag EndEvents

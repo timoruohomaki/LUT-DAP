@@ -45,7 +45,7 @@ Begin DesktopWindow MainWin
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   2
+      Value           =   1
       Visible         =   True
       Width           =   792
       Begin DesktopLabel Label1
@@ -635,8 +635,8 @@ Begin DesktopWindow MainWin
          AllowRowDragging=   False
          AllowRowReordering=   False
          Bold            =   False
-         ColumnCount     =   3
-         ColumnWidths    =   "20%,30%,50%"
+         ColumnCount     =   4
+         ColumnWidths    =   "15%,15%,20%,50%"
          DefaultRowHeight=   -1
          DropIndicatorVisible=   False
          Enabled         =   True
@@ -652,7 +652,7 @@ Begin DesktopWindow MainWin
          Height          =   200
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
-         InitialValue    =   "Date	Code	Description"
+         InitialValue    =   "Date	Status	Code	Description"
          Italic          =   False
          Left            =   246
          LockBottom      =   True
@@ -2157,7 +2157,10 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getPatientByGUID(key as string) As string
+		Function getPatientByGUID(key as string) As PatientObject
+		  // get single patient by key from MongoDB collection
+		  // Mongo query parameters are set as two JSON objects: filter (e.g. search key) and options (e.g. limit and sort order)
+		  
 		  var muri as New MongoURIMBS(App.kMongoDbURI.Replace("{userpwd}",mongoLogin(100)))
 		  
 		  dbClient = New MongoClientMBS(muri)
@@ -2183,6 +2186,8 @@ End
 		        options.Value("limit") = 20
 		        options.Value("sort") = sortOrder
 		        
+		        // running the actual Mongo query
+		        
 		        dbPatientCursor = dbPatientCollection.Find(filter.toString, options.toString)
 		        
 		        patientsLB.RemoveAllRows
@@ -2191,19 +2196,24 @@ End
 		          
 		          var Record as string
 		          
+		          // browse through result set and form PatientObject
+		          
 		          while dbPatientCursor.NextRecord(Record)
 		            
-		            // TODO HOMMIA TÄÄLLÄ
+		            var patients() as Variant
 		            
-		            var preview as string = Record.ReplaceLineEndings(" ")
+		            patients = ParseJSON("[" + Record + "]")
 		            
-		            preview = preview.ReplaceAll(encodings.UTF8.Chr(9), " ")
-		            preview = preview.ReplaceAll("   ", " ")
-		            preview = preview.ReplaceAll("  ", " ")
-		            preview = preview.ReplaceAll(" : ", ": ")
-		            preview = preview.Left(200)
-		            
-		            return preview
+		            for each d As Dictionary in patients
+		              
+		              var p as New PatientObject
+		              
+		              do
+		              loop until p.fromDict(d)
+		              
+		              return p
+		              
+		            Next
 		            
 		          wend
 		          
@@ -2219,6 +2229,8 @@ End
 		      
 		    end
 		    
+		    // error handling
+		    
 		  Catch err as MongoExceptionMBS
 		    
 		    MessageBox "Error while contacting database: " + EndOfLine + err.Message
@@ -2226,7 +2238,7 @@ End
 		  End Try
 		  
 		  
-		  return ""
+		  return nil
 		End Function
 	#tag EndMethod
 
@@ -2587,6 +2599,47 @@ End
 		  base.AddMenu(New MenuItem("Mark for Verification"))
 		End Function
 	#tag EndEvent
+	#tag Event
+		Function ContextualMenuItemSelected(selectedItem As DesktopMenuItem) As Boolean
+		  if selectedItem <> Nil then 
+		    
+		    SELECT CASE selectedItem.Text
+		      
+		    CASE "Add Appointment"
+		      
+		      if me.RowTagAt(me.SelectedRowIndex) <> nil then
+		        
+		        if me.RowTagAt(me.SelectedRowIndex) IsA Dictionary then
+		          
+		          var p as PatientObject
+		          
+		          p = New PatientObject
+		          
+		          do
+		          loop until p.fromDict(me.RowTagAt(me.SelectedRowIndex))
+		          
+		          newAppointmentWin.Show()
+		          newAppointmentWin.openWith(p)
+		          
+		        else
+		          
+		          MessageBox "[DEBUG] Not dictionary"
+		          
+		        end
+		        
+		      end
+		      
+		      
+		    CASE "Mark for Verification"
+		      
+		      // TODO: add attribute for masterdata team to verify information
+		      
+		      
+		    END SELECT
+		    
+		  end
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events Label15
 	#tag Event
@@ -2652,7 +2705,7 @@ End
 		    
 		  CASE "newChartTI"
 		    
-		    newEncounterWin.Show()
+		    AppointmentsTodayWin.Show
 		    
 		  CASE "newAppointmentTI"
 		    

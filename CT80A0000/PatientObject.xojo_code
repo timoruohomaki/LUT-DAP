@@ -2,6 +2,8 @@
 Protected Class PatientObject
 	#tag Method, Flags = &h0
 		Function asJSON() As string
+		  // return a valid JSON object with the properties of the PatientObject
+		  
 		  var j as JSONItem
 		  
 		  j.Value("allergies") = allergies
@@ -44,6 +46,30 @@ Protected Class PatientObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function fromDict(d as Dictionary) As boolean
+		  // populate properties from passed dictionary with key-value pairs of the JSON
+		  
+		  if d <> nil then
+		    
+		    firstName = d.Value("firstName")
+		    lastName = d.Value("lastName")
+		    personalEmail = d.Value("personalEmail")
+		    personGUID = d.Value("personGUID")
+		    primaryPhone = d.Value("primaryPhone")
+		    primarySite = d.Value("primarySite").IntegerValue
+		    medical = d.Value("medical")
+		    allergies = d.Value("allergies")
+		    streetAddress = d.Value("streetAddress")
+		    postalCode = d.Value("postalCode")
+		    postalName = d.Value("postalName")
+		    
+		  end
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		allergies As String
@@ -59,6 +85,10 @@ Protected Class PatientObject
 
 	#tag Property, Flags = &h0
 		medical As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		personalEmail As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -132,7 +162,79 @@ Protected Class PatientObject
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="allergies"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="firstName"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="lastName"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="medical"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="postalCode"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="postalName"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="primaryPhone"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="primarySite"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="streetAddress"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
