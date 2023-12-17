@@ -14,11 +14,43 @@ Protected Class ProcedureObject
 
 
 	#tag Property, Flags = &h0
+		description As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		NCSP_Descr_FI As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		NCSP_ID As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		personGUID As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		practitionerGUID As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		procEnd As DateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		procNotes As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		procStart As DateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		procStatus As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		site As Integer
 	#tag EndProperty
 
 

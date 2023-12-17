@@ -81,14 +81,14 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopTextField TextField1
+      Begin DesktopTextField chartPatientName
          AllowAutoDeactivate=   True
          AllowFocusRing  =   True
          AllowSpellChecking=   False
          AllowTabs       =   False
          BackgroundColor =   &cFFFFFF
          Bold            =   False
-         Enabled         =   True
+         Enabled         =   False
          FontName        =   "System"
          FontSize        =   0.0
          FontUnit        =   0
@@ -156,14 +156,14 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopTextField TextField2
+      Begin DesktopTextField chartPatientSSID
          AllowAutoDeactivate=   True
          AllowFocusRing  =   True
          AllowSpellChecking=   False
          AllowTabs       =   False
          BackgroundColor =   &cFFFFFF
          Bold            =   False
-         Enabled         =   True
+         Enabled         =   False
          FontName        =   "System"
          FontSize        =   0.0
          FontUnit        =   0
@@ -296,7 +296,7 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopDateControl DateControl1
+      Begin DesktopDateControl chartApptStartAtDate
          AllowFocusRing  =   True
          AutoDeactivate  =   True
          Checked         =   False
@@ -375,7 +375,7 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   49
       End
-      Begin DesktopTimeControl TimeControl1
+      Begin DesktopTimeControl chartApptStartAtTime
          AutoDeactivate  =   True
          Enabled         =   True
          HasBorder       =   True
@@ -447,7 +447,7 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   49
       End
-      Begin DesktopTimeControl TimeControl2
+      Begin DesktopTimeControl chartApptEndAtTime
          AutoDeactivate  =   True
          Enabled         =   True
          HasBorder       =   True
@@ -739,14 +739,14 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopTextField TextField3
+      Begin DesktopTextField chartPatientAllergies
          AllowAutoDeactivate=   True
          AllowFocusRing  =   True
          AllowSpellChecking=   False
          AllowTabs       =   False
          BackgroundColor =   &cFFFFFF
          Bold            =   False
-         Enabled         =   True
+         Enabled         =   False
          FontName        =   "System"
          FontSize        =   0.0
          FontUnit        =   0
@@ -814,14 +814,14 @@ Begin DesktopWindow MainWin
          Visible         =   True
          Width           =   100
       End
-      Begin DesktopTextField TextField4
+      Begin DesktopTextField chartPatientMedical
          AllowAutoDeactivate=   True
          AllowFocusRing  =   True
          AllowSpellChecking=   False
          AllowTabs       =   False
          BackgroundColor =   &cFFFFFF
          Bold            =   False
-         Enabled         =   True
+         Enabled         =   False
          FontName        =   "System"
          FontSize        =   0.0
          FontUnit        =   0
@@ -2143,17 +2143,26 @@ End
 
 
 	#tag Method, Flags = &h0
-		Function appendProcedure(code as String, desc as String) As Boolean
+		Function appendProcedure(p as ProcedureObject) As Boolean
+		  // takes the ProcedureObjects and appends its key propertes on listbox
 		  
+		  if p<>nil then
+		    
+		    var params() as string
+		    
+		    params.Add(p.procStart.SQLDate)
+		    params.Add(p.procStatus)
+		    params.Add(p.NCSP_ID)
+		    params.Add(p.description)
+		    
+		    procedureList.addrow(params)
+		    
+		    procedureList.RowTagAt(procedureList.LastAddedRowIndex) = p
+		    
+		  end
 		  
 		  return true
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub getMongoRecords()
-		  
-		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -2179,6 +2188,8 @@ End
 		        
 		        var Filter as new JSONItem
 		        
+		        filter.Value("personGUID") = key 
+		        
 		        var sortOrder as new JSONItem
 		        
 		        var options as new JSONItem
@@ -2189,8 +2200,6 @@ End
 		        // running the actual Mongo query
 		        
 		        dbPatientCursor = dbPatientCollection.Find(filter.toString, options.toString)
-		        
-		        patientsLB.RemoveAllRows
 		        
 		        if dbPatientCursor <> nil then
 		          
@@ -2210,6 +2219,8 @@ End
 		              
 		              do
 		              loop until p.fromDict(d)
+		              
+		              // we return the first hit since shouldn't be more
 		              
 		              return p
 		              
@@ -2407,16 +2418,34 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub openMongoCollection(name as string)
-		  if name.len > 0 then
+		Function getSSID(guid as String) As String
+		  // gets procedure codes and descriptions based on classification code
+		  
+		  var redis as Redis_MTC
+		  
+		  Try
 		    
-		    dbPatientCollection = dbDatabase.Collection("patients")
+		    redis = new Redis_MTC(getRedisPwd("ssid"),app.kRedisSSIDEndpoint,app.kRedisSSIDPort)
 		    
-		    getMongoRecords()
+		    if redis <> nil then
+		      
+		      var v as variant
+		      
+		      v = redis.Execute("GET " + guid)
+		      
+		      var c as new clipboard
+		      c.text = guid
+		      
+		      // MessageBox("GET " + guid + ":" + EndOfLine + v.StringValue)
+		      
+		    end
 		    
+		  Catch e as M_Redis.RedisException
 		    
-		  end
-		End Sub
+		    MessageBox e.Message
+		    
+		  End Try
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -2429,7 +2458,7 @@ End
 		      
 		      dbCollections() = dbDatabase.CollectionNames
 		      
-		      openMongoCollection("patients")
+		      // openMongoCollection("patients")
 		      
 		    else
 		      
@@ -2442,6 +2471,42 @@ End
 		    MessageBox "Database name missing."
 		    
 		  end
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setNewChart(a as Dictionary, p as PatientObject)
+		  // setting new chart based on appointment and patient
+		  
+		  PagePanel1.SelectedPanelIndex = 1
+		  PagePanel1.Refresh
+		  
+		  chartPatientName.Text = p.firstName + " " + p.lastName
+		  
+		  chartPatientAllergies.Text = p.allergies
+		  chartPatientMedical.Text = p.medical
+		  
+		  chartNotesTA.Text = a.Value("appointmentNotes")
+		  
+		  var apptStart as DateTime = DateTime.FromString(a.Value("startTime").StringValue)
+		  var apptEnd as DateTime = DateTime.FromString(a.Value("endtime").StringValue)
+		  
+		  
+		  chartApptStartAtDate.Year = apptStart.Year
+		  chartApptStartAtDate.Month = apptStart.Month
+		  chartApptStartAtDate.Day = apptStart.Month
+		  
+		  chartApptStartAtTime.Hours = apptStart.Hour
+		  chartApptStartAtTime.Minutes = apptStart.Minute
+		  chartApptStartAtTime.Seconds = 0
+		  
+		  chartApptEndAtTime.Hours = apptEnd.Hour
+		  chartApptEndAtTime.Minutes = apptEnd.Minute
+		  chartApptEndAtTime.Seconds = 0
+		  
+		  app.myPatient = p
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -2506,6 +2571,24 @@ End
 
 #tag EndWindowCode
 
+#tag Events showPatientIDB
+	#tag Event
+		Sub Pressed()
+		  // get SSID from REDIS
+		  
+		  if app.myPatient <> nil then
+		    
+		    MessageBox(app.myPatient.personGUID)
+		    var c as New Clipboard
+		    c.Text = app.myPatient.personGUID
+		    
+		    chartPatientSSID.Text = getSSID(app.myPatient.personGUID)
+		    
+		    
+		  end
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events procedureList
 	#tag Event
 		Function ConstructContextualMenu(base As DesktopMenuItem, x As Integer, y As Integer) As Boolean

@@ -151,6 +151,12 @@ Inherits DesktopApplication
 	#tag Constant, Name = kRedisConfigPort, Type = Double, Dynamic = False, Default = \"14823", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = kRedisSSIDEndpoint, Type = String, Dynamic = False, Default = \"redis-11284.c327.europe-west1-2.gce.cloud.redislabs.com", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kRedisSSIDPort, Type = Double, Dynamic = False, Default = \"11284", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = kRedisVaultPort, Type = Double, Dynamic = False, Default = \"11284", Scope = Public
 	#tag EndConstant
 

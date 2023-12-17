@@ -24,7 +24,7 @@ Begin DesktopWindow ProcedureWin
    Type            =   1
    Visible         =   True
    Width           =   600
-   Begin DesktopRadioGroup RadioGroup1
+   Begin DesktopRadioGroup procedureRG
       AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
@@ -669,6 +669,16 @@ End
 		    procedure.Value("ncspCode") = ncspDescrPM.RowTagAt(ncspDescrPM.SelectedRowIndex)
 		    procedure.Value("ncspDescription") = ncspDescrPM.SelectedRowValue
 		    
+		    SELECT CASE procedureRG.SelectedIndex
+		      
+		    CASE 0
+		      procedure.Value("status") = "COMPLETED"
+		    CASE 1
+		      procedure.Value("status") = "PLANNED"
+		    CASE 2
+		      procedure.Value("status") = "LONG"
+		    END SELECT
+		    
 		    
 		    var startD as New DateTime(startDC.DateValue)
 		    
@@ -726,9 +736,14 @@ End
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		myProcedure As ProcedureObject
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
-#tag Events RadioGroup1
+#tag Events procedureRG
 	#tag Event
 		Sub SelectionChanged(button As DesktopRadioButton)
 		  if me.SelectedItem.Index = 2 then
@@ -757,6 +772,31 @@ End
 		  do
 		    
 		  loop until insertDB
+		  
+		  myProcedure = New ProcedureObject
+		  
+		  myProcedure.personGUID = app.myPatient.personGUID
+		  myProcedure.practitionerGUID = app.myPractitioner.personGUID
+		  myProcedure.NCSP_ID = ncspDescrPM.RowTagAt(ncspDescrPM.SelectedRowIndex)
+		  myProcedure.NCSP_Descr_FI = ncspDescrPM.RowValueAt(ncspDescrPM.SelectedRowIndex)
+		  
+		  SELECT CASE procedureRG.SelectedIndex
+		    
+		  CASE 0
+		    myProcedure.procStatus = "COMPLETED"
+		  CASE 1
+		    myProcedure.procStatus = "PLANNED"
+		  CASE 2
+		    myProcedure.procStatus = "LONG"
+		  END SELECT
+		  
+		  myProcedure.procStart = New Datetime(startDC.DateValue)
+		  myProcedure.procEnd = New Datetime(completionDC.DateValue)
+		  
+		  myProcedure.description = descTA.Text
+		  
+		  do
+		  loop until MainWin.appendProcedure(myProcedure)
 		  
 		  self.close
 		  
