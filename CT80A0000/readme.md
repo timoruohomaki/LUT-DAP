@@ -12,7 +12,7 @@
 
 # Development tools
 
-XOJO [https://www.xojo.com]
-- Using also MBS and Einhugur plugins
-RStudio [https://posit.co/products/open-source/rstudio/]
-Enterprise Architect [https://www.sparxsystems.com/products/ea/index.html]
+1) XOJO [https://www.xojo.com]
+2) Using also MBS and Einhugur plugins
+3) RStudio [https://posit.co/products/open-source/rstudio/]
+4) Enterprise Architect [https://www.sparxsystems.com/products/ea/index.html]
