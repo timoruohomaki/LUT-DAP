@@ -7,7 +7,7 @@
 
 1) Insert a new document in MongoDB: newAppointmentWin.insertDB
 2) Query patients: MainWin.getPatients
-3) Query appointments (JOIN): 
+3) Query appointments, join between two databases:  
 4) Redis value lookup:
 
 # Development tools
