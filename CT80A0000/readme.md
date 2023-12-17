@@ -7,5 +7,12 @@
 
 1) Insert a new document in MongoDB: newAppointmentWin.insertDB
 2) Query patients: MainWin.getPatients
-3) Query appointments (JOIN): 
-4) Redis value lookup: 
+3) Query appointments, join between two databases:  
+4) Redis value lookup:
+
+# Development tools
+
+1) XOJO [https://www.xojo.com]
+2) Using also MBS and Einhugur plugins
+3) RStudio [https://posit.co/products/open-source/rstudio/]
+4) Enterprise Architect [https://www.sparxsystems.com/products/ea/index.html]
