@@ -7,23 +7,21 @@ import sqlite3
 from sqlite3 import Error
 
 def createLead():
- 
+    print("")
     
 def convertLead():
- 
+    print("")
     
 def createAccount():
- 
+    print("")
     
 def getAccount():
-  
+    print("")
     
 def getOpportunitySummary():
- 
+    print("")
     
 def getContactList():
-    
- 
 
     cur = conn.cursor()
     cur.execute("SELECT * FROM contactPersons")
@@ -50,24 +48,25 @@ def navi():
     print("[9] - EXIT")
     print("===================")
 
-    naviSelect = int(input("Select option (1-9):"))
+    try:
 
-    match naviSelect:
-        case 1:
-            print("Listing latest accounts:")
-            
-            
-            
-            print("===================")
-            navi()
-        case 2:
-            print("Listing latest contacts")
-        case 3:
-            print("Listing latest leads")
-        case 4:
-            print("Listing latest opportunities")
-        case 9:
-            print("Bye!")
+        naviSelect = int(input("Select option (1-9):"))
+
+        match naviSelect:
+            case 1:
+                print("Listing latest accounts:")
+            case 2:
+                print("Listing latest contacts")
+            case 3:
+                print("Listing latest leads")
+            case 4:
+                print("Listing latest opportunities")
+            case 9:
+                print("Bye!")
+    
+    except ValueError:
+        print("Invalid option.")
+ 
 
 # MAIN PROGRAM STARTS HERE
 
