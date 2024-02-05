@@ -35,9 +35,9 @@ def getContactList():
 
 def navi():
     print("")
-    print("===================")
-    print("=== CRM CONSOLE ===")
-    print("===================")
+    print("======================")
+    print("=== CRM NAVIGATION ===")
+    print("======================")
     print("")
     print("[1] - LIST ACCOUNTS")
     print("[2] - LIST CONTACTS")
@@ -54,18 +54,18 @@ def navi():
 
     match naviSelect:
         case 1:
-            print("Listing accounts:")
+            print("Listing latest accounts:")
             
             
             
             print("===================")
             navi()
         case 2:
-            print("Listing contacts")
+            print("Listing latest contacts")
         case 3:
-            print("Listing new leads")
+            print("Listing latest leads")
         case 4:
-            print("Listing new opportunities")
+            print("Listing latest opportunities")
         case 9:
             print("Bye!")
 
