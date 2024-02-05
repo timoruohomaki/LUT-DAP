@@ -3,48 +3,27 @@
 # Course Project: CRM System
 #
 
-
 import sqlite3
 from sqlite3 import Error
 
-# from prettytable import PrettyTable
-# from prettytable import from_db_cursor
-
-db = sqlite3.connect('crm.db')
-cur = db.cursor()
-
-
-
-def initDB():
-
-    db_file = 'crm.db'
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-        print('Connected on SQLite database version ', sqlite3.version)
-    except Error as e:
-        print(e)
-    finally:
-        if conn:
-            conn.close()
-
 def createLead():
-    initDB()
+ 
     
 def convertLead():
-    initDB()
+ 
     
 def createAccount():
-    initDB()
+ 
     
 def getAccount():
-    initDB()
+  
     
 def getOpportunitySummary():
-    initDB()
+ 
     
 def getContactList():
-    initDB()
+    
+ 
 
     cur = conn.cursor()
     cur.execute("SELECT * FROM contactPersons")
@@ -54,7 +33,7 @@ def getContactList():
     for row in rows:
         print(row)
 
-def mainNavi():
+def navi():
     print("")
     print("===================")
     print("=== CRM CONSOLE ===")
@@ -71,12 +50,16 @@ def mainNavi():
     print("[9] - EXIT")
     print("===================")
 
-    mainSelect = int(input("Select option (1-9):"))
+    naviSelect = int(input("Select option (1-9):"))
 
-    match mainSelect:
+    match naviSelect:
         case 1:
-            print("Listing accounts")
-            mainNavi()
+            print("Listing accounts:")
+            
+            
+            
+            print("===================")
+            navi()
         case 2:
             print("Listing contacts")
         case 3:
@@ -88,6 +71,6 @@ def mainNavi():
 
 # MAIN PROGRAM STARTS HERE
 
-mainNavi()
+navi()
 
 
