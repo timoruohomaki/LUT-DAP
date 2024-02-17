@@ -68,7 +68,7 @@ def createDemo():
                     
                     print("Database creation completed.")
         
-    q = input("Do you want to populate the database with demo data? (Y/N)")
+    q = input("Do you want to populate the database with demo data? (Y/N) ")
     
     if q == "Y":
         
@@ -96,17 +96,12 @@ def navi():
     print("[9] - CREATE DEMO DATABASE")
     print("[0] - EXIT")
     print("===================")
-
-    try:
-
-    naviSelect = int(input("Select option (1-9):"))
+    
+    naviSelect = int(input("Select option (0-9):" ))
 
     match naviSelect:
         case 1:
             print("Listing latest accounts:")
-            
-            
-            
             print("===================")
             navi()
         case 2:
@@ -116,7 +111,12 @@ def navi():
         case 4:
             print("Listing latest opportunities")
         case 9:
+            createDemo()
+        case 0:
             print("Bye!")
+            
+            if dbcon:
+                dbcon.close()   
 
 # MAIN PROGRAM STARTS HERE
 
