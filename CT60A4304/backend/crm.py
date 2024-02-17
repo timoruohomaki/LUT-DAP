@@ -40,7 +40,7 @@ def getContactList():
         
 def createDemo():
     
-    q = input("Do you want to create a new database and load it with demo data? (Y/N) ")
+    q = input("Do you want to create an empty new database? (Y/N) ")
     
     if q == "Y":
     
@@ -66,12 +66,16 @@ def createDemo():
                     
                     print("Database creation completed.")
         
+    q = input("Do you want to populate the database with demo data? (Y/N)")
+    
+    if q == "Y":
+        
         print("Inserting data...")
         
         print("Database creation completed, you can now use options 1-8.")
         print("")
         
-        navi()
+    navi()
 
 def navi():
     print("")
