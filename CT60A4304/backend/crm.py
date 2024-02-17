@@ -30,8 +30,10 @@ def getOpportunitySummary():
     
 def getContactList():
     
-    cur = dbcon.cursor()
-    cur.execute("SELECT * FROM contactPersons LIMIT 10")
+ 
+
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM contactPersons")
 
     rows = cur.fetchall()
 
@@ -95,34 +97,26 @@ def navi():
     print("[0] - EXIT")
     print("===================")
 
-    naviSelect = int(input("Select option (0-9): "))
+    try:
+
+    naviSelect = int(input("Select option (1-9):"))
 
     match naviSelect:
         case 1:
-            print("Listing last 10 accounts:")
-
+            print("Listing latest accounts:")
             
+            
+            
+            print("===================")
             navi()
         case 2:
-            print("Listing last 10 contacts")
-            
-            
+            print("Listing latest contacts")
         case 3:
-            print("Listing last 10 leads")
-            
-            
+            print("Listing latest leads")
         case 4:
             print("Listing latest opportunities")
-            
-            
         case 9:
-            createDemo()
-            
-        case 0:
             print("Bye!")
-            
-            if dbcon:
-                dbcon.close()
 
 # MAIN PROGRAM STARTS HERE
 
