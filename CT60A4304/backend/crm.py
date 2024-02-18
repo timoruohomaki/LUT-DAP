@@ -8,6 +8,16 @@
 import os
 import sqlite3
 from sqlite3 import Error
+import TableIt
+
+myList = [
+    ["Name", "Email"],
+    ["Richard", "richard@fakeemail.com"],
+    ["Tasha", "tash@fakeemail.com"]
+]
+
+TableIt.printTable(myList, useFieldNames=True)
+
 
 dbcon = None
 
@@ -30,12 +40,10 @@ def getOpportunitySummary():
     
 def getContactList():
     
- 
+    dbcur = dbcon.cursor()
+    dbcur.execute("SELECT * FROM contactPersons LIMIT 10")
 
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM contactPersons")
-
-    rows = cur.fetchall()
+    rows = dbcur.fetchall()
 
     for row in rows:
         print(row)
@@ -52,8 +60,10 @@ def createDemo():
         try:
             dbcon = sqlite3.connect("CRMDEMO.DB")
             print("SQLite Database Version: ", sqlite3.sqlite_version)
+            
         except Error as e:
-            print(e)
+            print("SQLite error: ", e)
+            
         finally:
             if dbcon: 
                 print("Creating tables...")
@@ -73,6 +83,8 @@ def createDemo():
     if q == "Y":
         
         print("Inserting data...")
+        
+        #
         
         print("Database creation completed, you can now use options 1-8.")
         print("")
@@ -97,22 +109,23 @@ def navi():
     print("[0] - EXIT")
     print("===================")
     
-    naviSelect = int(input("Select option (0-9):" ))
+    naviSelect = input("Select option (0-9):" )
 
     match naviSelect:
-        case 1:
+        
+        case "1":
             print("Listing latest accounts:")
             print("===================")
             navi()
-        case 2:
+        case "2":
             print("Listing latest contacts")
-        case 3:
+        case "3":
             print("Listing latest leads")
-        case 4:
+        case "4":
             print("Listing latest opportunities")
-        case 9:
+        case "9":
             createDemo()
-        case 0:
+        case "0":
             print("Bye!")
             
             if dbcon:

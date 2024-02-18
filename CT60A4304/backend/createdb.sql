@@ -11,3 +11,17 @@ CREATE TABLE contactPersons (
   first_name TEXT,
   last_name TEXT
 );
+
+DROP TABLE IF EXISTS lead;
+
+CREATE TABLE lead(
+  lead_id INTEGER PRIMARY KEY,
+  first_name TEXT,
+  last_name TEXT,
+  company TEXT,
+  street TEXT,
+  zip TEXT,
+  city TEXT,
+  email TEXT,
+  phone TEXT
+);
