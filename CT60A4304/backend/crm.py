@@ -18,25 +18,27 @@ myList = [
 
 TableIt.printTable(myList, useFieldNames=True)
 
-
 dbcon = None
 
 # Functions
 
 def createLead():
-    print("")
+    print("Not implemented yet, sorry!")
     
 def convertLead():
-    print("")
+    print("Not implemented yet, sorry!")
     
 def createAccount():
-    print("")
+    print("Not implemented yet, sorry!")
+
+def updateAccount():
+    print("Not implemented yet, sorry!")
     
 def getAccount():
-    print("")
+    print("Not implemented yet, sorry!")
     
 def getOpportunitySummary():
-    print("")
+    print("Not implemented yet, sorry!")
     
 def getContactList():
     
@@ -72,6 +74,7 @@ def createDemo():
                     sql_script = sql_file.read()
 
                     dbcur = dbcon.cursor()
+                    
                     dbcur.executescript(sql_script)
                     dbcon.commit()
                     dbcon.close()
@@ -115,14 +118,20 @@ def navi():
         
         case "1":
             print("Listing latest accounts:")
-            print("===================")
+
             navi()
         case "2":
             print("Listing latest contacts")
+
+            navi()
         case "3":
             print("Listing latest leads")
+
+            navi()
         case "4":
             print("Listing latest opportunities")
+
+            navi()
         case "9":
             createDemo()
         case "0":
