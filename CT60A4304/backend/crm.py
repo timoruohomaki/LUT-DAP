@@ -3,31 +3,110 @@
 # Course Project: CRM System
 # Developer: Timo Ruohomäki
 #
-# Docs: https://docs.python.org/3/library/sqlite3.html 
+# Docs: https://docs.python.org/3/library/sqlite3.html
+#       https://github.com/SuperMaZingCoder/TableIt 
 
 import os
 import sqlite3
 from sqlite3 import Error
 import TableIt
 
-myList = [
-    ["Name", "Email"],
-    ["Richard", "richard@fakeemail.com"],
-    ["Tasha", "tash@fakeemail.com"]
-]
-
-TableIt.printTable(myList, useFieldNames=True)
-
 dbcon = None
 
 # Functions
 
+def searchContact():
+    term = input("Enter search term (first name, last name or company): ")
+    
+    if term:
+        try:
+            dbcon = sqlite3.connect("CRMDEMO.DB")   
+        except Error as err:
+            print("[ERROR]]: ", err.sqlite_errorname)
+        
+        finally:
+            dbcon.close()
+            q = input("Hit M to get back to main menu. ")
+            if q == "M":
+                navi()
+
 def createLead():
-    print("Not implemented yet, sorry!")
     
-def convertLead():
-    print("Not implemented yet, sorry!")
+    print("Enter lead details:")
+    first_name = input("First name: ")
+    last_name = input("Last name: ")
+    company = input("Company: ")
+    street = input("Street address: ")
+    zipcode = input("Postal code: ")
+    city = input("City: ")
+    country = input("Country: ")
+    email = input("Email: ")
+    phone = input("Phone: ")
+    salesRep = int(input("Sales Rep ID (Integer value): "))
+
+    data = [(first_name, last_name, company, street, zipcode, city, country, email, phone, salesRep)]
+
+    try:
+        dbcon = sqlite3.connect("CRMDEMO.DB")   
+    except Error as err:
+        print("[ERROR] Database connect failed: ", err.sqlite_errorname)
+        
+    finally:
+        
+        # (first_name, last_name, company, street, zip, city, country, email, phone, salesRep)
+        
+        try:
+            sql = "INSERT INTO lead VALUES (?,?,?,?,?,?,?,?,?,?)"
+            
+            dbcur = dbcon.cursor()
+            dbcur.execute(sql, data)
+            
+            dbcon.commit()
+            
+            print("Created new lead with id ", str(dbcur.lastrowid),".")
+            
+            dbcon.close()
+            
+        except Error as err:
+            print("[ERROR] In INSERT statement: ", err.sqlite_errorname)
+
+    q = input("Press any key to get back to main menu. ")
+    if q:
+        navi()
+    else:
+        navi()
     
+def getLatestLeads():
+    
+    try:
+        dbcon = sqlite3.connect("CRMDEMO.DB")            
+    except Error as err:
+        print("[ERROR]]: ", err.sqlite_errorname)
+            
+    finally:
+        
+        sql = "SELECT L.lead_id, L.first_name || \' \' || COALESCE(L.last_name,' ') AS ContactPerson, L.company, \
+            S.first_name || \' \' || COALESCE(S.last_name, '') AS SalesPerson \
+            FROM lead AS L JOIN salesPerson AS S ON L.FK_salesRep = S.sales_id \
+                ORDER BY L.lead_id DESC LIMIT 10"
+        
+        dbcon.row_factory = sqlite3.Row
+        dbcur = dbcon.cursor()
+       
+        leadList = dbcur.execute(sql).fetchall()
+          
+        dbcon.close()
+
+        print("LATEST LEADS:")
+
+        TableIt.printTable(leadList)
+    
+        q = input("Press any key to get back to main menu. ")
+        if q:
+            navi()
+        else:
+            navi()
+
 def createAccount():
     print("Not implemented yet, sorry!")
 
@@ -41,14 +120,10 @@ def getOpportunitySummary():
     print("Not implemented yet, sorry!")
     
 def getContactList():
-    
-    dbcur = dbcon.cursor()
-    dbcur.execute("SELECT * FROM contactPersons LIMIT 10")
+    print("")
 
-    rows = dbcur.fetchall()
-
-    for row in rows:
-        print(row)
+def salesTeamStatus():
+    print("")
         
 def createDemo():
     
@@ -61,10 +136,10 @@ def createDemo():
         
         try:
             dbcon = sqlite3.connect("CRMDEMO.DB")
-            print("SQLite Database Version: ", sqlite3.sqlite_version)
+            print("[INFO] SQLite Database Version: ", sqlite3.sqlite_version)
             
         except Error as e:
-            print("SQLite error: ", e)
+            print("[ERROR] Database error: ", e.sqlite_errorname)
             
         finally:
             if dbcon: 
@@ -97,10 +172,9 @@ def createDemo():
         
         try:
             dbcon = sqlite3.connect("CRMDEMO.DB")
-            print("SQLite Database Version: ", sqlite3.sqlite_version)
             
         except Error as e:
-            print("SQLite error: ", e)
+            print("[ERROR] Database error: ", e.sqlite_errorname)
 
         finally:
 
@@ -121,7 +195,15 @@ def createDemo():
                         dbcon.commit()
                         dbcon.close()
                     
-                        print("Leads populated successfully.")
+                        print("Demo data populated successfully.")
+                        print("")
+                        print("### Database created and demo data inserted, you can now use options 1-8. ###")
+                        
+                        q = input("Press any key to get back to main menu. ")
+                        if q:
+                            navi()
+                        else:
+                            navi()
                     
                     except dbcon.Error as err:
                         
@@ -129,13 +211,6 @@ def createDemo():
                         print(err.sqlite_errorname)
                         
                         dbcon.rollback()
-
-                    
-        print("")
-        print("### Database demo data inserted, you can now use options 1-8. ###")
-        print("")
-        
-    navi()
 
 def navi():
     print("")
@@ -150,7 +225,7 @@ def navi():
     print("[5] - CREATE NEW LEAD")
     print("[6] - CREATE NEW ACCOUNT")
     print("[7] - CREATE NEW CONTACT")
-    print("[8] - CREATE NEW OPPORTUNITY")
+    print("[8] - SALES TEAM STATUS")
     print("[9] - CREATE DEMO DATABASE")
     print("[0] - EXIT")
     print("===================")
@@ -162,21 +237,28 @@ def navi():
         case "1":
             print("Listing latest accounts:")
 
-            navi()
         case "2":
             print("Listing latest contacts")
 
-            navi()
         case "3":
-            print("Listing latest leads")
-
-            navi()
+            
+            getLatestLeads()
+            
         case "4":
             print("Listing latest opportunities")
 
-            navi()
+        case "5":
+            
+            createLead()
+            
+        case "8":
+            
+            salesTeamStatus()
+            
         case "9":
+            
             createDemo()
+            
         case "0":
             print("Bye!")
             

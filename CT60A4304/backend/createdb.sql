@@ -16,7 +16,22 @@ CREATE TABLE lead(
   city TEXT,
   country TEXT,
   email TEXT,
-  phone TEXT
+  phone TEXT,
+  FK_salesRep INTEGER,
+  FOREIGN KEY (FK_salesRep) REFERENCES salesPerson(sales_id)
+);
+
+DROP TABLE IF EXISTS account;
+
+CREATE TABLE account (
+  acc_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  company TEXT,
+  industry TEXT,
+  street TEXT,
+  postal_code TEXT,
+  city TEXT,
+  FK_acc_rep INTEGER,
+  FOREIGN KEY(FK_acc_rep) REFERENCES salesPerson(sales_id)
 );
 
 DROP TABLE IF EXISTS contactPersons;
@@ -25,26 +40,24 @@ CREATE TABLE contactPersons (
   con_id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name TEXT,
   last_name TEXT,
-  FK_account INTEGER,
-);
-
-DROP TABLE IF EXISTS account;
-
-CREATE TABLE account (
-  acc_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  company TEXT,
-  industry TEXT
+  email TEXT,
+  phone TEXT,
+  FK_acc INTEGER,
+  FOREIGN KEY (FK_acc) REFERENCES account(acc_id)
 );
 
 DROP TABLE IF EXISTS communication;
 
 CREATE TABLE communication (
   comms_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  company TEXT,
-  industry TEXT,
+  method TEXT,
+  notes TEXT,
   FK_contact INTEGER,
   FK_salesRep INTEGER,
-  FK_opp INTEGER
+  FK_opp INTEGER,
+  FOREIGN KEY (FK_contact) REFERENCES contactPersons(con_id),
+  FOREIGN KEY (FK_salesRep) REFERENCES salesPerson(sales_id),
+  FOREIGN KEY (FK_opp) REFERENCES opportunity(opp_id)
 );
 
 DROP TABLE IF EXISTS salesPerson;
@@ -67,7 +80,10 @@ CREATE TABLE opportunity (
   opp_est_date TEXT,
   FK_acc INTEGER,
   FK_con INTEGER,
-  FK_salesRep INTEGER
+  FK_salesRep INTEGER,
+  FOREIGN KEY (FK_acc) REFERENCES account(acc_id),
+  FOREIGN KEY (FK_con) REFERENCES contactPersons(con_id),
+  FOREIGN KEY (FK_salesRep) REFERENCES salesPerson(sales_id)
 );
 
 DROP TABLE IF EXISTS quotation;
@@ -76,7 +92,8 @@ CREATE TABLE quotation (
   quo_id INTEGER PRIMARY KEY AUTOINCREMENT,
   quote_number TEXT,
   quote_date TEXT,
-  FK_account INTEGER
+  FK_account INTEGER,
+  FOREIGN KEY (FK_account) REFERENCES account(acc_id)
 );
 
 DROP TABLE IF EXISTS quoteLineItem;
@@ -87,5 +104,6 @@ CREATE TABLE quoteLineItem (
   product_name TEXT,
   quantity INTEGER,
   unit_price REAL,
-  FK_quotation INTEGER
+  FK_quotation INTEGER,
+  FOREIGN KEY (FK_quotation) REFERENCES quotation(quo_id)
 );
