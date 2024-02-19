@@ -71,6 +71,7 @@ def createDemo():
                 print("Creating tables...")
         
                 with open('createdb.sql', 'r') as sql_file:
+
                     sql_script = sql_file.read()
 
                     dbcur = dbcon.cursor()
@@ -82,20 +83,56 @@ def createDemo():
                         
                         dbcon.commit()
                         dbcon.close()
-                    except dbcon.Error:
+
+                        print("Database creation completed.")
+
+                    except dbcon.Error as err:
+                        print("[ERROR] Database error code ",err.sqlite_errorcode)
+                        print("[ERROR] ", err.sqlite_errorname)
                         dbcon.rollback()
                     
-                    print("Database creation completed.")
-        
     q = input("Do you want to populate the database with demo data? (Y/N) ")
     
     if q == "Y":
         
-        print("Inserting demo leads...")
+        try:
+            dbcon = sqlite3.connect("CRMDEMO.DB")
+            print("SQLite Database Version: ", sqlite3.sqlite_version)
+            
+        except Error as e:
+            print("SQLite error: ", e)
+
+        finally:
+
+            if dbcon: 
+                print("Populating tables with demo data...")
         
-        
-        
-        print("Database creation completed, you can now use options 1-8.")
+                with open('insertdemo.sql', 'r') as sql_file:
+
+                    sql_script = sql_file.read()
+
+                    dbcur = dbcon.cursor()
+                    
+                    try:
+                        dbcur.execute("BEGIN TRANSACTION")
+                    
+                        dbcur.executescript(sql_script)
+                        
+                        dbcon.commit()
+                        dbcon.close()
+                    
+                        print("Leads populated successfully.")
+                    
+                    except dbcon.Error as err:
+                        
+                        print("[ERROR] Database error code ",err.sqlite_errorcode)
+                        print(err.sqlite_errorname)
+                        
+                        dbcon.rollback()
+
+                    
+        print("")
+        print("### Database demo data inserted, you can now use options 1-8. ###")
         print("")
         
     navi()
@@ -106,10 +143,10 @@ def navi():
     print("=== CRM NAVIGATION ===")
     print("======================")
     print("")
-    print("[1] - LIST ACCOUNTS")
-    print("[2] - LIST CONTACTS")
-    print("[3] - LIST NEW LEADS")
-    print("[4] - LIST NEW OPPORTUNITIES")
+    print("[1] - SEARCH ACCOUNTS")
+    print("[2] - SEARCH CONTACTS")
+    print("[3] - SEARCH LEADS")
+    print("[4] - SHOW LATEST OPPORTUNITIES")
     print("[5] - CREATE NEW LEAD")
     print("[6] - CREATE NEW ACCOUNT")
     print("[7] - CREATE NEW CONTACT")
