@@ -1,0 +1,36 @@
+KARKAUSVUOSI:
+
+SELECT nimi FROM Elokuvat WHERE ((vuosi % 4 = 0) AND (vuosi % 100 <> 0 )) OR (vuosi % 400 = 0);
+
+SELECT nimi FROM Tuotteet WHERE hinta = (SELECT MIN(hinta) FROM Tuotteet);
+
+SELECT nimi FROM Tuotteet GROUP BY hinta HAVING count(*) = 1;
+
+SELECT sana FROM Sanat GROUP BY sana ORDER BY sana LIMIT 1;
+
+SELECT sana FROM Sanat GROUP BY sana ORDER BY sana LIMIT 1 OFFSET 1;
+
+SELECT sana FROM Sanat GROUP BY sana ORDER BY sana LIMIT 1,-1;
+
+SELECT sana FROM Sanat WHERE sana LIKE '%i%';
+
+SELECT sana FROM Sanat WHERE LENGTH(sana) - LENGTH(REPLACE(sana, 'a', '')) = 2;
+
+SELECT k.tunnus, count(o.ryhma_id) FROM Kayttajat k LEFT JOIN Oikeudet o ON o.kayttaja_id = k.id GROUP BY k.tunnus;
+
+SELECT r.nimi, count(o.kayttaja_id) FROM Ryhmat r LEFT JOIN Oikeudet o ON o.ryhma_id = r.id GROUP BY r.nimi;
+
+SELECT k.tunnus FROM Kayttajat k LEFT JOIN Oikeudet o ON o.kayttaja_id = k.id GROUP BY k.tunnus HAVING count(o.ryhma_id) > 1;
+
+SELECT tunnus FROM Kayttajat k LEFT JOIN Oikeudet o ON k.id = o.kayttaja_id WHERE o.ryhma_id IN (SELECT ryhma_id FROM Oikeudet WHERE kayttaja_id = 1) GROUP BY tunnus;
+
+SELECT tunnus FROM Kayttajat k LEFT JOIN Oikeudet o ON k.id = o.kayttaja_id WHERE o.ryhma_id NOT IN (SELECT ryhma_id FROM Oikeudet WHERE kayttaja_id = 1 GROUP BY kayttaja_id) GROUP BY tunnus;
+
+SELECT MIN(ABS(t1.hinta - t2.hinta)) FROM Tuotteet t1 CROSS JOIN Tuotteet t2 WHERE t1.id != t2.id;
+
+SELECT tulos FROM Tulokset ORDER BY tulos LIMIT 1 OFFSET ((SELECT COUNT(*) FROM Tulokset) / 2) - 1;
+
+SELECT haltija, COALESCE(SUM(muutos), 0) FROM Tilit LEFT JOIN Tapahtumat ON Tapahtumat.tili_id = Tilit.id GROUP BY haltija;
+
+SELECT tulos FROM Tulokset WHERE tulos = (SELECT DISTINCT tulos FROM Tulokset GROUP BY tulos ORDER BY COUNT(*) DESC LIMIT 1) LIMIT 1;
+
