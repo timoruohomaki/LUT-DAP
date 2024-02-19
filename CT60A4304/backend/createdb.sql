@@ -7,7 +7,7 @@ Database author: Timo Ruohomäki
 DROP TABLE IF EXISTS contactPersons;
 
 CREATE TABLE contactPersons (
-  contact_id INTEGER PRIMARY KEY,
+  contact_id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name TEXT,
   last_name TEXT
 );
@@ -15,13 +15,14 @@ CREATE TABLE contactPersons (
 DROP TABLE IF EXISTS lead;
 
 CREATE TABLE lead(
-  lead_id INTEGER PRIMARY KEY,
+  lead_id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name TEXT,
   last_name TEXT,
   company TEXT,
   street TEXT,
   zip TEXT,
   city TEXT,
+  country TEXT,
   email TEXT,
   phone TEXT
-);
+) WITHOUT ROWID;

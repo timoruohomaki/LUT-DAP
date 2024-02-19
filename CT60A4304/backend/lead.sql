@@ -1,14 +1,3 @@
-create table lead (
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	company VARCHAR(50),
-	street VARCHAR(50),
-	zip VARCHAR(50),
-	city VARCHAR(50),
-	country VARCHAR(50),
-	email VARCHAR(50),
-	phone VARCHAR(50)
-);
 insert into lead (first_name, last_name, company, street, zip, city, country, email, phone) values ('Way', 'Rodolico', 'Hilpert-Greenfelder', '38 Bonner Crossing', null, 'Bojongaren', 'Indonesia', 'wrodolico0@dropbox.com', '707-752-4870');
 insert into lead (first_name, last_name, company, street, zip, city, country, email, phone) values ('Madison', 'Kupis', 'Rodriguez-Bogisich', '4900 Melrose Circle', '456664', 'Kanashevo', 'Russia', 'mkupis1@mit.edu', '937-962-1643');
 insert into lead (first_name, last_name, company, street, zip, city, country, email, phone) values ('Amabel', 'Chalcot', 'Steuber and Sons', '3 Rusk Crossing', null, 'Nanjie', 'China', 'achalcot2@gov.uk', '548-867-3529');

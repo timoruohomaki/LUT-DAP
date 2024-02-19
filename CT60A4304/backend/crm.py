@@ -75,9 +75,15 @@ def createDemo():
 
                     dbcur = dbcon.cursor()
                     
-                    dbcur.executescript(sql_script)
-                    dbcon.commit()
-                    dbcon.close()
+                    try:
+                        dbcur.execute("BEGIN TRANSACTION")
+                    
+                        dbcur.executescript(sql_script)
+                        
+                        dbcon.commit()
+                        dbcon.close()
+                    except dbcon.Error:
+                        dbcon.rollback()
                     
                     print("Database creation completed.")
         
@@ -85,9 +91,9 @@ def createDemo():
     
     if q == "Y":
         
-        print("Inserting data...")
+        print("Inserting demo leads...")
         
-        #
+        
         
         print("Database creation completed, you can now use options 1-8.")
         print("")
