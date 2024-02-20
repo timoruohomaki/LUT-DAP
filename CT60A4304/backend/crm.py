@@ -18,11 +18,9 @@ dbcon = None
 def searchAccount():
     print("Not implemented yet, sorry!")
 
-    q = input("Press any key to get back to main menu. ")
-    if q:
-        navi()
-    else:
-        navi()    
+    print("Press any key to get back to main menu. ")
+    input()
+    navi()    
     
 
 def searchContact():
@@ -53,11 +51,9 @@ def searchContact():
             
             dbcon.close()
             
-            q = input("Press any key to get back to main menu. ")
-            if q:
-                navi()
-            else:
-                navi()
+            print("Press any key to get back to main menu. ")
+            input()
+            navi()   
 
 def createLead():
     
@@ -99,11 +95,9 @@ def createLead():
         except Error as err:
             print("[ERROR] In INSERT statement: ", err.sqlite_errorname)
 
-    q = input("Press any key to get back to main menu. ")
-    if q:
-        navi()
-    else:
-        navi()
+        print("Press any key to get back to main menu. ")
+        input()
+        navi()   
     
 def getLatestLeads():
     
@@ -130,12 +124,9 @@ def getLatestLeads():
 
         TableIt.printTable(leadList)
     
-        q = input("Press any key to get back to main menu. ")
-        if q:
-            navi()
-        else:
-            navi()
-
+        print("Press any key to get back to main menu. ")
+        input()
+        navi()   
 
 def createAccount():
     print("Not implemented yet, sorry!")
@@ -233,11 +224,9 @@ def createDemo():
                         print("")
                         print("### Database created and demo data inserted, you can now use options 1-8. ###")
                         
-                        q = input("Press any key to get back to main menu. ")
-                        if q:
-                            navi()
-                        else:
-                            navi()
+                        print("Press any key to get back to main menu. ")
+                        input()
+                        navi()   
                     
                     except dbcon.Error as err:
                         
