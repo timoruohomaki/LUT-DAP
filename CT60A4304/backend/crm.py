@@ -15,19 +15,48 @@ dbcon = None
 
 # Functions
 
+def searchAccount():
+    print("Not implemented yet, sorry!")
+
+    q = input("Press any key to get back to main menu. ")
+    if q:
+        navi()
+    else:
+        navi()    
+    
+
 def searchContact():
+    
     term = input("Enter search term (first name, last name or company): ")
     
     if term:
         try:
-            dbcon = sqlite3.connect("CRMDEMO.DB")   
+            dbcon = sqlite3.connect("CRMDEMO.DB")
+            
+            params = (term,)
+            
+            sql = "SELECT C.con_id, C.first_name || \' \' || COALESCE(C.last_name,' ') AS ContactPerson, A.company \
+                FROM contactPerson AS C JOIN account AS A ON C.FK_acc = A.acc_id \
+                    WHERE C.first_name LIKE %?% ORDER BY C.last_name ASC LIMIT 10"
+            
+            dbcon.row_factory = sqlite3.Row
+            dbcur = dbcon.cursor()
+       
+            contacts = dbcur.execute(sql,params).fetchall()
+            
+            TableIt.printTable(leadList)
+               
         except Error as err:
-            print("[ERROR]]: ", err.sqlite_errorname)
+            print("[ERROR]: ", err.sqlite_errorname, "code", str(err.sqlite_errorcode))
         
         finally:
+            
             dbcon.close()
-            q = input("Hit M to get back to main menu. ")
-            if q == "M":
+            
+            q = input("Press any key to get back to main menu. ")
+            if q:
+                navi()
+            else:
                 navi()
 
 def createLead():
@@ -107,7 +136,11 @@ def getLatestLeads():
         else:
             navi()
 
+
 def createAccount():
+    print("Not implemented yet, sorry!")
+
+def createContact():
     print("Not implemented yet, sorry!")
 
 def updateAccount():
@@ -157,6 +190,7 @@ def createDemo():
                         dbcur.executescript(sql_script)
                         
                         dbcon.commit()
+                        
                         dbcon.close()
 
                         print("Database creation completed.")
@@ -235,10 +269,10 @@ def navi():
     match naviSelect:
         
         case "1":
-            print("Listing latest accounts:")
+            searchAccount()
 
         case "2":
-            print("Listing latest contacts")
+            searchContact()
 
         case "3":
             
@@ -251,6 +285,14 @@ def navi():
             
             createLead()
             
+        case "6":
+            
+            createAccount()
+        
+        case "7":
+            
+            createContact()
+            
         case "8":
             
             salesTeamStatus()
@@ -258,12 +300,13 @@ def navi():
         case "9":
             
             createDemo()
-            
-        case "0":
+                                
+        case _:
+            print("")
             print("Bye!")
             
             if dbcon:
-                dbcon.close()   
+                dbcon.close()
 
 # MAIN PROGRAM STARTS HERE
 
