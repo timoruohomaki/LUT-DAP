@@ -16,11 +16,36 @@ dbcon = None
 # Functions
 
 def searchAccount():
-    print("Not implemented yet, sorry!")
+    term = input("Enter search term (company name or industry): ")
 
-    print("Press any key to get back to main menu. ")
-    input()
-    navi()    
+    if term:
+        try:
+            dbcon = sqlite3.connect("CRMDEMO.DB")
+            
+            params = (term,)
+            
+            sql = "SELECT * FROM account WHERE company LIKE %?%"
+            
+            dbcon.row_factory = sqlite3.Row
+            dbcur = dbcon.cursor()
+            dbcur.execute(sql,params)
+            accounts = dbcur.fetchall()
+            
+            print("ACCOUNTS:")
+            TableIt.printTable(accounts)
+               
+        except Error as err:
+            print("[ERROR]: ", err.sqlite_errorname, "code", str(err.sqlite_errorcode))
+        
+        finally:
+            
+            dbcon.close()
+            
+            print("Press any key to get back to main menu. ")
+            input()
+            navi()   
+
+   
     
 
 def searchContact():
@@ -39,10 +64,10 @@ def searchContact():
             
             dbcon.row_factory = sqlite3.Row
             dbcur = dbcon.cursor()
-       
-            contacts = dbcur.execute(sql,params).fetchall()
+            dbcur.execute(sql,params)
+            contacts = dbcur.fetchall()
             
-            TableIt.printTable(leadList)
+            TableIt.printTable(contacts)
                
         except Error as err:
             print("[ERROR]: ", err.sqlite_errorname, "code", str(err.sqlite_errorcode))
@@ -108,6 +133,8 @@ def getLatestLeads():
             
     finally:
         
+        params = ("",)
+
         sql = "SELECT L.lead_id, L.first_name || \' \' || COALESCE(L.last_name,' ') AS ContactPerson, L.company, \
             S.first_name || \' \' || COALESCE(S.last_name, '') AS SalesPerson \
             FROM lead AS L JOIN salesPerson AS S ON L.FK_salesRep = S.sales_id \
@@ -117,12 +144,17 @@ def getLatestLeads():
         dbcur = dbcon.cursor()
        
         leadList = dbcur.execute(sql).fetchall()
-          
+
+        dbcon.row_factory = sqlite3.Row
+        dbcur = dbcon.cursor()
+        dbcur.execute(sql)
+        leads = dbcur.fetchall()
+
         dbcon.close()
 
-        print("LATEST LEADS:")
+        print("NEW LEADS:")
 
-        TableIt.printTable(leadList)
+        TableIt.printTable(leads)
     
         print("Press any key to get back to main menu. ")
         input()
@@ -298,6 +330,9 @@ def navi():
                 dbcon.close()
 
 # MAIN PROGRAM STARTS HERE
+
+os.chdir(os.path.dirname(__file__))
+print("Current directory:", os.getcwd())
 
 navi()
 
