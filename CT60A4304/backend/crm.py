@@ -6,7 +6,7 @@
 # Docs: https://docs.python.org/3/library/sqlite3.html
 #       https://github.com/SuperMaZingCoder/TableIt 
 
-import os
+import os,traceback
 import sqlite3
 from sqlite3 import Error
 import TableIt
@@ -20,22 +20,32 @@ def searchAccount():
 
     if term:
         try:
-            dbcon = sqlite3.connect("CRMDEMO.DB")
+            dbcon = sqlite3.connect("CRMDEMO.DB3")
             
-            params = (term,)
+            if dbcon:
             
-            sql = "SELECT * FROM account WHERE company LIKE %?%"
+                term = "%" + term + "%"
             
-            dbcon.row_factory = sqlite3.Row
-            dbcur = dbcon.cursor()
-            dbcur.execute(sql,params)
-            accounts = dbcur.fetchall()
+                params = {"term1": term}
             
-            print("ACCOUNTS:")
-            TableIt.printTable(accounts)
+                sql = "SELECT company,industry,city FROM account WHERE company LIKE :term1 OR industry LIKE :term1 ORDER BY company ASC"
+            
+                dbcon.row_factory = sqlite3.Row
+                dbcur = dbcon.cursor()
+                dbcur.execute(".headers on")
+                dbcur.execute(sql,params)
+                accounts = dbcur.fetchall()
+                
+                print("ACCOUNTS:")
+                TableIt.printTable(accounts, useFieldNames=True)
+                
+            else:
+                print("Failed to open database connection.")
+            
+
                
-        except Error as err:
-            print("[ERROR]: ", err.sqlite_errorname, "code", str(err.sqlite_errorcode))
+        except sqlite3.OperationalError as err:
+                print("[ERROR] DB operational error:",traceback.print_exc())
         
         finally:
             
@@ -54,23 +64,31 @@ def searchContact():
     
     if term:
         try:
-            dbcon = sqlite3.connect("CRMDEMO.DB")
+            dbcon = sqlite3.connect("CRMDEMO.DB3")
             
-            params = (term,)
+            if dbcon:
             
-            sql = "SELECT C.con_id, C.first_name || \' \' || COALESCE(C.last_name,' ') AS ContactPerson, A.company \
-                FROM contactPerson AS C JOIN account AS A ON C.FK_acc = A.acc_id \
-                    WHERE C.first_name LIKE %?% ORDER BY C.last_name ASC LIMIT 10"
+                term = "%" + term + "%"
             
-            dbcon.row_factory = sqlite3.Row
-            dbcur = dbcon.cursor()
-            dbcur.execute(sql,params)
-            contacts = dbcur.fetchall()
+                params = {"term1": term}
             
-            TableIt.printTable(contacts)
+                sql = "SELECT C.first_name || \' \' || COALESCE(C.last_name,' ') AS ContactPerson, A.company \
+                FROM contactPersons AS C JOIN account AS A ON C.FK_acc = A.acc_id \
+                    WHERE C.first_name LIKE :term1 OR C.last_name LIKE :term1 ORDER BY C.last_name ASC LIMIT 10"
+            
+                dbcon.row_factory = sqlite3.Row
+                dbcur = dbcon.cursor()
+                dbcur.execute(sql,params)
+                contacts = dbcur.fetchall()
+
+                print("CONTACTS:")
+                TableIt.printTable(contacts)
+            
+            else:
+               print("Failed to open database connection.")
                
-        except Error as err:
-            print("[ERROR]: ", err.sqlite_errorname, "code", str(err.sqlite_errorcode))
+        except sqlite3.OperationalError as err:
+                print("[ERROR] DB operational error:",traceback.print_exc())
         
         finally:
             
@@ -97,7 +115,7 @@ def createLead():
     data = [(first_name, last_name, company, street, zipcode, city, country, email, phone, salesRep)]
 
     try:
-        dbcon = sqlite3.connect("CRMDEMO.DB")   
+        dbcon = sqlite3.connect("CRMDEMO.DB3")   
     except Error as err:
         print("[ERROR] Database connect failed: ", err.sqlite_errorname)
         
@@ -127,7 +145,7 @@ def createLead():
 def getLatestLeads():
     
     try:
-        dbcon = sqlite3.connect("CRMDEMO.DB")            
+        dbcon = sqlite3.connect("CRMDEMO.DB3")            
     except Error as err:
         print("[ERROR]]: ", err.sqlite_errorname)
             
@@ -169,14 +187,8 @@ def createContact():
 def updateAccount():
     print("Not implemented yet, sorry!")
     
-def getAccount():
-    print("Not implemented yet, sorry!")
-    
 def getOpportunitySummary():
     print("Not implemented yet, sorry!")
-    
-def getContactList():
-    print("")
 
 def salesTeamStatus():
     print("")
@@ -187,11 +199,11 @@ def createDemo():
     
     if q == "Y":
     
-        print("Creating database file CRMDEMO.DB...")
+        print("Creating database file CRMDEMO.DB3...")
         print("Database file location: ", os.getcwd())
         
         try:
-            dbcon = sqlite3.connect("CRMDEMO.DB")
+            dbcon = sqlite3.connect("CRMDEMO.DB3")
             print("[INFO] SQLite Database Version: ", sqlite3.sqlite_version)
             
         except Error as e:
@@ -228,7 +240,7 @@ def createDemo():
     if q == "Y":
         
         try:
-            dbcon = sqlite3.connect("CRMDEMO.DB")
+            dbcon = sqlite3.connect("CRMDEMO.DB3")
             
         except Error as e:
             print("[ERROR] Database error: ", e.sqlite_errorname)
@@ -332,7 +344,7 @@ def navi():
 # MAIN PROGRAM STARTS HERE
 
 os.chdir(os.path.dirname(__file__))
-print("Current directory:", os.getcwd())
+print("Current working directory:", os.getcwd())
 
 navi()
 
