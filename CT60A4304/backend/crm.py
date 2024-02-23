@@ -10,6 +10,7 @@ import os,traceback
 import sqlite3
 from sqlite3 import Error
 import TableIt
+import subprocess
 
 dbcon = None
 
@@ -31,13 +32,16 @@ def searchAccount():
                 sql = "SELECT company,industry,city FROM account WHERE company LIKE :term1 OR industry LIKE :term1 ORDER BY company ASC"
             
                 dbcon.row_factory = sqlite3.Row
+
                 dbcur = dbcon.cursor()
-                dbcur.execute(".headers on")
                 dbcur.execute(sql,params)
                 accounts = dbcur.fetchall()
                 
-                print("ACCOUNTS:")
-                TableIt.printTable(accounts, useFieldNames=True)
+                if len(accounts) > 0:
+                    print("ACCOUNTS:")
+                    TableIt.printTable(accounts, useFieldNames=False)
+                else:
+                    print("No results.")
                 
             else:
                 print("Failed to open database connection.")
@@ -45,7 +49,7 @@ def searchAccount():
 
                
         except sqlite3.OperationalError as err:
-                print("[ERROR] DB operational error:",traceback.print_exc())
+                print("[ERROR] Database error:",traceback.print_exc())
         
         finally:
             
@@ -81,14 +85,17 @@ def searchContact():
                 dbcur.execute(sql,params)
                 contacts = dbcur.fetchall()
 
-                print("CONTACTS:")
-                TableIt.printTable(contacts)
-            
+                if len(contacts) > 0:
+                    print("CONTACTS:")
+                    TableIt.printTable(contacts, useFieldNames=False)
+                else:
+                    print("No results.")
+
             else:
                print("Failed to open database connection.")
                
         except sqlite3.OperationalError as err:
-                print("[ERROR] DB operational error:",traceback.print_exc())
+                print("[ERROR] Database error:",traceback.print_exc())
         
         finally:
             
@@ -135,8 +142,8 @@ def createLead():
             
             dbcon.close()
             
-        except Error as err:
-            print("[ERROR] In INSERT statement: ", err.sqlite_errorname)
+        except sqlite3.OperationalError as err:
+                print("[ERROR] Database error:",traceback.print_exc())
 
         print("Press any key to get back to main menu. ")
         input()
@@ -157,12 +164,7 @@ def getLatestLeads():
             S.first_name || \' \' || COALESCE(S.last_name, '') AS SalesPerson \
             FROM lead AS L JOIN salesPerson AS S ON L.FK_salesRep = S.sales_id \
                 ORDER BY L.lead_id DESC LIMIT 10"
-        
-        dbcon.row_factory = sqlite3.Row
-        dbcur = dbcon.cursor()
-       
-        leadList = dbcur.execute(sql).fetchall()
-
+           
         dbcon.row_factory = sqlite3.Row
         dbcur = dbcon.cursor()
         dbcur.execute(sql)
@@ -191,7 +193,32 @@ def getOpportunitySummary():
     print("Not implemented yet, sorry!")
 
 def salesTeamStatus():
-    print("")
+
+    try:
+        dbcon = sqlite3.connect("CRMDEMO.DB3")            
+    except Error as err:
+        print("[ERROR]]: ", err.sqlite_errorname)
+            
+    finally:
+        sql = "SELECT S.first_name || \' \' || COALESCE(S.last_name,' ') AS SalesPerson \
+            count(SELECT * FROM A.FK_acc_rep)
+            FROM salesPerson AS S JOIN account AS A ON S.sales_id = A.acc_id \
+                ORDER BY S.last_name ASC"
+
+        dbcon.row_factory = sqlite3.Row
+        dbcur = dbcon.cursor()
+        dbcur.execute(sql)
+        summary = dbcur.fetchall()
+
+        dbcon.close()
+
+        print("SALES TEAM STATUS:")
+
+        TableIt.printTable(summary, useFieldNames=True)
+        
+        print("Press any key to get back to main menu. ")
+        input()
+        navi()   
         
 def createDemo():
     
@@ -343,9 +370,12 @@ def navi():
 
 # MAIN PROGRAM STARTS HERE
 
+print("Starting CRM application...")
+
 os.chdir(os.path.dirname(__file__))
 print("Current working directory:", os.getcwd())
 
+print("")
 navi()
 
 
