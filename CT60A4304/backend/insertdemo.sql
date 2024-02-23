@@ -4,7 +4,6 @@ Course Project: CRM System
 Database author: Timo Ruohomäki
 */
 
-
 /* LEADS */
 
 insert into lead (first_name, last_name, company, street, zip, city, country, email, phone, FK_salesRep) values ('Way', 'Rodolico', 'Hilpert-Greenfelder', '38 Bonner Crossing', null, 'Bojongaren', 'Indonesia', 'wrodolico0@dropbox.com', '707-752-4870',1);
@@ -48,12 +47,35 @@ insert into contactPersons (first_name, last_name, email, phone, FK_acc) values 
 
 /* OPPORTUNITIES */
 
+insert into opportunity (opp_title, opp_value, opp_est_date, FK_acc, FK_con, FK_salesRep) values ('Project Haystack', 1200, '2024-02-28',1,1,1);
+insert into opportunity (opp_title, opp_value, opp_est_date, FK_acc, FK_con, FK_salesRep) values ('Project Zenon', 2500, '2024-03-31',1,1,2);
+insert into opportunity (opp_title, opp_value, opp_est_date, FK_acc, FK_con, FK_salesRep) values ('Project Beta', 3000, '2024-03-31',1,1,2);
 
 /* QUOTATIONS */
 
+insert into quotation (quote_number, quote_date, FK_account) values (1000,'2024-02-11',2);
+insert into quotation (quote_number, quote_date, FK_account) values (1001,'2024-02-13',2);
+insert into quotation (quote_number, quote_date, FK_account) values (1002,'2024-02-13',3);
+insert into quotation (quote_number, quote_date, FK_account) values (1003,'2024-02-14',4);
+insert into quotation (quote_number, quote_date, FK_account) values (1004,'2024-02-16',5);
 
 /* QUOTE LINE ITEMS */
 
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1278', 'Compact Calculator',5,72.50,1);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A2372', 'Heavy Duty Stapler',12,98.50,1);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1954', 'Data File Box',20,49.50,1);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1278', 'Compact Calculator',5,72.50,2);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A2372', 'Heavy Duty Stapler',12,98.50,2);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1954', 'Data File Box',20,49.50,2);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1278', 'Compact Calculator',5,72.50,3);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A2372', 'Heavy Duty Stapler',12,98.50,3);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1954', 'Data File Box',20,49.50,3);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1278', 'Compact Calculator',5,72.50,4);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A2372', 'Heavy Duty Stapler',12,98.50,4);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1954', 'Data File Box',20,49.50,4);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1278', 'Compact Calculator',5,72.50,5);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A2372', 'Heavy Duty Stapler',12,98.50,5);
+insert into quoteLineItem (product_code, product_name, quantity, unit_price, FK_quotation) values ('A1954', 'Data File Box',20,49.50,5);
 
 /* SALESREP */
 
