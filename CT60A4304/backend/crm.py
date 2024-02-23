@@ -10,7 +10,6 @@ import os,traceback
 import sqlite3
 from sqlite3 import Error
 import TableIt
-import subprocess
 
 dbcon = None
 
@@ -157,8 +156,6 @@ def getLatestLeads():
         print("[ERROR]]: ", err.sqlite_errorname)
             
     finally:
-        
-        params = ("",)
 
         sql = "SELECT L.lead_id, L.first_name || \' \' || COALESCE(L.last_name,' ') AS ContactPerson, L.company, \
             S.first_name || \' \' || COALESCE(S.last_name, '') AS SalesPerson \
@@ -178,7 +175,32 @@ def getLatestLeads():
     
         print("Press any key to get back to main menu. ")
         input()
-        navi()   
+        navi() 
+
+def getOpportunites():
+    try:
+        dbcon = sqlite3.connect("CRMDEMO.DB3")
+    except Error as err:
+        print("[ERROR]]: ", err.sqlite_errorname)
+            
+    finally:
+
+        sql = "SELECT O.opp_title, O.opp_value, O.opp_est_date, A.company FROM opportunity AS O JOIN account AS A ON O.FK_acc = A.acc_id"
+
+        dbcon.row_factory = sqlite3.Row
+        dbcur = dbcon.cursor()
+        dbcur.execute(sql)
+        opps = dbcur.fetchall()
+
+        dbcon.close()
+
+        print("OPPORTUNITIES:")
+
+        TableIt.printTable(opps)
+    
+        print("Press any key to get back to main menu. ")
+        input()
+        navi() 
 
 def createAccount():
     print("Not implemented yet, sorry!")
@@ -189,9 +211,6 @@ def createContact():
 def updateAccount():
     print("Not implemented yet, sorry!")
     
-def getOpportunitySummary():
-    print("Not implemented yet, sorry!")
-
 def salesTeamStatus():
 
     try:
@@ -200,21 +219,21 @@ def salesTeamStatus():
         print("[ERROR]]: ", err.sqlite_errorname)
             
     finally:
-        sql = "SELECT S.first_name || \' \' || COALESCE(S.last_name,' ') AS SalesPerson \
-            count(SELECT * FROM A.FK_acc_rep)
+        sql = "SELECT S.first_name || \' \' || COALESCE(S.last_name,' ') AS SalesPerson, S.territory, \
+            (SELECT count(*) FROM account WHERE FK_acc_rep = S.sales_id) AS Accounts, \
+            (SELECT count(*)FROM opportunity WHERE FK_salesRep = S.sales_id) AS Opportunities \
             FROM salesPerson AS S JOIN account AS A ON S.sales_id = A.acc_id \
-                ORDER BY S.last_name ASC"
-
+            ORDER BY S.last_name ASC"
+        
         dbcon.row_factory = sqlite3.Row
         dbcur = dbcon.cursor()
         dbcur.execute(sql)
         summary = dbcur.fetchall()
-
         dbcon.close()
 
         print("SALES TEAM STATUS:")
 
-        TableIt.printTable(summary, useFieldNames=True)
+        TableIt.printTable(summary, useFieldNames=False)
         
         print("Press any key to get back to main menu. ")
         input()
@@ -339,7 +358,7 @@ def navi():
             getLatestLeads()
             
         case "4":
-            print("Listing latest opportunities")
+            getOpportunites()
 
         case "5":
             
