@@ -77,7 +77,7 @@ def searchContact():
             
                 sql = "SELECT C.first_name || \' \' || COALESCE(C.last_name,' ') AS ContactPerson, A.company \
                 FROM contactPersons AS C JOIN account AS A ON C.FK_acc = A.acc_id \
-                    WHERE C.first_name LIKE :term1 OR C.last_name LIKE :term1 ORDER BY C.last_name ASC LIMIT 10"
+                    WHERE C.first_name LIKE :term1 OR C.last_name LIKE :term1 OR A.company LIKE :term1 ORDER BY C.last_name ASC LIMIT 10"
             
                 dbcon.row_factory = sqlite3.Row
                 dbcur = dbcon.cursor()
