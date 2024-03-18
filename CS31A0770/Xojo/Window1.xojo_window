@@ -10,7 +10,7 @@ Begin DesktopWindow Window1
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   400
+   Height          =   323
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -146,7 +146,7 @@ Begin DesktopWindow Window1
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   170
+      Top             =   148
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -235,7 +235,7 @@ Begin DesktopWindow Window1
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Format          =   "#.##"
+      Format          =   "###,###.##"
       HasBorder       =   True
       Height          =   22
       Hint            =   "0,00"
@@ -404,7 +404,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   170
+      Top             =   145
       Visible         =   True
       Width           =   115
       WinCustomDownMode=   False
@@ -439,7 +439,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   316
+      Top             =   283
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -465,7 +465,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   224
+      Top             =   180
       Transparent     =   True
       Visible         =   True
       Width           =   471
@@ -713,6 +713,8 @@ End
 #tag Events refTF
 	#tag Event
 		Sub TextChanged()
+		  refLabel.text = refTF.text + str(refchecksum(refTF.text))
+		  
 		  generate()
 		End Sub
 	#tag EndEvent
@@ -720,18 +722,16 @@ End
 #tag Events pasteRefPB
 	#tag Event
 		Sub Pressed()
-		  refLabel.text = refTF.text + str(refchecksum(refTF.text))
 		  
+		  var c as Clipboard
 		  
-		  // var c as Clipboard
-		  // 
-		  // c = New Clipboard
-		  // 
-		  // If c.TextAvailable then
-		  // 
-		  // refTF.Text = c.Text
-		  // 
-		  // end
+		  c = New Clipboard
+		  
+		  If c.TextAvailable then
+		    
+		    refTF.Text = c.Text
+		    
+		  end
 		End Sub
 	#tag EndEvent
 #tag EndEvents
