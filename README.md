@@ -12,3 +12,5 @@
 
 **CS31A0770** Digitaaliset liiketoimintaprosessit
 
+**CS31A0712** Mallinnus ja analytiikka controllerin työkaluna
+
