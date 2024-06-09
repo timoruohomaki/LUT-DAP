@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-06-09T07:27:51.908Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="xOYqdcJuqTlXrylgSrEU" version="24.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2024-06-09T07:28:43.355Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="rTV-C-0k90bf-1ewud5H" version="24.4.9" type="github">
   <diagram name="Page-1" id="ZrJXDv-FUCtQG19DnWuj">
     <mxGraphModel dx="3238" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -54,8 +54,8 @@
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-14" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint y="200" as="sourcePoint" />
-            <mxPoint x="150" y="200" as="targetPoint" />
+            <mxPoint x="-30" y="200" as="sourcePoint" />
+            <mxPoint x="120" y="200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-15" value="customer feedback" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6iWBXV5wArr8-yX4Gljc-14">
@@ -65,8 +65,8 @@
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-16" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint y="279" as="sourcePoint" />
-            <mxPoint x="150" y="279" as="targetPoint" />
+            <mxPoint x="-30" y="280" as="sourcePoint" />
+            <mxPoint x="120" y="280" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-18" value="telemetry" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6iWBXV5wArr8-yX4Gljc-16">
@@ -76,8 +76,8 @@
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-20" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint y="120" as="sourcePoint" />
-            <mxPoint x="150" y="120" as="targetPoint" />
+            <mxPoint x="-30" y="120" as="sourcePoint" />
+            <mxPoint x="120" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-21" value="budget" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6iWBXV5wArr8-yX4Gljc-20">
@@ -87,8 +87,8 @@
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-22" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint y="40" as="sourcePoint" />
-            <mxPoint x="150" y="40" as="targetPoint" />
+            <mxPoint x="-30" y="40" as="sourcePoint" />
+            <mxPoint x="120" y="40" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-23" value="strategy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6iWBXV5wArr8-yX4Gljc-22">
@@ -98,8 +98,8 @@
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-24" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint y="359.5" as="sourcePoint" />
-            <mxPoint x="150" y="359.5" as="targetPoint" />
+            <mxPoint x="-30" y="359.5" as="sourcePoint" />
+            <mxPoint x="120" y="359.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="6iWBXV5wArr8-yX4Gljc-25" value="demand" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6iWBXV5wArr8-yX4Gljc-24">
