@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-06-09T07:50:40.587Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="3vPRetl85AoIJfazgGZv" version="24.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2024-06-09T08:15:07.731Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="1rKjQrhN97rvFPuw5sWC" version="24.4.9" type="github">
   <diagram name="Page-1" id="ZrJXDv-FUCtQG19DnWuj">
     <mxGraphModel dx="1373" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -140,7 +140,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="6iWBXV5wArr8-yX4Gljc-32" value="organization governance" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+        <mxCell id="6iWBXV5wArr8-yX4Gljc-32" value="organization governance" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="320" y="80" width="720" height="120" as="geometry" />
         </mxCell>
       </root>
