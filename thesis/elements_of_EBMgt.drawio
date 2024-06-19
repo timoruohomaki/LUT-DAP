@@ -1,9 +1,24 @@
-<mxfile host="app.diagrams.net" modified="2024-06-19T06:52:15.236Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" version="24.5.4" etag="na6CwIQozSAPa3TdjgYF" type="github">
+<mxfile host="app.diagrams.net" modified="2024-06-19T06:57:23.183Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="K54TOW32NyMR1By3UT2C" version="24.5.4" type="github">
   <diagram name="Page-1" id="G6uAZgZtYptQKEU9XLgI">
-    <mxGraphModel>
+    <mxGraphModel dx="1116" dy="1046" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="PWwtw1QwM0O5lpQO3u8M-1" value="&lt;font face=&quot;Times New Roman&quot;&gt;Stakeholders&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=30;align=right;" vertex="1" parent="1">
+          <mxGeometry x="610" y="370" width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="PWwtw1QwM0O5lpQO3u8M-2" value="&lt;font face=&quot;Times New Roman&quot;&gt;&amp;nbsp; &amp;nbsp; Practitioner&lt;br&gt;&amp;nbsp; &amp;nbsp; experience and&lt;br&gt;&amp;nbsp; &amp;nbsp; judgements&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;opacity=30;align=left;" vertex="1" parent="1">
+          <mxGeometry x="400" y="370" width="230" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="PWwtw1QwM0O5lpQO3u8M-3" value="&lt;font face=&quot;Times New Roman&quot;&gt;Evaluated external evidence&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=30;" vertex="1" parent="1">
+          <mxGeometry x="540" y="280" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="PWwtw1QwM0O5lpQO3u8M-4" value="&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;Context, organizational&lt;br&gt;actors, circumstances&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=30;" vertex="1" parent="1">
+          <mxGeometry x="530" y="430" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="PWwtw1QwM0O5lpQO3u8M-5" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;Decision&lt;/b&gt;&lt;/font&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="555" y="400" width="120" height="80" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
