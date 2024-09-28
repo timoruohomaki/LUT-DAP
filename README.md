@@ -14,3 +14,5 @@
 
 **CS31A0712** Mallinnus ja analytiikka controllerin työkaluna
 
+**CS37A0130** Teollinen internet ja tuotantotalouden sovellukset
+
