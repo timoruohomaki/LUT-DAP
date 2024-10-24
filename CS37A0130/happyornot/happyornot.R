@@ -37,8 +37,9 @@ feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
 # feedback.final <- feedback.raw %>% arrange(ObservedAt)
 feedback.final$Feedback <- as.factor(feedback.final$Feedback)
+feedback.final$SiteID <- as.factor(feedback.final$SiteID)
 
-feedback.final <- feedback.final %>% filter(SiteID,Feedback,BatteryLevel,ObservedAt)
+feedback.final <- feedback.final %>% select(SiteID,Feedback,BatteryLevel,ObservedAt)
 
 # testing distribution by plotting it
 ggplot(data.frame(feedback.final), aes(x=Feedback)) +
@@ -48,4 +49,5 @@ ggplot(data.frame(feedback.final), aes(x=Feedback)) +
 
 write_json(feedback.final, "./data/happyornot_2024.json")
 
+head(feedback.final)
 tail(feedback.final)
