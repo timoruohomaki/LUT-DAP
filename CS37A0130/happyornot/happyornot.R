@@ -3,6 +3,7 @@ library(cleaner)
 library(dplyr)
 library(ggplot2)
 library(jsonlite)
+library(dotenv)
 
 if(!file.exists("./data")){dir.create("./data")}
 
@@ -48,6 +49,10 @@ ggplot(data.frame(feedback.final), aes(x=Feedback)) +
 # exporting json
 
 write_json(feedback.final, "./data/happyornot_2024.json")
+
+# posting to Azure event hub
+
+Sys.getenv("EventHubConnString")
 
 head(feedback.final)
 tail(feedback.final)
