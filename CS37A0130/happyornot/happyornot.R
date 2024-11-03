@@ -3,9 +3,19 @@ library(cleaner)
 library(dplyr)
 library(ggplot2)
 library(jsonlite)
+library(httr2)
+library(dotenv)
+library(AzureAuth)
+library(AzureStor)
+library(httpuv)
+
+# workaround for dotenv issue https://github.com/gaborcsardi/dotenv/issues/15
+# this needs to be run after every update of .env
+detach("package:dotenv", unload=TRUE)
 library(dotenv)
 
 if(!file.exists("./data")){dir.create("./data")}
+
 
 rowCount <- 10000
 rangeBegin <- as.Date("2024-01-01")
@@ -46,13 +56,20 @@ feedback.final <- feedback.final %>% select(SiteID,Feedback,BatteryLevel,Observe
 ggplot(data.frame(feedback.final), aes(x=Feedback)) +
   geom_bar(fill="lightgreen")
 
+head(feedback.final)
+tail(feedback.final)
+
 # exporting json
 
 write_json(feedback.final, "./data/happyornot_2024.json")
 
+#===========================#
+### AZURE EVENT HUB CODE ####
+#===========================#
+
 # posting to Azure event hub
-
-Sys.getenv("EventHubConnString")
-
-head(feedback.final)
-tail(feedback.final)
+Sys.getenv("EventHubPolicyName")
+Sys.getenv("EventHubUrlString")
+Sys.getenv("EventHubAPIVersion")
+Sys.getenv("EventHubOperations")
+Sys.getenv("UserAgent")
