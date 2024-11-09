@@ -5,9 +5,6 @@ library(ggplot2)
 library(jsonlite)
 library(httr2)
 library(dotenv)
-library(AzureAuth)
-library(AzureStor)
-library(httpuv)
 
 # workaround for dotenv issue https://github.com/gaborcsardi/dotenv/issues/15
 # this needs to be run after every update of .env
