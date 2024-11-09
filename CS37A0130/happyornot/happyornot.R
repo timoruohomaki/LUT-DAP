@@ -3,16 +3,15 @@ library(cleaner)
 library(dplyr)
 library(ggplot2)
 library(jsonlite)
-library(httr2)
 library(dotenv)
 
 # workaround for dotenv issue https://github.com/gaborcsardi/dotenv/issues/15
 # this needs to be run after every update of .env
+
 detach("package:dotenv", unload=TRUE)
 library(dotenv)
 
 if(!file.exists("./data")){dir.create("./data")}
-
 
 rowCount <- 10000
 rangeBegin <- as.Date("2024-01-01")
@@ -25,7 +24,7 @@ s <- 1:5
 
 timeArray <- paste0(sprintf("%02d",(sample((8:16), rowCount, replace = TRUE))),":",
                     sprintf("%02d",(sample((0:59), rowCount, replace = TRUE))),":",
-                    sprintf("%02d",(sample((0:59), rowCount, replace = TRUE))))
+                    sprintf("%02d",(sample((0:59), rowCount, replace = TRUE))),".000Z")
 
 siteArray <- sample(s, rowCount, replace = TRUE, prob = c(0.4,0.3,0.1,0.1,0.1))
 
@@ -43,30 +42,19 @@ colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLeve
 feedback.final <- feedback.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
-# feedback.final <- feedback.raw %>% arrange(ObservedAt)
-feedback.final$Feedback <- as.factor(feedback.final$Feedback)
-feedback.final$SiteID <- as.factor(feedback.final$SiteID)
-
-feedback.final <- feedback.final %>% select(SiteID,Feedback,BatteryLevel,ObservedAt)
+feedback.day1 <- feedback.final %>% filter(ObsDate == "2024-01-01")
 
 # testing distribution by plotting it
-ggplot(data.frame(feedback.final), aes(x=Feedback)) +
+ggplot(data.frame(feedback.day1), aes(x=Feedback)) +
   geom_bar(fill="lightgreen")
 
-head(feedback.final)
-tail(feedback.final)
-
-# exporting json
+# exporting json if needed
 
 write_json(feedback.final, "./data/happyornot_2024.json")
 
-#===========================#
-### AZURE EVENT HUB CODE ####
-#===========================#
+#================================#
+### POSTING TO IoT Ticket API ####
+#=====================##=========#
 
-# posting to Azure event hub
-Sys.getenv("EventHubPolicyName")
-Sys.getenv("EventHubUrlString")
-Sys.getenv("EventHubAPIVersion")
-Sys.getenv("EventHubOperations")
+
 Sys.getenv("UserAgent")
