@@ -33,8 +33,8 @@ b <- c(1.0,0.97,0.94,0.91,0.88,0.83,0.79,0.74,0.71,0.67)
 battLevelArray <- sample(b, rowCount, replace = TRUE)
 battLevelArray <- sort(battLevelArray, decreasing = TRUE)
 
-x <- 1:5
-feedbackArray <- sample(x, rowCount, replace = TRUE, prob = c(0.05,0.1,0.3,0.35,0.2))
+x <- 1:4
+feedbackArray <- sample(x, rowCount, replace = TRUE, prob = c(0.1,0.3,0.35,0.25))
 
 feedback.raw <- data.frame(siteArray, dateArray, timeArray, feedbackArray, battLevelArray)
 colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLevel")
@@ -42,10 +42,10 @@ colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLeve
 feedback.final <- feedback.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
-feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-14")
+feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-16")
 
 # testing distribution by plotting it
-ggplot(data.frame(feedback.day1), aes(x=Feedback)) +
+ggplot(data.frame(feedback.today), aes(x=Feedback)) +
   geom_bar(fill="lightgreen")
 
 # exporting json if needed
@@ -70,12 +70,19 @@ Sys.getenv("apiUser")
 # "<USERNAME>@<ORG>:<PASSWORD>" https://<SERVER_ADDRESS>/http-adapter/event/<ORG>/
 # <DEVICE_ID>
 
-apiResult <- PUT(url = Sys.getenv("apiTelemetryURI"),
+# create JSON structure for API call
+
+apiData <- toJSON(feedback.today, pretty = TRUE)
+
+apiResult <- PUT(url = Sys.getenv("apiEventURI"),
                   authenticate(Sys.getenv("apiUser"),
                                Sys.getenv("apiPwd"),
                                type = "basic"),
-                 encode = c("json")
+                  body = apiData,
+                  content_type_json(),
+                 user_agent(Sys.getenv("UserAgent"))
                 )
 
 # verify success
 status_code(apiResult)
+
