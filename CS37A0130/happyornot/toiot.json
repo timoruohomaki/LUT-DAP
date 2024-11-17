@@ -1,0 +1,20 @@
+{
+    "t": [
+        {
+            "n": "Feedback",
+            "dt": "double",
+            "unit": "happiness",
+            "data": [
+
+            ]
+        },
+        {
+            "n": "BatteryLevel",
+            "dt": "double",
+            "unit": "",
+            "data": [
+
+            ]
+        }
+    ]
+}
