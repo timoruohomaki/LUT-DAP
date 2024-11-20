@@ -42,13 +42,6 @@ feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
 feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-18")
 
-# testing feedback distribution by plotting it
-ggplot(data.frame(feedback.today), aes(x=Feedback)) +
-  geom_bar(fill="lightgreen")
-
-# exporting json if needed
-write_json(feedback.final, "./data/happyornot_2024.json")
-
 #================================#
 ### POSTING TO IoT Ticket API ####
 #=====================##=========#
@@ -63,24 +56,9 @@ feedback.feedback <- setNames(as.list(feedback.today$Feedback), feedback.today$O
 feedback.battery <- setNames(as.list(feedback.today$BatteryLevel), feedback.today$ObservedAt)
 feedback.sites <- setNames(as.list(feedback.today$SiteID), feedback.today$ObservedAt)
 
-# create data frames of each value pair 
-
-fsites <- list()
-
-# data frame?
-
-for (i in seq_along(feedback.today)) {
-  lr <- list(a = feedback.today[i]$ObservedAt, b = feedback.today[i]$SiteID)
-  fsites <- append(fsites, lr)
-}
-
-fbacks <- feedback.feedback
-fbatts <- feedback.battery
-fsites <- feedback.sites
-
-lelem1=list(n="Feedback", dt="double", unit="happiness", data = fbacks)
-lelem2=list(n="BatteryLevel", dt="double", unit="", data = fbatts)
-lelem3=list(n="SiteID", dt="string", unit="", data = fsites)
+lelem1=list(n="Feedback", dt="double", unit="happiness", data = feedback.feedback)
+lelem2=list(n="BatteryLevel", dt="double", unit="", data = feedback.battery)
+lelem3=list(n="SiteID", dt="string", unit="", data = as.data.frame(feedback.sites))
 
 # combine into a single object
 
