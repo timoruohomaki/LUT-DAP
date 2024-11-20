@@ -1,5 +1,3 @@
-library(lubridate)
-library(cleaner)
 library(dplyr)
 library(ggplot2)
 library(jsonlite)
@@ -13,7 +11,7 @@ library(dotenv)
 
 if(!file.exists("./data")){dir.create("./data")}
 
-rowCount <- 10000
+rowCount <- 50000
 rangeBegin <- as.Date("2024-01-01")
 rangeEnd <- as.Date("2024-11-30")
 
@@ -42,9 +40,9 @@ colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLeve
 feedback.final <- feedback.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
-feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-17")
+feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-18")
 
-# testing distribution by plotting it
+# testing feedback distribution by plotting it
 ggplot(data.frame(feedback.today), aes(x=Feedback)) +
   geom_bar(fill="lightgreen")
 
@@ -59,34 +57,36 @@ Sys.getenv("UserAgent")
 Sys.getenv("apiEventURI")
 Sys.getenv("apiUser")
 
-# Telemetry REST URI
-# PUT https://<server_address>/http-adapter/telemetry/<iot-ticket-tenant-id>/<device_id_here>
-# Event REST URI
-# PUT https://<server_address>/http-adapter/event/<iot-ticket-tenant-id>/<device_id_here>
-
-# Example:
-# curl --request PUT --json '{"e": [{ "type": "Notification", "active": true, "severity":"High", "gn": "Collisions", "id":
-# "<EVENT_ID>", "m": "Message Message", "ts":"' --json "$(date --iso-8601=seconds)" --json '"}]}' --user
-# "<USERNAME>@<ORG>:<PASSWORD>" https://<SERVER_ADDRESS>/http-adapter/event/<ORG>/
-# <DEVICE_ID>
-
 # create JSON structure for API call
 
 feedback.feedback <- setNames(as.list(feedback.today$Feedback), feedback.today$ObservedAt)
 feedback.battery <- setNames(as.list(feedback.today$BatteryLevel), feedback.today$ObservedAt)
 feedback.sites <- setNames(as.list(feedback.today$SiteID), feedback.today$ObservedAt)
 
-fbacks <- list(feedback.feedback)
-fbatts <- list(feedback.battery)
-fsites <- list(feedback.sites)
+# create data frames of each value pair 
+
+fsites <- list()
+
+# data frame?
+
+for (i in seq_along(feedback.today)) {
+  lr <- list(a = feedback.today[i]$ObservedAt, b = feedback.today[i]$SiteID)
+  fsites <- append(fsites, lr)
+}
+
+fbacks <- feedback.feedback
+fbatts <- feedback.battery
+fsites <- feedback.sites
 
 lelem1=list(n="Feedback", dt="double", unit="happiness", data = fbacks)
 lelem2=list(n="BatteryLevel", dt="double", unit="", data = fbatts)
 lelem3=list(n="SiteID", dt="string", unit="", data = fsites)
 
+# combine into a single object
+
 ls=list(t=list(lelem1, lelem2, lelem3))
 
-toiot.json <- toJSON(ls, auto_unbox = TRUE, pretty = TRUE) %>% jsonlite::prettify()
+toiot.json <- toJSON(ls, auto_unbox = TRUE, pretty = TRUE, Date = c("ISO8601", "epoch")) %>% jsonlite::prettify()
 
 toiot.json
 
@@ -103,7 +103,6 @@ apiResult <- PUT(url = Sys.getenv("apiTelemetryURI"),
                  user_agent(Sys.getenv("UserAgent"))
                 )
 
-# verify success
+# verify success (IoT-Ticket returns 202 on successful put)
 status_code(apiResult)
-apiResult$url
 
