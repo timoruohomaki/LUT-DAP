@@ -1,4 +1,6 @@
 library(dplyr)
+library(cleaner)
+library(lubridate)
 library(ggplot2)
 library(jsonlite)
 library(httr)
@@ -40,7 +42,7 @@ colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLeve
 feedback.final <- feedback.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
-feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-18")
+feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-21")
 
 #================================#
 ### POSTING TO IoT Ticket API ####
@@ -58,7 +60,7 @@ feedback.sites <- setNames(as.list(feedback.today$SiteID), feedback.today$Observ
 
 lelem1=list(n="Feedback", dt="double", unit="happiness", data = feedback.feedback)
 lelem2=list(n="BatteryLevel", dt="double", unit="", data = feedback.battery)
-lelem3=list(n="SiteID", dt="string", unit="", data = as.data.frame(feedback.sites))
+lelem3=list(n="SiteID", dt="string", unit="", data = feedback.sites)
 
 # combine into a single object
 
@@ -66,7 +68,7 @@ ls=list(t=list(lelem1, lelem2, lelem3))
 
 toiot.json <- toJSON(ls, auto_unbox = TRUE, pretty = TRUE, Date = c("ISO8601", "epoch")) %>% jsonlite::prettify()
 
-toiot.json
+
 
 # post JSON on IoT-Ticket
 
@@ -83,4 +85,8 @@ apiResult <- PUT(url = Sys.getenv("apiTelemetryURI"),
 
 # verify success (IoT-Ticket returns 202 on successful put)
 status_code(apiResult)
+
+### SAVE A COPY OF OUTPUT ####
+
+write_json(ls, "./data/toiot_21112024.json", auto_unbox = TRUE)
 
