@@ -42,7 +42,7 @@ colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLeve
 feedback.final <- feedback.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
-feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-21")
+feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-23")
 
 #================================#
 ### POSTING TO IoT Ticket API ####
@@ -54,21 +54,68 @@ Sys.getenv("apiUser")
 
 # create JSON structure for API call
 
-feedback.feedback <- setNames(as.list(feedback.today$Feedback), feedback.today$ObservedAt)
-feedback.battery <- setNames(as.list(feedback.today$BatteryLevel), feedback.today$ObservedAt)
-feedback.sites <- setNames(as.list(feedback.today$SiteID), feedback.today$ObservedAt)
+getFeedbackData <- function() {
+  
+  keys <- as.vector(feedback.today$ObservedAt)
+  values <- as.vector(feedback.today$Feedback)
+  
+  dataAsList <- list()
+  
+  for(i in 1:length(keys)) {
+    dataRow <- list()
+    dataRow[keys[i]] <- values[i]
+    dataAsList[[i]] <- dataRow
+  }
+  
+  return(dataAsList)
+  
+}
 
-lelem1=list(n="Feedback", dt="double", unit="happiness", data = feedback.feedback)
-lelem2=list(n="BatteryLevel", dt="double", unit="", data = feedback.battery)
-lelem3=list(n="SiteID", dt="string", unit="", data = feedback.sites)
+getSiteData <- function() {
+  keys <- as.vector(feedback.today$ObservedAt)
+  values <- as.vector(feedback.today$SiteID)
+  
+  dataAsList <- list()
+  
+  for(i in 1:length(keys)) {
+    dataRow <- list()
+    dataRow[keys[i]] <- values[i]
+    dataAsList[[i]] <- dataRow
+  }
+  
+  return(dataAsList)
+}
 
-# combine into a single object
+getBatteryData <- function() {
+  keys <- as.vector(feedback.today$ObservedAt)
+  values <- as.vector(feedback.today$BatteryLevel)
+  
+  dataAsList <- list()
+  
+  for(i in 1:length(keys)) {
+    dataRow <- list()
+    dataRow[keys[i]] <- values[i]
+    dataAsList[[i]] <- dataRow
+  }
+  
+  return(dataAsList)
+}
 
-ls=list(t=list(lelem1, lelem2, lelem3))
+getObject <- function() {
+  
+  jsonList <- list()
+  
+  siteList <- (list(n = "SiteID", dt = "double", unit = " ", data=getSiteData()))
+  feedbackList <- (list(n = "Feedback", dt = "double", unit = " ", data=getFeedbackData()))
+  batteryList <- (list(n = "BatteryLevel", dt = "double", unit = "%", data=getBatteryData()))
+  
+  jsonList <- list(siteList, feedbackList, batteryList)
 
-toiot.json <- toJSON(ls, auto_unbox = TRUE, pretty = TRUE, Date = c("ISO8601", "epoch")) %>% jsonlite::prettify()
+  return(jsonList)
+  
+}
 
-
+toiot.json <- toJSON(list(t=getObject()), auto_unbox = TRUE) %>% jsonlite::prettify()
 
 # post JSON on IoT-Ticket
 
@@ -80,7 +127,7 @@ apiResult <- PUT(url = Sys.getenv("apiTelemetryURI"),
                                type = "basic"),
                   body = toiot.json,
                   content_type_json(),
-                 user_agent(Sys.getenv("UserAgent"))
+                  user_agent(Sys.getenv("UserAgent"))
                 )
 
 # verify success (IoT-Ticket returns 202 on successful put)
@@ -88,5 +135,5 @@ status_code(apiResult)
 
 ### SAVE A COPY OF OUTPUT ####
 
-write_json(ls, "./data/toiot_21112024.json", auto_unbox = TRUE)
+write(toiot.json, file = "./data/toiot_23112024.json")
 
