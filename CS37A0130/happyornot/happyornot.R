@@ -52,7 +52,7 @@ Sys.getenv("UserAgent")
 Sys.getenv("apiEventURI")
 Sys.getenv("apiUser")
 
-# create JSON structure for API call
+# create nested JSON structure for API call
 
 getFeedbackData <- function() {
   
@@ -136,4 +136,3 @@ status_code(apiResult)
 ### SAVE A COPY OF OUTPUT ####
 
 write(toiot.json, file = "./data/toiot_23112024.json")
-
