@@ -1,18 +1,30 @@
+library(tidyr)
 library(dplyr)
 library(jsonlite)
+library(haven)
+library(lubridate)
 
 getData <- function() {
   
-  dataList <- list()
+  key <- Sys.time()
+  value = 0.1
   
-  for (i in cars) {
-    dataList <- append(dataList,list(list("a"=i$speed),list("b"=i$dist)))
-  }
+  valuelist <- list()
+  valuelist[[key]] <- value
+
+  dataReturn <- data.frame(valuelist)
   
-  return(dataList)
+  return(dataReturn)
   
 }
 
-toJSON(list(n = "Temperature", unit = "Celsius", list(data=getData())), auto_unbox = TRUE) %>% jsonlite::prettify()
+getObject <- function() {
+  
+  jsonList <- (list(n = "Temperature", dt = "double", unit = "Celsius", data=getData()))
+  
+  return(jsonList)
+}
 
-# toJSON(list(n = "Temperature", unit = "Celsius", data=list(list("foo" = "bar"), list("baz"="qux"), list("fred" = "thud"))),auto_unbox = TRUE) %>% jsonlite::prettify()
+toJSON(list(t=getObject()), auto_unbox = TRUE, POSIXt="ISO8601") %>% jsonlite::prettify()
+
+getData()
