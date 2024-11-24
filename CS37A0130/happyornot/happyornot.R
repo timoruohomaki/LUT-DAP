@@ -42,7 +42,7 @@ colnames(feedback.raw) <- c("SiteID","ObsDate","ObsTime","Feedback","BatteryLeve
 feedback.final <- feedback.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 feedback.final <- feedback.final %>% arrange(ymd_hms(ObservedAt))
 
-feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-23")
+feedback.today <- feedback.final %>% filter(ObsDate == "2024-11-24")
 
 #================================#
 ### POSTING TO IoT Ticket API ####
@@ -135,4 +135,4 @@ status_code(apiResult)
 
 ### SAVE A COPY OF OUTPUT ####
 
-write(toiot.json, file = "./data/toiot_23112024.json")
+write(toiot.json, file = "./data/toiot_24112024.json")
