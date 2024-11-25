@@ -68,7 +68,7 @@ getObject <- function() {
   
   jsonList <- list()
   
-  roomList <- (list(n = "RoomID", dt = "double", unit = " ", data=getPresenceData()))
+  roomList <- (list(n = "RoomID", dt = "string", unit = " ", data=getPresenceData()))
   
   jsonList <- list(roomList)
   
