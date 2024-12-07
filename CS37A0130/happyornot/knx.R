@@ -39,7 +39,7 @@ colnames(presence.raw) <- c("RoomID","ObsDate","ObsTime")
 presence.final <- presence.raw %>% mutate(ObservedAt = paste(dateArray,timeArray,sep='T'))
 presence.final <- presence.final %>% arrange(ymd_hms(ObservedAt))
 
-presence.today <- presence.final %>% filter(ObsDate == "2024-11-24")
+presence.today <- presence.final %>% filter(ObsDate == "2024-11-26")
 
 Sys.getenv("UserAgent")
 Sys.getenv("apiKNXuri")
@@ -78,7 +78,7 @@ getObject <- function() {
 
 toiot.json <- toJSON(list(t=getObject()), auto_unbox = TRUE) %>% jsonlite::prettify()
 
-write(toiot.json, file = "./data/knxtoiot_24112024.json")
+write(toiot.json, file = "./data/knxtoiot_24112026.json")
 
 #### POST TO IOT-TICKET ####
 
